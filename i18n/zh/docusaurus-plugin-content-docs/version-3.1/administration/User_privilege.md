@@ -6,6 +6,66 @@ StarRocks 同时采用了基于角色的访问控制 (RBAC) 和基于身份的�
 
 在 StarRocks 集群中，您可以将权限授予用户或角色。角色是一组权限，可根据需要授予集群内的用户或角色。一个用户或角色可以被授予一个或多个角色，这些角色决定了他们对不同对象的权限。
 
+## 查看用户和角色信息
+
+拥有系统预置角色 `user_admin` 的用户可以查看 StarRocks 集群中用户和角色的信息。
+
+### 查看权限信息
+
+您可以使用 [SHOW GRANTS](../sql-reference/sql-statements/account-management/SHOW%20GRANTS.md) 查看授予用户或角色的权限。
+
+- 查看当前用户的权限。
+
+  ```SQL
+  SHOW GRANTS;
+  ```
+
+  > **说明**
+  >
+  > 任何用户都可以查看自身的权限，无需任何权限。
+
+- 查看特定用户的权限。
+
+  以下示例查看用户 `jack` 的权限。
+
+  ```SQL
+  SHOW GRANTS FOR jack@'172.10.1.10';
+  ```
+
+- 查看特定角色的权限。
+
+  以下示例查看角色 `example_role` 的权限。
+
+  ```SQL
+  SHOW GRANTS FOR ROLE example_role;
+  ```
+
+### 查看用户属性
+
+您可以使用 [SHOW PROPERTY](../sql-reference/sql-statements/account-management/SET%20PROPERTY.md) 查看用户的属性。
+
+以下示例查看用户 `jack` 的属性：
+
+```SQL
+SHOW PROPERTY FOR jack@'172.10.1.10';
+```
+
+### 查看角色
+
+您可以使用 [SHOW ROLES](../sql-reference/sql-statements/account-management/SHOW%20ROLES.md) 查看 StarRocks 集群中的所有角色。
+
+```SQL
+SHOW ROLES;
+```
+
+### 查看用户
+
+您可以使用 SHOW USERS 查看 StarRocks 集群中的所有用户。
+
+```SQL
+SHOW USERS;
+```
+
 ## 管理用户
 
 拥有系统预置角色 `user_admin` 的用户可以在 StarRocks 中创建、修改和删除用户。
@@ -274,66 +334,6 @@ SET GLOBAL activate_all_roles_on_login = TRUE;
   REVOKE SELECT ON TABLE sr_member FROM ROLE example_role;
   ```
 
-## 查看用户和角色信息
-
-拥有系统预置角色 `user_admin` 的用户可以查看 StarRocks 集群中用户和角色的信息。
-
-### 查看权限信息
-
-您可以使用 [SHOW GRANTS](../sql-reference/sql-statements/account-management/SHOW%20GRANTS.md) 查看授予用户或角色的权限。
-
-- 查看当前用户的权限。
-
-  ```SQL
-  SHOW GRANTS;
-  ```
-
-  > **说明**
-  >
-  > 任何用户都可以查看自身的权限，无需任何权限。
-
-- 查看特定用户的权限。
-
-  以下示例查看用户 `jack` 的权限。
-
-  ```SQL
-  SHOW GRANTS FOR jack@'172.10.1.10';
-  ```
-
-- 查看特定角色的权限。
-
-  以下示例查看角色 `example_role` 的权限。
-
-  ```SQL
-  SHOW GRANTS FOR ROLE example_role;
-  ```
-
-### 查看用户属性
-
-您可以使用 [SHOW PROPERTY](../sql-reference/sql-statements/account-management/SET%20PROPERTY.md) 查看用户的属性。
-
-以下示例查看用户 `jack` 的属性：
-
-```SQL
-SHOW PROPERTY FOR jack@'172.10.1.10';
-```
-
-### 查看角色
-
-您可以使用 [SHOW ROLES](../sql-reference/sql-statements/account-management/SHOW%20ROLES.md) 查看 StarRocks 集群中的所有角色。
-
-```SQL
-SHOW ROLES;
-```
-
-### 查看用户
-
-您可以使用 SHOW USERS 查看 StarRocks 集群中的所有用户。
-
-```SQL
-SHOW USERS;
-```
-
 ## 最佳实践
 
 ### 多业务线权限管理
@@ -415,7 +415,7 @@ GRANT public_sales TO ROLE lineb_query;
 
 建议您通过自定义角色管理权限和用户。以下梳理了一些常见场景所需的权限项。
 
-1. 全局查询权限
+1. StarRocks 内表全局查询权限
 
    ```SQL
    -- 创建自定义角色。
@@ -439,7 +439,7 @@ GRANT public_sales TO ROLE lineb_query;
    GRANT USAGE ON ALL GLOBAL FUNCTIONS TO ROLE read_only;
    ```
 
-2. 全局写权限
+2. StarRocks 内表全局写权限
 
    ```SQL
    -- 创建自定义角色。
@@ -452,18 +452,36 @@ GRANT public_sales TO ROLE lineb_query;
    GRANT REFRESH ON ALL MATERIALIZED VIEWS IN ALL DATABASES TO ROLE write_only;
    ```
 
-3. 指定外部数据目录（EXTERNAL CATALOG）下的读权限
+3. 指定外部数据目录（External Catalog）下的查询权限
 
    ```SQL
    -- 创建自定义角色。
    CREATE ROLE read_catalog_only;
+   -- 赋予角色目标 Catalog 的 USAGE 权限。
+   GRANT USAGE ON CATALOG hive_catalog TO ROLE read_catalog_only;
    -- 切换到对应数据目录。
    SET CATALOG hive_catalog;
-   -- 赋予角色所有表的查询权限。
+   -- 赋予角色所有表的查询权限。注意当前仅支持查询 Hive 表的视图 (自 3.1 版本起)。
    GRANT SELECT ON ALL TABLES IN ALL DATABASES TO ROLE read_catalog_only;
+   GRANT SELECT ON ALL VIEWS IN ALL DATABASES TO ROLE read_catalog_only;
    ```
 
-4. 全局、数据库级、表级以及分区级备份恢复权限
+4. 指定外部数据目录（External Catalog）下的写权限
+
+   当前仅支持写入数据到 Iceberg 表 (自 3.1 版本起)。
+
+   ```SQL
+   -- 创建自定义角色。
+   CREATE ROLE write_catalog_only;
+   -- 赋予角色目标 Catalog 的 USAGE 权限。
+   GRANT USAGE ON CATALOG iceberg_catalog TO ROLE read_catalog_only;
+   -- 切换到对应数据目录。
+   SET CATALOG iceberg_catalog;
+   -- 赋予角色所有 Iceberg 表的写入权限。
+   GRANT INSERT ON ALL TABLES IN ALL DATABASES TO ROLE write_catalog_only;
+   ```
+
+5. 全局、数据库级、表级以及分区级备份恢复权限
 
    - 全局备份恢复权限
 
@@ -498,7 +516,7 @@ GRANT public_sales TO ROLE lineb_query;
      -- 赋予角色向任意表导入数据的权限。
      GRANT INSERT ON ALL TABLES IN ALL DATABASES TO ROLE recover_db;
      -- 赋予角色向待备份数据库下所有表的导出权限。
-     GRANT EXPORT ON ALL TABLES IN DATABASE <database_name> TO ROLE recover_db;
+     GRANT EXPORT ON ALL TABLES IN DATABASE <db_name> TO ROLE recover_db;
      ```
 
    - 表级备份恢复权限
@@ -515,7 +533,7 @@ GRANT public_sales TO ROLE lineb_query;
      -- 赋予角色向任意表导入数据的权限。
      GRANT INSERT ON ALL TABLES IN DATABASE <db_name> TO ROLE recover_db;
      -- 赋予角色导出待备份表数据的权限。
-     GRANT EXPORT ON TABLE <talbe_name> TO ROLE recover_tbl;     
+     GRANT EXPORT ON TABLE <table_name> TO ROLE recover_tbl;     
      ```
 
    - 分区级备份恢复权限
@@ -528,5 +546,5 @@ GRANT public_sales TO ROLE lineb_query;
      -- 赋予角色 SYSTEM 级的 REPOSITORY 权限。
      GRANT REPOSITORY ON SYSTEM TO ROLE recover_par;
      -- 赋予角色对对应表进行导入的权限。
-     GRANT INSERT, EXPORT ON TABLE <tbl_name> TO ROLE recover_par;
+     GRANT INSERT, EXPORT ON TABLE <table_name> TO ROLE recover_par;
      ```

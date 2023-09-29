@@ -4,30 +4,27 @@ StarRocks 提供了丰富的函数，方便您在日常数据查询和分析时�
 
 您可以按照以下分类来查找目标函数。
 
-- [日期函数](#日期函数)
-- [字符串函数](#字符串函数)
-- [聚合函数](#聚合函数)
-- [数学函数](#数学函数)
-- [窗口函数](Window_function.md)
-- [Array 函数](#array-函数)
-- [Bitmap 函数](#bitmap-函数)
-- [JSON 函数](#json-函数)
-- [Map 函数](#map-函数)
-- [Struct 函数](#struct-函数)
-- [表函数](#表函数)
-- [Bit 函数](#bit-函数)
-- [Binary 函数](#binary-函数)
-- [加密函数](#加密函数)
-- [模糊/正则匹配函数](#模糊正则匹配函数)
-- [条件函数](#条件函数)
-- [百分位函数](#百分位函数)
-- [标量函数](#标量函数)
-- [工具函数](#工具函数)
-- [地理位置函数](#地理位置函数)
-- [CAST 函数](cast.md)
-- [Hash 函数](#hash-函数)
-- [Java UDF](/sql-reference/sql-functions/JAVA_UDF.md)
-- [Lambda 表达式](/sql-reference/sql-functions/Lambda_expression.md)
+- [函数列表](#函数列表)
+  - [日期函数](#日期函数)
+  - [字符串函数](#字符串函数)
+  - [聚合函数](#聚合函数)
+  - [数学函数](#数学函数)
+  - [Array 函数](#array-函数)
+  - [Bitmap 函数](#bitmap-函数)
+  - [JSON 函数](#json-函数)
+  - [Map 函数](#map-函数)
+  - [Struct 函数](#struct-函数)
+  - [表函数](#表函数)
+  - [Bit 函数](#bit-函数)
+  - [Binary 函数](#binary-函数)
+  - [加密函数](#加密函数)
+  - [模糊/正则匹配函数](#模糊正则匹配函数)
+  - [条件函数](#条件函数)
+  - [百分位函数](#百分位函数)
+  - [标量函数](#标量函数)
+  - [工具函数](#工具函数)
+  - [地理位置函数](#地理位置函数)
+  - [Hash 函数](#hash-函数)
 
 ## 日期函数
 
@@ -155,15 +152,19 @@ StarRocks 提供了丰富的函数，方便您在日常数据查询和分析时�
 |  :-:                |                :-:       |
 |  [any_value](/sql-reference/sql-functions/aggregate-functions/any_value.md)| 在包含 GROUP BY 的聚合查询中，该函数用于从每个聚合分组中**随机**选择一行返回。 |
 |  [approx_count_distinct](/sql-reference/sql-functions/aggregate-functions/approx_count_distinct.md)| 返回类似于 COUNT(DISTINCT col) 结果的近似值。 |
-|  [array_agg](./sql-reference/sql-functions/array-functions/array_agg.md) | 将一列中的值（包括空值 null）串联成一个数组 (多行转一行）。  |
+|  [array_agg](/sql-reference/sql-functions/array-functions/array_agg.md) | 将一列中的值（包括空值 null）串联成一个数组 (多行转一行）。  |
 |  [avg](/sql-reference/sql-functions/aggregate-functions/avg.md)| 用于返回选中字段的平均值。 |
 |  [bitmap](/sql-reference/sql-functions/aggregate-functions/bitmap.md)| 通过 bitmap 函数实现聚合。 |
 |  [bitmap_agg](/sql-reference/sql-functions/bitmap-functions/bitmap_agg.md)| 将一列中的多行非 NULL 数值合并成一行 BITMAP 值，即多行转一行。 |
+| [corr](/sql-reference/sql-functions/aggregate-functions/corr.md) | 返回两个随机变量的皮尔逊相关系数. |
+| [covar_pop](/sql-reference/sql-functions/aggregate-functions/covar_pop.md)| 返回两个随机变量的总体协方差。 |
+| [covar_samp](/sql-reference/sql-functions/aggregate-functions/covar_samp.md)| 返回两个随机变量的样本协方差。 |
 |  [count](/sql-reference/sql-functions/aggregate-functions/count.md)| 返回满足条件的行数。 |
+|  [group_concat](/sql-reference/sql-functions/string-functions/group_concat.md)| 将结果集中的多行结果连接成一个字符串。|
 |  [grouping](/sql-reference/sql-functions/aggregate-functions/grouping.md)| 判断一个列是否为聚合列，如果是聚合列则返回 0，否则返回 1。|
 |  [grouping_id](/sql-reference/sql-functions/aggregate-functions/grouping_id.md)| 用于区分相同分组标准的分组统计结果。 |
 |  [hll_empty](/sql-reference/sql-functions/aggregate-functions/hll_empty.md)| 生成空 HLL 列，用于 INSERT 或导入数据时补充默认值。 |
-|  [hll_hash](/sql-reference/sql-functions/aggregate-functions/hll_hash.md)| 将一个数值转换为 HLL 类型。通常用于导入中，将源数据中的数值映射到 Starrocks 表中的 HLL 列类型。 |
+|  [hll_hash](/sql-reference/sql-functions/aggregate-functions/hll_hash.md)| 将一个数值转换为 HLL 类型。通常用于导入中，将源数据中的数值映射到 StarRocks 表中的 HLL 列类型。 |
 |  [hll_raw_agg](/sql-reference/sql-functions/aggregate-functions/hll_raw_agg.md)| 用于聚合 HLL 类型的字段，返回 HLL 类型。 |
 |  [hll_union](/sql-reference/sql-functions/aggregate-functions/hll_union.md)| 返回一组 HLL 值的并集。 |
 |  [hll_union_agg](/sql-reference/sql-functions/aggregate-functions/hll_union_agg.md)| 将多个 HLL 类型数据合并成一个 HLL。 |
@@ -200,6 +201,8 @@ StarRocks 提供了丰富的函数，方便您在日常数据查询和分析时�
 |  [conv](/sql-reference/sql-functions/math-functions/conv.md)| 对输入的参数进行进制转换。 |
 |  [cos](/sql-reference/sql-functions/math-functions/cos.md)| 计算余弦值。 |
 |  [cosh](/sql-reference/sql-functions/math-functions/cosh.md)| 计算输入数值的双曲余弦值。 |
+|  [cosine_similarity](/sql-reference/sql-functions/math-functions/cos_similarity.md)| 计算两个向量的余弦夹角来评估向量之间的相似度。 |
+|  [cosine_similarity_norm](/sql-reference/sql-functions/math-functions/cos_similarity_norm.md)| 计算两个归一化向量的余弦夹角来评估向量之间的相似度。|
 |  [cot](/sql-reference/sql-functions/math-functions/cot.md)| 计算余切值（单位为弧度）。 |
 |  [degrees](/sql-reference/sql-functions/math-functions/degrees.md)| 将参数 x 转成角度，x 是弧度。 |
 |  [divide](/sql-reference/sql-functions/math-functions/divide.md)| 除法函数，返回 x 除以 y 的结果， |
@@ -347,7 +350,10 @@ StarRocks 提供了丰富的函数，方便您在日常数据查询和分析时�
 
 | 函数                |                 功能      |
 |  :-:                |                :-:       |
+| [files](./table-functions/files.md) | 从云存储或 HDFS 读取数据文件。|
 | [generate_series](./table-functions/generate_series.md) | 生成一系列从 start 到 end 的数值，步长为 step。 |
+| [json_each](./json-functions/json-query-and-processing-functions/json_each.md) | 将 JSON 对象的最外层按照键和值展开为两列，返回一行或多行数据的集合。 |
+| [unnest](./array-functions/unnest.md) | 用于将一个数组展开成多行。|
 
 ## Bit 函数
 
@@ -365,8 +371,8 @@ StarRocks 提供了丰富的函数，方便您在日常数据查询和分析时�
 
 | 函数                |                 功能      |
 |  :-:                |                :-:       |
-|  [from_binary](./sql-reference/sql-functions/binary-functions/from_binary.md)| 根据指定的格式，将二进制数据转化为 VARCHAR 类型的字符串。 |
-|  [to_binary](./sql-reference/sql-functions/binary-functions/to_binary.md)| 根据指定的二进制格式 (binary_type)，将 VARCHAR 字符串转换为二进制类型。|
+|  [from_binary](/sql-reference/sql-functions/binary-functions/from_binary.md)| 根据指定的格式，将二进制数据转化为 VARCHAR 类型的字符串。 |
+|  [to_binary](/sql-reference/sql-functions/binary-functions/to_binary.md)| 根据指定的二进制格式 (binary_type)，将 VARCHAR 字符串转换为二进制类型。|
 
 ## 加密函数
 
@@ -421,8 +427,10 @@ StarRocks 提供了丰富的函数，方便您在日常数据查询和分析时�
 
 | 函数                |                 功能      |
 |  :-:                |                :-:       |
+| [catalog](/sql-reference/sql-functions/utility-functions/catalog.md)| 查询当前会话所在的 Catalog。 |
 |  [current_role](/sql-reference/sql-functions/utility-functions/current_role.md)| 获取当前用户激活的角色。  |
 |  [current_version](/sql-reference/sql-functions/utility-functions/current_version.md)| 获取当前 StarRocks 的版本 |
+| [database](/sql-reference/sql-functions/utility-functions/database.md)| 查询当前会话所在的数据库。 |
 |  [host_name](/sql-reference/sql-functions/utility-functions/host_name.md)| 获取计算所在节点的主机名。|
 |  [isnull](/sql-reference/sql-functions/utility-functions/isnull.md)| 判断输入值是否为 NULL。|
 |  [last_query_id](/sql-reference/sql-functions/utility-functions/last_query_id.md)| 返回最近一次执行的查询的 ID。|

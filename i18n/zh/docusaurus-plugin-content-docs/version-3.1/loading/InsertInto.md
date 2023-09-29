@@ -2,7 +2,7 @@
 
 本文介绍如何使用 INSERT 语句向 StarRocks 导入数据。
 
-与 MySQL 等数据库系统类似，StarRocks 支持通过 INSERT 语句导入数据。您可以使用 INSERT INTO VALUES 语句直接向表中插入数据，您还可以通过 INSERT INTO SELECT 语句将其他 StarRocks 表中的数据导入到新的 StarRocks 表中，或者将其他数据源的数据通过[外部表功能](../data_source/External_table.md)导入至 StarRocks 内部表中。自 v3.1 起，您可以使用 INSERT 语句和 [FILES()](../sql-reference/sql-functions/table-functions/files.md) 函数直接导入外部数据源中的文件。
+与 MySQL 等数据库系统类似，StarRocks 支持通过 INSERT 语句导入数据。您可以使用 INSERT INTO VALUES 语句直接向表中插入数据，您还可以通过 INSERT INTO SELECT 语句将其他 StarRocks 表中的数据导入到新的 StarRocks 表中，或者将其他数据源的数据通过[外部表功能](../data_source/External_table.md)导入至 StarRocks 内部表中。自 v3.1 起，您可以使用 INSERT 语句和 [FILES()](../sql-reference/sql-functions/table-functions/files.md) 函数直接导入云存储或 HDFS 中的文件。
 
 2.4 版本中，StarRocks 进一步支持通过 INSERT OVERWRITE 语句批量**覆盖写入**目标表。INSERT OVERWRITE 语句通过整合以下三部分操作来实现覆盖写入：
 
@@ -33,20 +33,19 @@ CREATE DATABASE IF NOT EXISTS load_test;
 USE load_test;
 CREATE TABLE insert_wiki_edit
 (
-    event_time DATETIME,
-    channel VARCHAR(32) DEFAULT '',
-    user VARCHAR(128) DEFAULT '',
-    is_anonymous TINYINT DEFAULT '0',
-    is_minor TINYINT DEFAULT '0',
-    is_new TINYINT DEFAULT '0',
-    is_robot TINYINT DEFAULT '0',
-    is_unpatrolled TINYINT DEFAULT '0',
-    delta INT DEFAULT '0',
-    added INT DEFAULT '0',
-    deleted INT DEFAULT '0'
+    event_time      DATETIME,
+    channel         VARCHAR(32)      DEFAULT '',
+    user            VARCHAR(128)     DEFAULT '',
+    is_anonymous    TINYINT          DEFAULT '0',
+    is_minor        TINYINT          DEFAULT '0',
+    is_new          TINYINT          DEFAULT '0',
+    is_robot        TINYINT          DEFAULT '0',
+    is_unpatrolled  TINYINT          DEFAULT '0',
+    delta           INT              DEFAULT '0',
+    added           INT              DEFAULT '0',
+    deleted         INT              DEFAULT '0'
 )
-DUPLICATE KEY
-(
+DUPLICATE KEY(
     event_time,
     channel,
     user,
@@ -56,8 +55,7 @@ DUPLICATE KEY
     is_robot,
     is_unpatrolled
 )
-PARTITION BY RANGE(event_time)
-(
+PARTITION BY RANGE(event_time)(
     PARTITION p06 VALUES LESS THAN ('2015-09-12 06:00:00'),
     PARTITION p12 VALUES LESS THAN ('2015-09-12 12:00:00'),
     PARTITION p18 VALUES LESS THAN ('2015-09-12 18:00:00'),
@@ -67,31 +65,28 @@ DISTRIBUTED BY HASH(user);
 
 CREATE TABLE source_wiki_edit
 (
-    event_time DATETIME,
-    channel VARCHAR(32) DEFAULT '',
-    user VARCHAR(128) DEFAULT '',
-    is_anonymous TINYINT DEFAULT '0',
-    is_minor TINYINT DEFAULT '0',
-    is_new TINYINT DEFAULT '0',
-    is_robot TINYINT DEFAULT '0',
-    is_unpatrolled TINYINT DEFAULT '0',
-    delta INT DEFAULT '0',
-    added INT DEFAULT '0',
-    deleted INT DEFAULT '0'
+    event_time      DATETIME,
+    channel         VARCHAR(32)      DEFAULT '',
+    user            VARCHAR(128)     DEFAULT '',
+    is_anonymous    TINYINT          DEFAULT '0',
+    is_minor        TINYINT          DEFAULT '0',
+    is_new          TINYINT          DEFAULT '0',
+    is_robot        TINYINT          DEFAULT '0',
+    is_unpatrolled  TINYINT          DEFAULT '0',
+    delta           INT              DEFAULT '0',
+    added           INT              DEFAULT '0',
+    deleted         INT              DEFAULT '0'
 )
-DUPLICATE KEY
-(
+DUPLICATE KEY(
     event_time,
-    channel,
-    user,
+    channel,user,
     is_anonymous,
     is_minor,
     is_new,
     is_robot,
     is_unpatrolled
 )
-PARTITION BY RANGE(event_time)
-(
+PARTITION BY RANGE(event_time)(
     PARTITION p06 VALUES LESS THAN ('2015-09-12 06:00:00'),
     PARTITION p12 VALUES LESS THAN ('2015-09-12 12:00:00'),
     PARTITION p18 VALUES LESS THAN ('2015-09-12 18:00:00'),
@@ -130,7 +125,7 @@ VALUES
 
 ## 通过 INSERT INTO SELECT 语句导入数据
 
-您可以通过 INSERT INTO SELECT 语句将源表中的数据导入至目标表中。INSERT INTO SELECT 将源表中的数据进行 ETL 转换之后，导入到 StarRocks 内表中。源表可以是一张或多张内部表或者外部表，甚至外部数据源中的数据文件。目标表必须是 StarRocks 的内表。执行该语句之后，系统将 SELECT 语句结果导入目标表。详细使用方式，参考 [INSERT](../sql-reference/sql-statements/data-manipulation/insert.md)。详细参数信息，参考 [INSERT 参数](../sql-reference/sql-statements/data-manipulation/insert.md#参数说明)。
+您可以通过 INSERT INTO SELECT 语句将源表中的数据导入至目标表中。INSERT INTO SELECT 将源表中的数据进行 ETL 转换之后，导入到 StarRocks 内表中。源表可以是一张或多张内部表或者外部表，甚至云存储或 HDFS 中的数据文件。目标表必须是 StarRocks 的内表。执行该语句之后，系统将 SELECT 语句结果导入目标表。详细使用方式，参考 [INSERT](../sql-reference/sql-statements/data-manipulation/insert.md)。详细参数信息，参考 [INSERT 参数](../sql-reference/sql-statements/data-manipulation/insert.md#参数说明)。
 
 ### 通过 INSERT INTO SELECT 将内外表数据导入内表
 
@@ -193,21 +188,9 @@ SELECT event_time, channel FROM source_wiki_edit;
 | column_name | 导入的目标列，必须是目标表中存在的列。该参数与导入数据的列的名称可以不同，但顺序需一一对应。如果不指定目标列，默认为目标表中的所有列。如果源表中的某个列在目标列不存在，则写入默认值。如果当前列没有默认值，导入作业会失败。如果查询语句的结果列类型与目标列的类型不一致，会进行隐式转化，如果不能进行转化，那么 INSERT INTO 语句会报语法解析错误。 |
 | query       | 查询语句，查询的结果会导入至目标表中。查询语句支持任意 StarRocks 支持的 SQL 查询语法。 |
 
-### 通过 FILES() 函数直接导入外部数据文件
+### 通过 INSERT INTO SELECT 以及表函数 FILES() 导入外部数据文件
 
-自 v3.1 起，StarRocks 支持使用 INSERT 语句和 [FILES()](../sql-reference/sql-functions/table-functions/files.md) 函数直接导入外部数据源中的文件，避免了需事先创建外部表的麻烦。
-
-目前 FILES() 函数支持以下数据源和文件格式：
-
-- **数据源****：**
-
-  - AWS S3
-  - HDFS
-
-- **文件格式：**
-
-  - Parquet
-  - ORC
+自 v3.1 起，StarRocks 支持使用 INSERT 语句和 [FILES()](../sql-reference/sql-functions/table-functions/files.md) 表函数直接导入云存储或 HDFS 中的文件，无需提前创建 External Catalog 或文件外部表。除此之外，FILES() 支持自动推断 Table Schema，大大简化导入过程。
 
 以下示例将 AWS S3 存储桶 `inserttest` 内 Parquet 文件 **parquet/insert_wiki_edit_append.parquet** 中的数据插入至表 `insert_wiki_edit` 中：
 
@@ -218,7 +201,7 @@ INSERT INTO insert_wiki_edit
         "format" = "parquet",
         "aws.s3.access_key" = "XXXXXXXXXX",
         "aws.s3.secret_key" = "YYYYYYYYYY",
-        "aws.s3.region" = "ap-southeast-1"
+        "aws.s3.region" = "us-west-2"
 );
 ```
 
@@ -319,7 +302,7 @@ SELECT event_time, channel FROM source_wiki_edit;
 
 ## 通过 INSERT 语句导入数据至生成列
 
-生成列（Generated Columns）是一种特殊的列，其数据源自于预定义的表达式或基于其他列的计算。当您的查询请求涉及对大量表达式的计算时，例如查询 JSON 类型的某个字段，或者查询 ARRAY 类型的聚合结果，生成列尤其有用。在数据导入时，StarRocks 将计算表达式，然后将结果存储在生成列中，从而避免了在查询过程中计算表达式，进而提高了查询性能。
+生成列（Generated Columns）是一种特殊的列，它的值会根据列定义中的表达式自动计算得出。并且，你不能直接写入或更新生成列的值。当您的查询请求涉及对表达式的计算时，例如查询 JSON 类型的某个字段，或者针对 ARRAY 数据计算，生成列尤其有用。在数据导入时，StarRocks 将计算表达式，然后将结果存储在生成列中，从而避免了在查询过程中计算表达式，进而提高了查询性能。
 
 您可以使用 INSERT 语句将数据导入至包含生成列的表中。
 
@@ -404,7 +387,7 @@ SELECT * FROM information_schema.task_runs WHERE task_name = 'async';
 
 ### 通过返回结果查看
 
-INSERT 导入作业会根据执行结果的不同，返回以下两种作业状态：
+同步 INSERT 导入作业会根据执行结果的不同，返回以下两种作业状态：
 
 - **执行成功**
 
@@ -430,83 +413,57 @@ Query OK, 2 rows affected, 2 warnings (0.05 sec)
 ERROR 1064 (HY000): Insert has filtered data in strict mode, tracking_url=http://x.x.x.x:yyyy/api/_load_error_log?file=error_log_9f0a4fd0b64e11ec_906bbede076e9d08
 ```
 
-### 通过 SHOW LOAD 语句查看
+### 通过 Information Schema 查看
 
-您可以通过 [SHOW LOAD](../sql-reference/sql-statements/data-manipulation/SHOW%20LOAD.md) 语句查看 INSERT 导入作业状态。
+您可以通过 [SELECT](../sql-reference/sql-statements/data-manipulation/SELECT.md) 语句从 `information_schema` 数据库中的 `loads` 表来查看 INSERT INTO 作业的结果。该功能自 3.1 版本起支持。
 
-以下示例通过 SHOW LOAD 语句查看 Label 为 `insert_load_wikipedia` 的导入作业状态。
+示例一：查看 `load_test` 数据库中导入作业的执行情况，同时指定查询结果根据作业创建时间 (`CREATE_TIME`) 按降序排列，并且最多显示一条结果数据：
 
 ```SQL
-SHOW LOAD WHERE label="insert_load_wikipedia"\G
+SELECT * FROM information_schema.loads
+WHERE database_name = 'load_test'
+ORDER BY create_time DESC
+LIMIT 1\G
 ```
 
-返回如下：
+示例二：查看 `load_test` 数据库中 Label 为 `insert_load_wikipedia` 的导入作业的执行情况：
+
+```SQL
+SELECT * FROM information_schema.loads
+WHERE database_name = 'load_test' and label = 'insert_load_wikipedia'\G
+```
+
+以上示例返回如下：
 
 ```Plain
 *************************** 1. row ***************************
-         JobId: 10278
-         Label: insert_load_wikipedia
-         State: FINISHED
-      Progress: ETL:100%; LOAD:100%
-          Type: INSERT
-      Priority: NORMAL
-      ScanRows: 0
-  FilteredRows: 0
-UnselectedRows: 0
-      SinkRows: 2
-       EtlInfo: NULL
-      TaskInfo: resource:N/A; timeout(s):300; max_filter_ratio:0.0
-      ErrorMsg: NULL
-    CreateTime: 2023-06-12 18:31:07
-  EtlStartTime: 2023-06-12 18:31:07
- EtlFinishTime: 2023-06-12 18:31:07
- LoadStartTime: 2023-06-12 18:31:07
-LoadFinishTime: 2023-06-12 18:31:08
-   TrackingSQL: 
-    JobDetails: {"All backends":{"3d96e21a-090c-11ee-9083-00163e0e2cf9":[10142]},"FileNumber":0,"FileSize":0,"InternalTableLoadBytes":175,"InternalTableLoadRows":2,"ScanBytes":0,"ScanRows":0,"TaskNumber":1,"Unfinished backends":{"3d96e21a-090c-11ee-9083-00163e0e2cf9":[]}}
-1 row in set (0.00 sec)
+              JOB_ID: 21319
+               LABEL: insert_load_wikipedia
+       DATABASE_NAME: load_test
+               STATE: FINISHED
+            PROGRESS: ETL:100%; LOAD:100%
+                TYPE: INSERT
+            PRIORITY: NORMAL
+           SCAN_ROWS: 0
+       FILTERED_ROWS: 0
+     UNSELECTED_ROWS: 0
+           SINK_ROWS: 2
+            ETL_INFO: 
+           TASK_INFO: resource:N/A; timeout(s):300; max_filter_ratio:0.0
+         CREATE_TIME: 2023-08-09 10:42:23
+      ETL_START_TIME: 2023-08-09 10:42:23
+     ETL_FINISH_TIME: 2023-08-09 10:42:23
+     LOAD_START_TIME: 2023-08-09 10:42:23
+    LOAD_FINISH_TIME: 2023-08-09 10:42:24
+         JOB_DETAILS: {"All backends":{"5ebf11b5-365e-11ee-9e4a-7a563fb695da":[10006]},"FileNumber":0,"FileSize":0,"InternalTableLoadBytes":175,"InternalTableLoadRows":2,"ScanBytes":0,"ScanRows":0,"TaskNumber":1,"Unfinished backends":{"5ebf11b5-365e-11ee-9e4a-7a563fb695da":[]}}
+           ERROR_MSG: NULL
+        TRACKING_URL: NULL
+        TRACKING_SQL: NULL
+REJECTED_RECORD_PATH: NULL
+1 row in set (0.01 sec)
 ```
 
-### 通过 curl 命令查看
-
-您可以通过 curl 命令查看 INSERT 导入作业状态。
-
-启动终端，并运行以下命令：
-
-```Plain
-curl --location-trusted -u <username>:<password> \
-  http://<fe_address>:<fe_http_port>/api/<db_name>/_load_info?label=<label_name>
-```
-
-以下示例通过 curl 命令查看 Label 为 `insert_load_wikipedia` 的导入作业状态。
-
-```Plain
-curl --location-trusted -u <username>:<password> \
-  http://x.x.x.x:8030/api/load_test/_load_info?label=insert_load_wikipedia
-```
-
-> **说明**
->
-> 如果账号没有设置密码，这里只需要传入 `<username>:`。
-
-返回如下：
-
-```Plain
-{
-   "jobInfo":{
-      "dbName":"load_test",
-      "tblNames":[
-         "source_wiki_edit"
-      ],
-      "label":"insert_load_wikipedia",
-      "state":"FINISHED",
-      "failMsg":"",
-      "trackingUrl":""
-   },
-   "status":"OK",
-   "msg":"Success"
-}
-```
+有关返回字段的说明，参见 [Information Schema > loads](../administration/information_schema.md#loads)。
 
 ## 相关配置项
 

@@ -1,6 +1,8 @@
 # 手动部署 StarRocks
 
-本文介绍如何手动部署 StarRocks。其他安装方式请参考[部署概览](../deployment/deployment_overview.md)。
+本文介绍如何手动部署 StarRocks 存算一体集群（BE 同时做数据存储和计算）。其他安装方式请参考[部署概览](../deployment/deployment_overview.md)。
+
+如果要部署存算分离集群，参见 [部署使用 StarRocks 存算分离集群](./deploy_shared_data.md)。
 
 ## 第一步：启动 Leader FE 节点
 
@@ -168,7 +170,7 @@ Compute Node（CN）是一种无状态的计算服务，本身不存储数据。
    a. 如果任何在 [环境配置清单](../deployment/environment_configurations.md) 中提到的 CN 端口被占用，您必须在 CN 配置文件中为其分配其他可用端口。.
 
       ```YAML
-      thrift_port = vvvv               # 默认值：9060
+      be_port = vvvv                   # 默认值：9060 （自 v3.1 起，该配置项由 `thrift_port` 更名为 `be_port`。）
       be_http_port = xxxx              # 默认值：8040
       heartbeat_service_port = yyyy    # 默认值：9050
       brpc_port = zzzz                 # 默认值：8060

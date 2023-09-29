@@ -20,7 +20,7 @@ mysql -h <fe_host> -P9030 -u root
 
 > **注意**
 >
-> 在指定数据库名、表名和列名等变量时，如果使用了保留关键字，必须使用反引号 (`) 包裹，否则可能会产生报错。有关 StarRocks 的保留关键字列表，请参见[关键字](../keywords.md#保留关键字)。
+> 在指定数据库名、表名和列名等变量时，如果使用了保留关键字，必须使用反引号 (`) 包裹，否则可能会产生报错。有关 StarRocks 的保留关键字列表，请参见[关键字](../sql-reference/sql-statements/keywords.md#保留关键字)。
 
 ```sql
 CREATE DATABASE example_db;
@@ -84,7 +84,7 @@ DISTRIBUTED BY HASH(`recruit_date`, `region_num`);
 > 注意
 >
 > * 在 StarRocks 中，字段名不区分大小写，表名区分大小写。
-> * 建表时，`DISTRIBUTED BY` 为必填字段。
+> * 自 3.1 版本起，您在建表时可以不设置分桶键（即 DISTRIBUTED BY 子句）。StarRocks 默认使用随机分桶，将数据随机地分布在分区的所有分桶中。更多信息，请参见[随机分桶](../table_design/Data_distribution.md#随机分桶自-v31)。
 
 ### 建表语句说明
 
@@ -98,7 +98,7 @@ StarRocks 表内部组织存储数据时会按照指定列排序，这些列为�
 
 StarRocks 表中支持多种字段类型，除以上示例中已经列举的字段类型，还支持 [BITMAP 类型](/using_starrocks/Using_bitmap.md)，[HLL 类型](../using_starrocks/Using_HLL.md)，[ARRAY 类型](../sql-reference/sql-statements/data-types/Array.md)，字段类型介绍详见 [数据类型章节](/sql-reference/sql-statements/data-types/BIGINT.md)。
 
-> 注意：在建表时，您应尽量使用精确的类型。例如，整形数据不应使用字符串类型，INT 类型即可满足的数据不应使用 BIGINT 类型。精确的数据类型能够更好的发挥数据库的性能。
+> 注意：在建表时，您应尽量使用精确的类型。例如，整型数据不应使用字符串类型，INT 类型即可满足的数据不应使用 BIGINT 类型。精确的数据类型能够更好的发挥数据库的性能。
 
 #### 分区分桶
 
