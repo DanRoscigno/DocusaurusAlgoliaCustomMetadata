@@ -19,7 +19,7 @@
     + [环境配置](/deployment/environment_configurations.md)
     + [部署文件](/deployment/prepare_deployment_files.md)
   + 部署集群
-    + 经典模式部署
+    + 存算一体模式部署
       + [手动部署](/deployment/deploy_manually.md)
       + Kubernetes 部署
         + [使用 Operator 部署](/deployment/sr_operator.md)
@@ -52,8 +52,10 @@
   + [通过 HTTP PUT 从本地文件系统或流式数据源导入](/loading/StreamLoad.md)
   + [从 HDFS 导入](/loading/hdfs_load.md)
   + [从云存储导入](/loading/cloud_storage_load.md)
-  + [从 Apache Kafka® 持续导入](/loading/RoutineLoad.md)
-  + 通过 Apache Spark™ 导入
+  + 从 Apache Kafka® 导入
+    + [使用 Kafka connector](/loading/Kafka-connector-starrocks.md)
+    + [使用 Routine Load](/loading/RoutineLoad.md)
+  + 从 Apache Spark™ 导入
     + [使用 Spark connector（推荐）](/loading/Spark-connector-starrocks.md)
     + [使用 Spark Load](/loading/SparkLoad.md)
   + [使用 INSERT 语句导入](/loading/InsertInto.md)
@@ -68,7 +70,7 @@
   + [使用 EXPORT 导出数据](/unloading/Export.md)
   + [使用 Spark Connector 读取数据](/unloading/Spark_connector.md)
   + [使用 Flink Connector 读取数据](/unloading/Flink_connector.md)
-+ 查询数据源
++ 查询数据湖
   + Catalog
     + [概述](/data_source/catalog/catalog_overview.md)
     + [Default catalog](/data_source/catalog/default_catalog.md)
@@ -83,10 +85,23 @@
   + [外部表](/data_source/External_table.md)
   + [文件外部表](/data_source/file_external_table.md)
   + [Data Cache](/data_source/data_cache.md)
+  + [数据湖相关 FAQ](/data_source/datalake_faq.md)
 + 查询加速
   + [CBO 统计信息](/using_starrocks/Cost_based_optimizer.md)
   + [同步物化视图](/using_starrocks/Materialized_view-single_table.md)
-  + [异步物化视图](/using_starrocks/Materialized_view.md)
+  + 异步物化视图
+    + [概述](/using_starrocks/Materialized_view.md)
+    + 使用场景
+      + [数据建模](/using_starrocks/data_modeling_with_materialized_views.md)
+      + [查询改写](/using_starrocks/query_rewrite_with_materialized_views.md)
+      + [湖仓加速](/using_starrocks/data_lake_query_acceleration_with_materialized_views.md)
+    + Usage
+      + [CREATE MATERIALIZED VIEW](/sql-reference/sql-statements/data-definition/CREATE%20MATERIALIZED%20VIEW.md)
+      + [ALTER MATERIALIZED VIEW](/sql-reference/sql-statements/data-definition/ALTER%20MATERIALIZED%20VIEW.md)
+      + [DROP MATERIALIZED VIEW](/sql-reference/sql-statements/data-definition/DROP%20MATERIALIZED%20VIEW.md)
+      + [SHOW MATERIALIZED VIEWS](/sql-reference/sql-statements/data-manipulation/SHOW%20MATERIALIZED%20VIEW.md)
+      + [information_schema.materialized_views](/administration/information_schema.md#materialized_views)
+      + [故障排除](/using_starrocks/troubleshooting_asynchronous_materialized_views.md)
   + [Colocate Join](/using_starrocks/Colocate_join.md)
   + 索引
     + [Bitmap 索引](/using_starrocks/Bitmap_index.md)
@@ -97,14 +112,16 @@
   + [使用 Lateral Join 实现列转行](/using_starrocks/Lateral_join.md)
   + [Query Cache](/using_starrocks/query_cache.md)
   + [Sorted streaming aggregate](/using_starrocks/sorted_aggregate.md)
+  + [使用 AUTO INCREMENT 列构建全局字典以加速去重计数和 Join](/using_starrocks/query_acceleration_with_auto_increment.md)
 + 外部系统集成
   + [配置 AWS 认证信息](/integrations/authenticate_to_aws_resources.md)
   + [配置 Microsoft Azure Storage 认证信息](/integrations/authenticate_to_azure_storage.md)
   + [配置 GCS 认证信息](/integrations/authenticate_to_gcs.md)
   + BI 集成
+    + [Apache Superset](/integrations/BI_integrations/Superset.md)
+    + [FineBI](/integrations/BI_integrations/FineBI.md)
     + [Hex](/integrations/BI_integrations/Hex.md)
     + [Querybook](/integrations/BI_integrations/Querybook.md)
-    + [Apache Superset](/integrations/BI_integrations/Superset.md)
     + [Tableau Desktop](/integrations/BI_integrations/Tableau_Desktop.md)
   + IDE 集成
     + [DataGrip](/integrations/IDE_integrations/DataGrip.md)
@@ -137,6 +154,7 @@
     + [权限系统总览](/administration/privilege_overview.md)
     + [权限项](/administration/privilege_item.md)
     + [管理用户权限](/administration/User_privilege.md)
+    + [权限系统 FAQ](/administration/privilege_faq.md)
     + [认证方式](/administration/Authentication.md)
   + 性能调优
     + [查询分析](/administration/Query_planning.md)
@@ -253,7 +271,7 @@
       + [USE](/sql-reference/sql-statements/data-definition/USE.md)
     + DML
       + [ALTER LOAD](/sql-reference/sql-statements/data-manipulation/ALTER%20LOAD.md)
-      + [ALTER ROUTINE LOAD](/sql-reference/sql-statements/data-manipulation/ALTER%20ROUTINE%20LOAD.md)
+      + [ALTER ROUTINE LOAD](/sql-reference/sql-statements/data-manipulation/alter-routine-load.md)
       + [BROKER LOAD](/sql-reference/sql-statements/data-manipulation/BROKER%20LOAD.md)
       + [CANCEL LOAD](/sql-reference/sql-statements/data-manipulation/CANCEL%20LOAD.md)
       + [CANCEL REFRESH MATERIALIZED VIEW](/sql-reference/sql-statements/data-manipulation/CANCEL%20REFRESH%20MATERIALIZED%20VIEW.md)
@@ -314,10 +332,10 @@
         + [FLOAT](/sql-reference/sql-statements/data-types/FLOAT.md)
         + [BOOLEAN](/sql-reference/sql-statements/data-types/BOOLEAN.md)
       + 字符串类型
-        + [BINARY](/sql-reference/sql-statements/data-types/BINARY.md)
         + [CHAR](/sql-reference/sql-statements/data-types/CHAR.md)
         + [STRING](/sql-reference/sql-statements/data-types/STRING.md)
         + [VARCHAR](/sql-reference/sql-statements/data-types/VARCHAR.md)
+        + [BINARY](/sql-reference/sql-statements/data-types/BINARY.md)
       + 日期类型
         + [DATE](/sql-reference/sql-statements/data-types/DATE.md)
         + [DATETIME](/sql-reference/sql-statements/data-types/DATETIME.md)
@@ -330,8 +348,6 @@
         + [BITMAP](/sql-reference/sql-statements/data-types/BITMAP.md)
         + [HLL](/sql-reference/sql-statements/data-types/HLL.md)
     + [关键字](/sql-reference/sql-statements/keywords.md)
-    + [AUTO_INCREMENT](/sql-reference/sql-statements/auto_increment.md)
-    + [生成列](/sql-reference/sql-statements/generated_columns.md)
   + 函数参考
     + [函数列表](/sql-reference/sql-functions/function-list.md)
     + [Java UDF](/sql-reference/sql-functions/JAVA_UDF.md)
@@ -459,6 +475,10 @@
       + [bitmap](/sql-reference/sql-functions/aggregate-functions/bitmap.md)
       + [bitmap_agg](/sql-reference/sql-functions/bitmap-functions/bitmap_agg.md)
       + [count](/sql-reference/sql-functions/aggregate-functions/count.md)
+      + [corr](/sql-reference/sql-functions/aggregate-functions/corr.md)
+      + [covar_pop](/sql-reference/sql-functions/aggregate-functions/covar_pop.md)
+      + [covar_samp](/sql-reference/sql-functions/aggregate-functions/covar_samp.md)
+      + [group_concat](/sql-reference/sql-functions/string-functions/group_concat.md)
       + [grouping](/sql-reference/sql-functions/aggregate-functions/grouping.md)
       + [grouping_id](/sql-reference/sql-functions/aggregate-functions/grouping_id.md)
       + [hll_empty](/sql-reference/sql-functions/aggregate-functions/hll_empty.md)
@@ -581,6 +601,8 @@
     + 表函数
       + [files](/sql-reference/sql-functions/table-functions/files.md)
       + [generate_series](/sql-reference/sql-functions/table-functions/generate_series.md)
+      + [json_each](/sql-reference/sql-functions/json-functions/json-query-and-processing-functions/json_each.md)
+      + [unnest](/sql-reference/sql-functions/array-functions/unnest.md)
     + Bit 函数
       + [bitand](/sql-reference/sql-functions/bit-functions/bitand.md)
       + [bitnot](/sql-reference/sql-functions/bit-functions/bitnot.md)
@@ -622,8 +644,10 @@
     + 标量函数
       + [hll_cardinality](/sql-reference/sql-functions/scalar-functions/hll_cardinality.md)
     + 工具函数
+      + [catalog](/sql-reference/sql-functions/utility-functions/catalog.md)
       + [current_role](/sql-reference/sql-functions/utility-functions/current_role.md)
       + [current_version](/sql-reference/sql-functions/utility-functions/current_version.md)
+      + [database](/sql-reference/sql-functions/utility-functions/database.md)
       + [host_name](/sql-reference/sql-functions/utility-functions/host_name.md)
       + [isnull](/sql-reference/sql-functions/utility-functions/isnull.md)
       + [last_query_id](/sql-reference/sql-functions/utility-functions/last_query_id.md)
@@ -656,6 +680,8 @@
       + [conv](/sql-reference/sql-functions/math-functions/conv.md)
       + [cos](/sql-reference/sql-functions/math-functions/cos.md)
       + [cosh](/sql-reference/sql-functions/math-functions/cosh.md)
+      + [cosine_similarity](/sql-reference/sql-functions/math-functions/cos_similarity.md)
+      + [cosine_similarity_norm](/sql-reference/sql-functions/math-functions/cos_similarity_norm.md)
       + [cot](/sql-reference/sql-functions/math-functions/cot.md)
       + [degrees](/sql-reference/sql-functions/math-functions/degrees.md)
       + [divide](/sql-reference/sql-functions/math-functions/divide.md)
@@ -687,10 +713,13 @@
       + [tan](/sql-reference/sql-functions/math-functions/tan.md)
       + [tanh](/sql-reference/sql-functions/math-functions/tanh.md)
       + [truncate](/sql-reference/sql-functions/math-functions/truncate.md)
+  + [AUTO_INCREMENT](/sql-reference/sql-statements/auto_increment.md)
+  + [生成列](/sql-reference/sql-statements/generated_columns.md)
   + [系统变量](/reference/System_variable.md)
   + [用户自定义变量](/reference/user_defined_variables.md)
   + [错误码](/reference/Error_code.md)
   + [系统限制](/reference/System_limit.md)
+  + [AWS IAM 策略](/reference/aws_iam_policies.md)
 + 常见问题解答
   + [部署运维](/faq/Deploy_faq.md)
   + 导入导出
@@ -705,6 +734,8 @@
       + [DataX](/faq/loading/DataX_faq.md)
       + [CloudCanal 数据导入](/faq/loading/CloudCanal_load_faq.md)
     + [导出](/faq/Exporting_faq.md)
+  + [权限相关 FAQ](/administration/privilege_faq.md)
+  + [数据湖 FAQ](/data_source/datalake_faq.md)
   + [SQL FAQ](/faq/Sql_faq.md)
   + [query_dump 接口](/faq/Dump_query.md)
   + [视频资源](/faq/Video.md)
@@ -712,11 +743,15 @@
 + 性能测试
   + [SSB Flat Table 性能测试](/benchmarking/SSB_Benchmarking.md)
   + [TPC-H 基准测试](/benchmarking/TPC-H_Benchmark.md)
+  + [TPC-DS 基准测试](/benchmarking/TPC_DS_Benchmark.md)
 + 开发指南
   + [编译 StarRocks](/developers/build-starrocks/Build_in_docker.md)
   + [使用 debuginfo 文件进行调试](/developers/debuginfo.md)
++ 生态组件发布记录
+  + [Kafka connector](/ecosystem_release/kafka_connector.md)
+  + [Spark connector](/ecosystem_release/spark_connector.md)
+  + [Flink connector](/ecosystem_release/flink_connector.md)
 + Release Notes
-  + [v3.1](/release_notes/release-3.1.md)
   + [v3.0](/release_notes/release-3.0.md)
   + [v2.5](/release_notes/release-2.5.md)
   + [v2.4](/release_notes/release-2.4.md)

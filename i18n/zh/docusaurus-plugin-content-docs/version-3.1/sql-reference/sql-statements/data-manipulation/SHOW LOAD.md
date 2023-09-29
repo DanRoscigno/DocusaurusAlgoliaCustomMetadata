@@ -2,7 +2,7 @@
 
 ## 功能
 
-查看数据库中指定导入作业的相关信息，包括 [Broker Load](../data-manipulation/BROKER%20LOAD.md)、[Spark Load](../data-manipulation/SPARK%20LOAD.md) 和 [INSERT](../data-manipulation/insert.md) 。您还可以使用 `curl` 命令查看这些导入作业的相关信息。详请参见[从 HDFS 导入](../../../loading/hdfs_load.md)、[从云存储导入](../../../loading/cloud_storage_load.md)、[使用 Apache Spark™ 批量导入](../../../loading/SparkLoad.md)和[通过 INSERT 语句导入数据](../../../loading/InsertInto.md)。
+查看数据库中指定导入作业的相关信息，包括 [Broker Load](../data-manipulation/BROKER%20LOAD.md)、[INSERT](../data-manipulation/insert.md) 和 [Spark Load](../data-manipulation/SPARK%20LOAD.md)。您还可以使用 `curl` 命令查看这些导入作业的相关信息。注意，从 3.1 版本起，对于 Broker Load 和 Insert 导入，推荐您通过 [SELECT](../data-manipulation/SELECT.md) 语句从 `information_schema` 数据库中的 [`loads`](../../../administration/information_schema.md#loads) 表来查看作业结果。详请参见[从 HDFS 导入](../../../loading/hdfs_load.md)、[从云存储导入](../../../loading/cloud_storage_load.md)、[通过 INSERT 语句导入数据](../../../loading/InsertInto.md)和[使用 Apache Spark™ 批量导入](../../../loading/SparkLoad.md)。
 
 除了以上三种导入方式， StarRocks 还支持 Stream Load 和 Routine Load，其中 Stream Load 是同步操作，会直接返回结果，不会通过 SHOW LOAD 展示。Routine Load 可通过 [SHOW ROUTINE LOAD](../data-manipulation/SHOW%20ROUTINE%20LOAD.md) 查看导入作业的相关信息。
 
@@ -37,7 +37,7 @@ SHOW LOAD [ FROM db_name ]
 
 ## 返回结果说明
 
-```plain
+```undefined
 +-------+-------+-------+----------+------+---------+----------+----------+------------+--------------+---------------+---------------+----------------+-----+------------+
 | JobId | Label | State | Progress | Type | Priority | EtlInfo | TaskInfo | ErrorMsg | CreateTime | EtlStartTime | EtlFinishTime | LoadStartTime | LoadFinishTime | URL | JobDetails |
 +-------+-------+-------+----------+------+---------+----------+----------+------------+--------------+---------------+---------------+----------------+-----+------------+
@@ -50,7 +50,7 @@ SHOW LOAD [ FROM db_name ]
 | JobId          | 导入作业的全局唯一 ID，由 StarRocks 自动生成。               | 同 Broker Load。                                             | 同 Broker Load。                                             |
 | Label          | 导入作业的标签。每个数据库中的导入作业都一个唯一的标签，不同数据库的导入作业标签可以重复。 | 同 Broker Load。                                             | 同 Broker Load。                                             |
 | State          | 导入作业的状态，包括:<ul><li>`PENDING`：导入作业已创建。</li><li>`QUEUEING`：导入作业正在等待执行中。</li><li>`LOADING`：导入作业正在执行中。</li><li>`PREPARED`：事务已提交。</li><li>`FINISHED`：导入作业成功。</li><li>`CANCELLED`：导入作业失败。</li></ul> | 导入作业的状态，包括：<ul><li>`PENDING`：准备 ETL 任务的相关配置并提交 ETL 任务到 Spark 集群。</li><li>`ETL`：Spark 集群执行 ETL 任务，并将结果写入 Spark 的 HDFS 中。</li><li>`LOADING`：正在将 HDFS 源数据导入到 StarRocks 的目标表中。</li><li>`PREPARED`：事务已提交。</li><li>`FINISHED`：导入作业成功。</li><li>`CANCELLED`：导入作业失败。</li></ul> | 导入作业的状态，包括：<ul><li>`FINISHED`：导入作业成功。</li><li>`CANCELLED`：导入作业失败。</li></ul> |
-| Progress       | 导入作业所处的阶段。Broker Load 导入作业只有 `LOAD` 阶段，对应导入作业状态中的 `LOADING`。 `LOAD` 进度为 0~100%。Broker Load 没有 `ETL` 阶段，所以 `ETL` 对应的取值并无实际意义。<br>**说明**：<ul><li>`LOAD` 进度的计算公式为：完成数据导入的目标表的个数/导入作业中要进行数据导入的目标表的个数 * 100%。</li><li>当数据导入到所有目标表中时，`LOAD` 进度显示为 99%， 此时，导入进入最后的生效阶段。当整个导入流程完成后，`LOAD` 进度才会显示为 100%。</li><li>导入进度并不是线性的。如果一段时间内进度没有变化，并不代表导入没有在继续执行。</li></ul> | 导入作业所处的阶段。Spark Load 导入作业，包括 `ETL` 和 `LOAD` 两种阶段，分别对应导入作业状态中的 `ETL` 和 `LOADING`。 `ETL` 和 `LOAD` 进度均为 0~100%。<br>**说明**同 Broker Load。 | 导入作业所处的阶段。INSERT 导入作业只有 `LOAD` 阶段，没有 `ETL` 阶段，所以 `ETL` 对应的取值并无实际意义。`LOAD` 进度为 0~100%。<br>**说明**同 Broker Load。 |
+| Progress       | 导入作业所处的阶段。Broker Load 导入作业只有 `LOAD` 阶段，对应导入作业状态中的 `LOADING`。 `LOAD` 进度为 0~100%。Broker Load 没有 `ETL` 阶段，所以 `ETL` 对应的取值并无实际意义。<br />**说明**：<ul><li>`LOAD` 进度的计算公式为：完成数据导入的目标表的个数/导入作业中要进行数据导入的目标表的个数 * 100%。</li><li>当数据导入到所有目标表中时，`LOAD` 进度显示为 99%， 此时，导入进入最后的生效阶段。当整个导入流程完成后，`LOAD` 进度才会显示为 100%。</li><li>导入进度并不是线性的。如果一段时间内进度没有变化，并不代表导入没有在继续执行。</li></ul> | 导入作业所处的阶段。Spark Load 导入作业，包括 `ETL` 和 `LOAD` 两种阶段，分别对应导入作业状态中的 `ETL` 和 `LOADING`。 `ETL` 和 `LOAD` 进度均为 0~100%。<br />**说明**同 Broker Load。 | 导入作业所处的阶段。INSERT 导入作业只有 `LOAD` 阶段，没有 `ETL` 阶段，所以 `ETL` 对应的取值并无实际意义。`LOAD` 进度为 0~100%。<br />**说明**同 Broker Load。 |
 | Type           | 导入方式，取值为 `BROKER`。                                  | 导入方式，取值为 `SPARK`。                                    | 导入方式， 取值为 `INSERT`。                                  |
 | Priority       | 导入作业的执行优先级，包括：LOWEST、LOW、NORMAL、HIGH 和 HIGHEST。                           | -                                  | -                                  |
 | EtlInfo        | ETL 信息，包括以下 3 个指标：<ul><li>`unselected.rows`：通过 WHERE 子句指定的条件而过滤掉的行数。</li><li>`dpp.abnorm.ALL`：因数据质量不合格而过滤掉的行数。数据质量不合格是指源表中数据类型或列数等和目标表不匹配的数据行。</li><li>`dpp.norm.ALL`：实际导入的行数。</li></ul>以上三个指标之和就是数据源的总行数。您可以根据这三个指标计算当前导入作业数据质量不合格的比例是否超过 `max-filter-ratio`，计算公式为：`dpp.abnorm.ALL`/(`unselected.rows` + `dpp.abnorm.ALL` + `dpp.norm.ALL`)。 | 同 Broker Load。                                             | ETL 信息。由于 INSERT 没有 ETL 阶段，所以该参数值为 `NULL`。  |
@@ -80,7 +80,7 @@ SHOW LOAD [ FROM db_name ]
 
 示例一：查看当前数据库中的所有导入作业。
 
-```plain
+```undefined
 SHOW LOAD\G;
 *************************** 1. row ***************************
          JobId: 976331
@@ -103,7 +103,7 @@ LoadFinishTime: 2022-10-17 19:35:06
 
 示例二：查看当前数据库中的导入作业。导入作业的标签中需包含字符串 `null`，且仅展示 2 个作业。
 
-```plain
+```undefined
 SHOW LOAD 
 WHERE LABEL LIKE "null" 
 LIMIT 2;
@@ -118,7 +118,7 @@ LIMIT 2;
 
 示例三： 查看数据库 `example_db` 中的导入作业。导入作业的标签中需包含字符串 `table`，且按 `LoadStartTime` 降序排序。
 
-```plain
+```undefined
 SHOW LOAD FROM example_db 
 WHERE LABEL Like "table" 
 ORDER BY LoadStartTime DESC;
@@ -133,7 +133,7 @@ ORDER BY LoadStartTime DESC;
 
 示例四：查看数据库 `example_db` 中的导入作业。导入作业的标签需为 `duplicate_table_with_null`，状态需为 `FINISHED`。
 
-```plain
+```undefined
 SHOW LOAD FROM example_db 
 WHERE LABEL = "duplicate_table_with_null" AND STATE = "FINISHED";
 
@@ -146,7 +146,7 @@ WHERE LABEL = "duplicate_table_with_null" AND STATE = "FINISHED";
 
 示例五：查看数据库 `example_db` 中的导入作业。导入作业需按 `CreateTime` 升序排序，并从偏移量 1 开始显示 2 条查询结果。
 
-```sql
+```undefined
 SHOW LOAD FROM example_db 
 ORDER BY CreateTime ASC 
 LIMIT 2 OFFSET 1;
@@ -154,7 +154,7 @@ LIMIT 2 OFFSET 1;
 
 或
 
-```sql
+```undefined
 SHOW LOAD FROM example_db 
 ORDER BY CreateTime ASC 
 LIMIT 1,2;
@@ -162,7 +162,7 @@ LIMIT 1,2;
 
 返回结果如下：
 
-```plain
+```undefined
 +-------+---------------------------------------------+----------+---------------------+--------+---------------------------------------------------------+---------------------------------------------------------------------------------------------------------+----------+---------------------+---------------------+---------------------+---------------------+---------------------+--------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | JobId | Label                                       | State    | Progress            | Type   | EtlInfo                                                 | TaskInfo                                                                                                | ErrorMsg | CreateTime          | EtlStartTime        | EtlFinishTime       | LoadStartTime       | LoadFinishTime      | URL                                                                            | JobDetails                                                                                                                                                                                            |
 +-------+---------------------------------------------+----------+---------------------+--------+---------------------------------------------------------+---------------------------------------------------------------------------------------------------------+----------+---------------------+---------------------+---------------------+---------------------+---------------------+--------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+

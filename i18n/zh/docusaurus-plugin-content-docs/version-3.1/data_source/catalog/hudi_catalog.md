@@ -6,9 +6,9 @@ Hudi Catalog 是一种 External Catalog。通过 Hudi Catalog，您不需要执�
 
 为保证正常访问 Hudi 内的数据，StarRocks 集群必须集成以下两个关键组件：
 
-- 对象存储或分布式文件系统，如 AWS S3、其他兼容 S3 协议的对象存储、Microsoft Azure Storage、Google GCS、或 HDFS
+- 分布式文件系统 (HDFS) 或对象存储。当前支持的对象存储包括：AWS S3、Microsoft Azure Storage、Google GCS、其他兼容 S3 协议的对象存储（如阿里云 OSS、MinIO）。
 
-- 元数据服务，如 Hive Metastore（以下简称 HMS）或 AWS Glue
+- 元数据服务。当前支持的元数据服务包括：Hive Metastore（以下简称 HMS）、AWS Glue。
 
   > **说明**
   >
@@ -111,7 +111,7 @@ StarRocks 访问 Hudi 集群元数据服务的相关参数配置。
 | 参数                | 是否必须 | 说明                                                         |
 | ------------------- | -------- | ------------------------------------------------------------ |
 | hive.metastore.type | 是       | Hudi 集群所使用的元数据服务的类型。设置为 `hive`。           |
-| hive.metastore.uris | 是       | HMS 的 URI。格式：`thrift://<HMS IP 地址>:<HMS 端口号>`。<br>如果您的 HMS 开启了高可用模式，此处可以填写多个 HMS 地址并用逗号分隔，例如：`"thrift://<HMS IP 地址 1>:<HMS 端口号 1>,thrift://<HMS IP 地址 2>:<HMS 端口号 2>,thrift://<HMS IP 地址 3>:<HMS 端口号 3>"`。 |
+| hive.metastore.uris | 是       | HMS 的 URI。格式：`thrift://<HMS IP 地址>:<HMS 端口号>`。<br />如果您的 HMS 开启了高可用模式，此处可以填写多个 HMS 地址并用逗号分隔，例如：`"thrift://<HMS IP 地址 1>:<HMS 端口号 1>,thrift://<HMS IP 地址 2>:<HMS 端口号 2>,thrift://<HMS IP 地址 3>:<HMS 端口号 3>"`。 |
 
 ##### AWS Glue
 
@@ -228,8 +228,8 @@ Hudi Catalog 从 2.5 版本起支持兼容 S3 协议的对象存储。
 如果选择兼容 S3 协议的对象存储（如 MinIO）作为 Hudi 集群的文件存储，请按如下配置 `StorageCredentialParams`：
 
 ```SQL
-"aws.s3.enable_ssl" = "{true | false}",
-"aws.s3.enable_path_style_access" = "{true | false}",
+"aws.s3.enable_ssl" = "false",
+"aws.s3.enable_path_style_access" = "true",
 "aws.s3.endpoint" = "<s3_endpoint>",
 "aws.s3.access_key" = "<iam_user_access_key>",
 "aws.s3.secret_key" = "<iam_user_secret_key>"
@@ -239,8 +239,8 @@ Hudi Catalog 从 2.5 版本起支持兼容 S3 协议的对象存储。
 
 | 参数                             | 是否必须   | 说明                                                  |
 | -------------------------------- | -------- | ------------------------------------------------------------ |
-| aws.s3.enable_ssl                | Yes      | 是否开启 SSL 连接。<br>取值范围：`true` 和 `false`。默认值：`true`。 |
-| aws.s3.enable_path_style_access  | Yes      | 是否开启路径类型访问 (Path-Style Access)。<br>取值范围：`true` 和 `false`。默认值：`false`。<br>路径类型 URL 使用如下格式：`https://s3.<region_code>.amazonaws.com/<bucket_name>/<key_name>`。例如，如果您在美国西部（俄勒冈）区域中创建一个名为 `DOC-EXAMPLE-BUCKET1` 的存储桶，并希望访问该存储桶中的 `alice.jpg` 对象，则可使用以下路径类型 URL：`https://s3.us-west-2.amazonaws.com/DOC-EXAMPLE-BUCKET1/alice.jpg`。 |
+| aws.s3.enable_ssl                | Yes      | 是否开启 SSL 连接。<br />取值范围：`true` 和 `false`。默认值：`true`。 |
+| aws.s3.enable_path_style_access  | Yes      | 是否开启路径类型访问 (Path-Style Access)。<br />取值范围：`true` 和 `false`。默认值：`false`。对于 MinIO，必须设置为 `true`。<br />路径类型 URL 使用如下格式：`https://s3.<region_code>.amazonaws.com/<bucket_name>/<key_name>`。例如，如果您在美国西部（俄勒冈）区域中创建一个名为 `DOC-EXAMPLE-BUCKET1` 的存储桶，并希望访问该存储桶中的 `alice.jpg` 对象，则可使用以下路径类型 URL：`https://s3.us-west-2.amazonaws.com/DOC-EXAMPLE-BUCKET1/alice.jpg`。 |
 | aws.s3.endpoint                  | Yes      | 用于访问兼容 S3 协议的对象存储的 Endpoint。 |
 | aws.s3.access_key                | Yes      | IAM User 的 Access Key。 |
 | aws.s3.secret_key                | Yes      | IAM User 的 Secret Key。 |
@@ -437,7 +437,7 @@ Hudi Catalog 从 3.0 版本起支持 Google GCS。
 
 指定缓存元数据更新策略的一组参数。StarRocks 根据该策略更新缓存的 Hudi 元数据。此组参数为可选。
 
-StarRocks 默认采用自动异步更新策略，开箱即用。因此，一般情况下，您可以忽略 `MetadataUpdateParams`，无需对其中的策略参数进行调优。
+StarRocks 默认采用[自动异步更新策略](#附录理解元数据自动异步更新策略)，开箱即用。因此，一般情况下，您可以忽略 `MetadataUpdateParams`，无需对其中的策略参数进行调优。
 
 如果 Hudi 数据更新频率较高，那么您可以对这些参数进行调优，从而优化自动异步更新策略的性能。
 
@@ -450,11 +450,23 @@ StarRocks 默认采用自动异步更新策略，开箱即用。因此，一般�
 | metastore_cache_ttl_sec                | 否       | StarRocks 自动淘汰缓存的 Hudi 表或分区的元数据的时间间隔。单位：秒。默认值：`86400`，即 24 小时。 |
 | remote_file_cache_ttl_sec              | 否       | StarRocks 自动淘汰缓存的 Hudi 表或分区的数据文件的元数据的时间间隔。单位：秒。默认值：`129600`，即 36 小时。 |
 
-参见本文[附录：理解自动异步更新策略](../../data_source/catalog/hudi_catalog.md#附录理解自动异步更新策略)小节。
-
 ### 示例
 
 以下示例创建了一个名为 `hudi_catalog_hms` 或 `hudi_catalog_glue` 的 Hudi Catalog，用于查询 Hudi 集群里的数据。
+
+#### HDFS
+
+使用 HDFS 作为存储时，可以按如下创建 Hudi Catalog：
+
+```SQL
+CREATE EXTERNAL CATALOG hudi_catalog_hms
+PROPERTIES
+(
+    "type" = "hudi",
+    "hive.metastore.type" = "hive",
+    "hive.metastore.uris" = "thrift://xx.xx.xx:9083"
+);
+```
 
 #### AWS S3
 
@@ -764,6 +776,25 @@ SHOW CATALOGS;
 SHOW CREATE CATALOG hudi_catalog_glue;
 ```
 
+## 切换 Hudi Catalog 和数据库
+
+您可以通过如下方法切换至目标 Hudi Catalog 和数据库：
+
+- 先通过 [SET CATALOG](../../sql-reference/sql-statements/data-definition/SET%20CATALOG.md) 指定当前会话生效的 Hudi Catalog，然后再通过 [USE](../../sql-reference/sql-statements/data-definition/USE.md) 指定数据库：
+
+  ```SQL
+  -- 切换当前会话生效的 Catalog：
+  SET CATALOG <catalog_name>
+  -- 指定当前会话生效的数据库：
+  USE <db_name>
+  ```
+
+- 通过 [USE](../../sql-reference/sql-statements/data-definition/USE.md) 直接将会话切换到目标 Hudi Catalog 下的指定数据库：
+
+  ```SQL
+  USE <catalog_name>.<db_name>
+  ```
+
 ## 删除 Hudi Catalog
 
 您可以通过 [DROP CATALOG](/sql-reference/sql-statements/data-definition/DROP%20CATALOG.md) 删除某个 External Catalog。
@@ -798,23 +829,7 @@ DROP Catalog hudi_catalog_glue;
    SHOW DATABASES FROM <catalog_name>
    ```
 
-2. 通过 [SET CATALOG](../../sql-reference/sql-statements/data-definition/SET%20CATALOG.md) 切换当前会话生效的 Catalog：
-
-   ```SQL
-   SET CATALOG <catalog_name>;
-   ```
-
-   再通过 [USE](../../sql-reference/sql-statements/data-definition/USE.md) 指定当前会话生效的数据库：
-
-   ```SQL
-   USE <db_name>;
-   ```
-
-   或者，也可以通过 [USE](../../sql-reference/sql-statements/data-definition/USE.md) 直接将会话切换到目标 Catalog 下的指定数据库：
-
-   ```SQL
-   USE <catalog_name>.<db_name>;
-   ```
+2. [切换至目标 Hudi Catalog 和数据库](#切换-hudi-catalog-和数据库)。
 
 3. 通过 [SELECT](/sql-reference/sql-statements/data-manipulation/SELECT.md) 查询目标数据库中的目标表：
 

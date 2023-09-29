@@ -1,54 +1,8 @@
 # StarRocks version 3.0
 
-## 3.0.4
-
-发布日期：2023 年 7 月 18 日
-
-### 新增特性
-
-- 查询和物化视图的 Join 类型不同时，也支持对查询进行改写。[#25099](https://github.com/StarRocks/starrocks/pull/25099)
-
-### 功能优化
-
-- 如果查询的字段不包含在物化视图的 output 列但是包含在其谓词条件中，仍可使用该物化视图进行查询改写。[#23028](https://github.com/StarRocks/starrocks/issues/23028)
-- [切换至 Trino 语法](../reference/System_variable.md) `set sql_dialect = 'trino';`，查询时表别名大小写不敏感。[#26094](https://github.com/StarRocks/starrocks/pull/26094) [#25282](https://github.com/StarRocks/starrocks/pull/25282)
-- `Information_schema.tables_config` 表中增加了 `table_id` 字段。您可以基于 `table_id` 字段关联数据库 `Information_schema` 中的表 `tables_config` 和 `be_tablets`，来查询 tablet 所属数据库和表名称。[#24061](https://github.com/StarRocks/starrocks/pull/24061)
-
-### 问题修复
-
-修复了如下问题：
-
-- sum 聚合函数的查询改写至单表物化视图时，会因为类型推导问题导致 sum 的查询结果出错。[#25512](https://github.com/StarRocks/starrocks/pull/25512)
-- 存算分离模式下，使用 SHOW PROC 查看 tablet 信息时报错。
-- 插入数据长度超出 STRUCT 定义的 CHAR 长度时，插入无响应。 [#25942](https://github.com/StarRocks/starrocks/pull/25942)
-- 当 INSERT INTO SELECT 存在 FULL JOIN 时，返回结果有遗漏。[#26603](https://github.com/StarRocks/starrocks/pull/26603)
-- 使用 ALTER TABLE 命令修改表的 `default.storage_medium` 属性时报错 `ERROR xxx: Unknown table property xxx`。[#25870](https://github.com/StarRocks/starrocks/issues/25870)
-- Broker Load 导入空文件时报错。[#26212](https://github.com/StarRocks/starrocks/pull/26212)
-- BE 下线偶尔会卡住。[#26509](https://github.com/StarRocks/starrocks/pull/26509)
-
-## 3.0.3
-
-发布日期：2023 年 6 月 28 日
-
-### 功能优化
-
-- StarRocks 外表元数据的同步改为数据加载时进行。 [#24739](https://github.com/StarRocks/starrocks/pull/24739)
-- 对于使用[表达式分区](../table_design/expression_partitioning.md)的表，INSERT OVERWRITE 支持指定分区。 [#25005](https://github.com/StarRocks/starrocks/pull/25005)
-- 优化了非分区表增加分区时的报错信息。 [#25266](https://github.com/StarRocks/starrocks/pull/25266)
-
-### 问题修复
-
-修复了如下问题：
-
-- Parquet 文件中如果包括复杂类型，最大最小过滤时会获取列错误。 [#23976](https://github.com/StarRocks/starrocks/pull/23976)
-- 库或者表已经被 Drop，但是写入任务仍然在队列中。 [#24801](https://github.com/StarRocks/starrocks/pull/24801)
-- FE 重启时会小概率导致 BE crash。 [#25037](https://github.com/StarRocks/starrocks/pull/25037)
-- "enable_profile = true" 时导入和查询偶尔会卡住。 [#25060](https://github.com/StarRocks/starrocks/pull/25060)
-- 集群不满足 3 个 Alive BE 时，INSERT OVERWRITE 报错信息不准确。 [#25314](https://github.com/StarRocks/starrocks/pull/25314)
-
 ## 3.0.2
 
-发布日期：2023 年 6 月 13 日
+发布日期： 2023 年 6 月 13 日
 
 ### 功能优化
 
@@ -72,7 +26,7 @@
 
 ## 3.0.1
 
-发布日期：2023 年 6 月 1 日
+发布日期： 2023 年 6 月 1 日
 
 ### 新增特性
 
@@ -101,7 +55,7 @@
 
 ## 3.0.0
 
-发布日期：2023 年 4 月 28 日
+发布日期： 2023 年 4 月 28 日
 
 ### 新增特性
 
@@ -112,7 +66,7 @@
 **存储和导入**
 
 - 支持自增列属性 [AUTO_INCREMENT](../sql-reference/sql-statements/auto_increment.md)，提供表内全局唯一 ID，简化数据管理。
-- 支持[导入时自动创建分区和使用分区表达式定义分区规则](../table_design/automatic_partitioning.md)，提高了分区创建的易用性和灵活性。
+- 支持[导入时自动创建分区和使用分区表达式定义分区规则](https://docs.starrocks.io/zh-cn/3.0/table_design/automatic_partitioning)，提高了分区创建的易用性和灵活性。
 - Primary Key 模型表支持更丰富的 [UPDATE](../sql-reference/sql-statements/data-manipulation/UPDATE.md) 和 [DELETE](../sql-reference/sql-statements/data-manipulation/DELETE.md) 语法，包括使用 CTE 和对多表的引用。
 - Broker Load 和 INSERT INTO 增加 Load Profile，支持通过 profile 查看并分析导入作业详情。使用方法与 [查看分析Query Profile](../administration/query_profile.md) 相同。
 
@@ -137,7 +91,7 @@
 **SQL 语句和函数**
 
 - 新增如下权限相关 SQL 语句：[SET DEFAULT ROLE](../sql-reference/sql-statements/account-management/SET_DEFAULT_ROLE.md)、[SET ROLE](../sql-reference/sql-statements/account-management/SET%20ROLE.md)、[SHOW ROLES](../sql-reference/sql-statements/account-management/SHOW%20ROLES.md)、[SHOW USERS](../sql-reference/sql-statements/account-management/SHOW%20USERS.md)。
-- 新增半结构化数据分析相关函数：[map_from_arrays](../sql-reference/sql-functions/map-functions/map_from_arrays.md)、[map_apply](../sql-reference/sql-functions/map-functions/map_apply.md)。
+- 新增半结构化数据分析相关函数：[map_from_arrays](../sql-reference/sql-functions/map-functions/map_from_arrays.md)、[map_apply](../sql-reference/sql-functions/map-functions/map_apply.md)、[map_filter](../sql-reference/sql-functions/map-functions/map_filter.md)、[transform_keys](../sql-reference/sql-functions/map-functions/transform_keys.md)、[transform_values](../sql-reference/sql-functions/map-functions/transform_values.md)。
 - [array_agg](../sql-reference/sql-functions/array-functions/array_agg.md) 支持 ORDER BY。
 - 窗口函数 [lead](../sql-reference/sql-functions/Window_function.md#使用-lead-窗口函数)、[lag](../sql-reference/sql-functions/Window_function.md#使用-lag-窗口函数) 支持 IGNORE NULLS。
 - 新增 [BINARY/VARBINARY 数据类型](../sql-reference/sql-statements/data-types/BINARY.md)，新增 [to_binary](../sql-reference/sql-functions/binary-functions/to_binary.md)，[from_binary](../sql-reference/sql-functions/binary-functions/from_binary.md) 函数。

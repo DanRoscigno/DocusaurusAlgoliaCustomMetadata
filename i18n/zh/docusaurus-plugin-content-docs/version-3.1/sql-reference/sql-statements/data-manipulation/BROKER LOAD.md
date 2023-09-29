@@ -2,7 +2,7 @@
 
 ## 功能
 
-Broker Load 是一种基于 MySQL 协议的异步导入方式。您提交导入作业以后，StarRocks 会异步地执行导入作业。您需要通过 [SHOW LOAD](/sql-reference/sql-statements/data-manipulation/SHOW%20LOAD.md) 语句或者 curl 命令来查看导入作业的结果。有关 Broker Load 的背景信息、前提条件、基本原理、支持的数据文件格式和外部存储系统、以及如何执行单表导入 (Single-Table Load) 和多表导入 (Multi-Table Load) 操作等，请参见[从 HDFS 导入](../../../loading/hdfs_load.md)和[从云存储导入](../../../loading/cloud_storage_load.md)。
+Broker Load 是一种基于 MySQL 协议的异步导入方式。您提交导入作业以后，StarRocks 会异步地执行导入作业。您可以使用 `SELECT * FROM information_schema.loads` 来查看 Broker Load 作业的结果，该功能自 3.1 版本起支持。有关 Broker Load 的背景信息、基本原理、支持的数据文件格式、如何执行单表导入 (Single-Table Load) 和多表导入 (Multi-Table Load) 操作、以及如何查看导入作业的结果等信息，请参见[从 HDFS 导入](../../../loading/hdfs_load.md)和[从云存储导入](../../../loading/cloud_storage_load.md)。
 
 > **注意**
 >
@@ -158,10 +158,10 @@ INTO TABLE <table_name>
   
   | **参数**    | **说明**                                                     |
   | ----------- | ------------------------------------------------------------ |
-  | skip_header | 用于指定跳过 CSV 文件最开头的几行数据。取值类型：INTEGER。默认值：`0`。<br>在某些 CSV 文件里，最开头的几行数据会用来定义列名、列类型等元数据信息。通过设置该参数，可以使 StarRocks 在导入数据时忽略 CSV 文件的前面几行。例如，如果设置该参数为 `1`，则 StarRocks 会在导入数据时忽略 CSV 文件的第一行。<br>这里的行所使用的分隔符须与您在导入语句中所设定的行分隔符一致。 |
-  | trim_space  | 用于指定是否去除 CSV 文件中列分隔符前后的空格。取值类型：BOOLEAN。默认值：`false`。<br>有些数据库在导出数据为 CSV 文件时，会在列分隔符的前后添加一些空格。根据位置的不同，这些空格可以称为“前导空格”或者“尾随空格”。通过设置该参数，可以使 StarRocks 在导入数据时删除这些不必要的空格。<br>需要注意的是，StarRocks 不会去除被 `enclose` 指定字符括起来的字段内的空格（包括字段的前导空格和尾随空格）。例如，列分隔符是竖线 (<code class="language-text">&#124;</code>)，`enclose` 指定的字符是双引号 (`"`)：<br><code class="language-text">&#124;"Love StarRocks"&#124;</code> <br><code class="language-text">&#124;" Love StarRocks "&#124;</code> <br><code class="language-text">&#124; "Love StarRocks" &#124;</code> <br>如果设置 `trim_space` 为 `true`，则 StarRocks 处理后的结果数据如下：<br><code class="language-text">&#124;"Love StarRocks"&#124;</code> <br><code class="language-text">&#124;" Love StarRocks "&#124;</code> <br><code class="language-text">&#124;"Love StarRocks"&#124;</code> |
-  | enclose     | 根据 [RFC4180](https://www.rfc-editor.org/rfc/rfc4180)，用于指定把 CSV 文件中的字段括起来的字符。取值类型：单字节字符。默认值：`NONE`。最常用 `enclose` 字符为单引号 (`'`) 或双引号 (`"`)。<br>被 `enclose` 指定字符括起来的字段内的所有特殊字符（包括行分隔符、列分隔符等）均看做是普通符号。比 RFC4180 标准更进一步的是，StarRocks 提供的 `enclose` 属性支持设置任意单个字节的字符。<br>如果一个字段内包含了 `enclose` 指定字符，则可以使用同样的字符对 `enclose` 指定字符进行转义。例如，在设置了`enclose` 为双引号 (`"`) 时，字段值 `a "quoted" c` 在 CSV 文件中应该写作 `"a ""quoted"" c"`。 |
-  | escape      | 指定用于转义的字符。用来转义各种特殊字符，比如行分隔符、列分隔符、转义符、`enclose` 指定字符等，使 StarRocks 把这些特殊字符当做普通字符而解析成字段值的一部分。取值类型：单字节字符。默认值：`NONE`。最常用的 `escape` 字符为斜杠 (`\`)，在 SQL 语句中应该写作双斜杠 (`\\`)。<br>**说明**<br>`escape` 指定字符同时作用于 `enclose` 指定字符的内部和外部。<br>以下为两个示例：<ul><li>当设置 `enclose` 为双引号 (`"`) 、`escape` 为斜杠 (`\`) 时，StarRocks 会把 `"say \"Hello world\""` 解析成一个字段值 `say "Hello world"`。</li><li>假设列分隔符为逗号 (`,`) ，当设置 `escape` 为斜杠 (`\`) ，StarRocks 会把 `a, b\, c` 解析成 `a` 和 `b, c` 两个字段值。</li></ul> |
+  | skip_header | 用于指定跳过 CSV 文件最开头的几行数据。取值类型：INTEGER。默认值：`0`。<br />在某些 CSV 文件里，最开头的几行数据会用来定义列名、列类型等元数据信息。通过设置该参数，可以使 StarRocks 在导入数据时忽略 CSV 文件的前面几行。例如，如果设置该参数为 `1`，则 StarRocks 会在导入数据时忽略 CSV 文件的第一行。<br />这里的行所使用的分隔符须与您在导入语句中所设定的行分隔符一致。 |
+  | trim_space  | 用于指定是否去除 CSV 文件中列分隔符前后的空格。取值类型：BOOLEAN。默认值：`false`。<br />有些数据库在导出数据为 CSV 文件时，会在列分隔符的前后添加一些空格。根据位置的不同，这些空格可以称为“前导空格”或者“尾随空格”。通过设置该参数，可以使 StarRocks 在导入数据时删除这些不必要的空格。<br />需要注意的是，StarRocks 不会去除被 `enclose` 指定字符括起来的字段内的空格（包括字段的前导空格和尾随空格）。例如，列分隔符是竖线 (<code class="language-text">&#124;</code>)，`enclose` 指定的字符是双引号 (`"`)：<br /><code class="language-text">&#124;"Love StarRocks"&#124;</code> <br /><code class="language-text">&#124;" Love StarRocks "&#124;</code> <br /><code class="language-text">&#124; "Love StarRocks" &#124;</code> <br />如果设置 `trim_space` 为 `true`，则 StarRocks 处理后的结果数据如下：<br /><code class="language-text">&#124;"Love StarRocks"&#124;</code> <br /><code class="language-text">&#124;" Love StarRocks "&#124;</code> <br /><code class="language-text">&#124;"Love StarRocks"&#124;</code> |
+  | enclose     | 根据 [RFC4180](https://www.rfc-editor.org/rfc/rfc4180)，用于指定把 CSV 文件中的字段括起来的字符。取值类型：单字节字符。默认值：`NONE`。最常用 `enclose` 字符为单引号 (`'`) 或双引号 (`"`)。<br />被 `enclose` 指定字符括起来的字段内的所有特殊字符（包括行分隔符、列分隔符等）均看做是普通符号。比 RFC4180 标准更进一步的是，StarRocks 提供的 `enclose` 属性支持设置任意单个字节的字符。<br />如果一个字段内包含了 `enclose` 指定字符，则可以使用同样的字符对 `enclose` 指定字符进行转义。例如，在设置了`enclose` 为双引号 (`"`) 时，字段值 `a "quoted" c` 在 CSV 文件中应该写作 `"a ""quoted"" c"`。 |
+  | escape      | 指定用于转义的字符。用来转义各种特殊字符，比如行分隔符、列分隔符、转义符、`enclose` 指定字符等，使 StarRocks 把这些特殊字符当做普通字符而解析成字段值的一部分。取值类型：单字节字符。默认值：`NONE`。最常用的 `escape` 字符为斜杠 (`\`)，在 SQL 语句中应该写作双斜杠 (`\\`)。<br />**说明**<br />`escape` 指定字符同时作用于 `enclose` 指定字符的内部和外部。<br />以下为两个示例：<ul><li>当设置 `enclose` 为双引号 (`"`) 、`escape` 为斜杠 (`\`) 时，StarRocks 会把 `"say \"Hello world\""` 解析成一个字段值 `say "Hello world"`。</li><li>假设列分隔符为逗号 (`,`) ，当设置 `escape` 为斜杠 (`\`) ，StarRocks 会把 `a, b\, c` 解析成 `a` 和 `b, c` 两个字段值。</li></ul> |
 
 - `column_list`
 
@@ -228,9 +228,9 @@ StarRocks 访问存储系统的认证配置。
 
     ```Plain
     "hadoop.security.authentication" = "kerberos",
-    "kerberos_principal = "nn/zelda1@ZELDA.COM",
-    "kerberos_keytab = "/keytab/hive.keytab",
-    "kerberos_keytab_content = "YWFhYWFh"
+    "kerberos_principal" = "nn/zelda1@ZELDA.COM",
+    "kerberos_keytab" = "/keytab/hive.keytab",
+    "kerberos_keytab_content" = "YWFhYWFh"
     ```
 
     `StorageCredentialParams` 包含如下参数。
@@ -283,8 +283,8 @@ StarRocks 访问存储系统的认证配置。
       | **参数名称**                         | **参数说明**                                                 |
       | ------------------------------------------------------- | --------------------------- |
       | dfs.nameservices                  | 自定义 HDFS 集群的名称。                                     |
-      | dfs.ha.namenodes.XXX              | 自定义 NameNode 的名称，多个名称以逗号 (,) 分隔，双引号内不允许出现空格。  <br>其中 `xxx` 为 `dfs.nameservices` 中自定义的HDFS 服务的名称。 |
-      | dfs.namenode.rpc-address.XXX.NN    | 指定 NameNode 的 RPC 地址信息。  <br>其中 `NN` 表示 `dfs.ha.namenodes.XXX` 中自定义 NameNode 的名称。 |
+      | dfs.ha.namenodes.XXX              | 自定义 NameNode 的名称，多个名称以逗号 (,) 分隔，双引号内不允许出现空格。  <br />其中 `xxx` 为 `dfs.nameservices` 中自定义的HDFS 服务的名称。 |
+      | dfs.namenode.rpc-address.XXX.NN    | 指定 NameNode 的 RPC 地址信息。  <br />其中 `NN` 表示 `dfs.ha.namenodes.XXX` 中自定义 NameNode 的名称。 |
       | dfs.client.failover.proxy.provider | 指定客户端连接的 NameNode 的提供者，默认为 `org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider`。 |
 
   > **说明**
@@ -466,8 +466,8 @@ StarRocks 访问存储系统的认证配置。
 如果存储系统为其他兼容 S3 协议的对象存储（如 MinIO），请按如下配置 `StorageCredentialParams`：
 
 ```SQL
-"aws.s3.enable_ssl" = "{true | false}",
-"aws.s3.enable_path_style_access" = "{true | false}",
+"aws.s3.enable_ssl" = "false",
+"aws.s3.enable_path_style_access" = "true",
 "aws.s3.endpoint" = "<s3_endpoint>",
 "aws.s3.access_key" = "<iam_user_access_key>",
 "aws.s3.secret_key" = "<iam_user_secret_key>"
@@ -477,7 +477,7 @@ StarRocks 访问存储系统的认证配置。
 
 | 参数                            | 是否必须 | 描述                                                         |
 | ------------------------------- | -------- | ------------------------------------------------------------ |
-| aws.s3.enable_ssl               | 是       | 是否开启 SSL 连接。取值范围：`true` 和 `false`。默认值：`true`。 |
+| aws.s3.enable_ssl               | 是       | 是否开启 SSL 连接。取值范围：`true` 和 `false`。默认值：`true`。对于 MinIO，必须设置为 `true`。 |
 | aws.s3.enable_path_style_access | 是       | 是否开启路径类型 URL 访问 (Path-Style URL Access)。取值范围：`true` 和 `false`。默认值：`false`。 |
 | aws.s3.endpoint                 | 是       | 用于访问兼容 S3 协议的对象存储的 Endpoint。                         |
 | aws.s3.access_key               | 是       | IAM User 的 Access Key。                                     |
@@ -663,7 +663,7 @@ PROPERTIES ("<key1>" = "<value1>"[, "<key2>" = "<value2>" ...])
 
 - `strict_mode`
 
-  是否开启严格模式。取值范围：`true` 和 `false`。默认值：`false`。`true` 表示开启，`false` 表示关闭。<br>关于该模式的介绍，参见[严格模式](../../../loading/load_concept/strict_mode.md)。
+  是否开启严格模式。取值范围：`true` 和 `false`。默认值：`false`。`true` 表示开启，`false` 表示关闭。<br />关于该模式的介绍，参见[严格模式](../../../loading/load_concept/strict_mode.md)。
 
 - `timezone`
 
@@ -671,7 +671,7 @@ PROPERTIES ("<key1>" = "<value1>"[, "<key2>" = "<value2>" ...])
 
 - `priority`
 
-   指定导入作业的优先级。取值范围：`LOWEST`、`LOW`、`NORMAL`、`HIGH` 和 `HIGHEST`。默认值：`NORMAL`。Broker Load 通过 [FE 配置项](/administration/Configuration.md#fe-配置项) `max_broker_load_job_concurrency` 指定 StarRocks 集群中可以并行执行的 Broker Load 任务的最大数量。如果某一时间段内提交的 Broker Load 作业的任务总数超过最大数量，则超出的作业会按照优先级在队列中排队等待调度。
+   指定导入作业的优先级。取值范围：`LOWEST`、`LOW`、`NORMAL`、`HIGH` 和 `HIGHEST`。默认值：`NORMAL`。Broker Load 通过 [FE 配置项](/administration/Configuration.md#fe-配置项) `max_broker_load_job_concurrency` 指定 StarRocks 集群中可以并行执行的 Broker Load 作业的最大数量。如果某一时间段内提交的 Broker Load 作业总数超过最大数量，则超出的作业会按照优先级在队列中排队等待调度。
 
    已经创建成功的导入作业，如果处于 **QUEUEING** 状态或者 **LOADING** 状态，那么您可以使用 [ALTER LOAD](../data-manipulation/ALTER%20LOAD.md) 语句修改该作业的优先级。
 
@@ -693,6 +693,14 @@ PROPERTIES ("<key1>" = "<value1>"[, "<key2>" = "<value2>" ...])
   - 目标表中有三列，按顺序依次为 `year`、`month` 和 `day`。源数据文件中只有一个包含时间数据的列，格式为 `yyyy-mm-dd hh:mm:ss`。这种情况下，可以指定 `COLUMNS (col, year = year(col), month=month(col), day=day(col))`。其中，`col` 是源数据文件中所包含的列的临时命名，`year = year(col)`、`month=month(col)` 和 `day=day(col)` 用于指定从 `col` 列提取对应的数据并落入目标表中对应的列，如 `year = year(col)` 表示通过 `year` 函数提取源数据文件中 `col` 列的 `yyyy` 部分的数据并落入目标表中的 `year` 列。
 
 有关操作示例，参见[设置列映射关系](#设置列映射关系)。
+
+## 相关配置项
+
+[FE 配置项](../../../administration/Configuration.md#fe-配置项) `max_broker_load_job_concurrency` 指定了 StarRocks 集群中可以并行执行的 Broker Load 作业的最大数量。
+
+StarRocks v2.4 及以前版本中，如果某一时间段内提交的 Broker Load 作业总数超过最大数量，则超出作业会按照各自的提交时间放到队列中排队等待调度。
+
+自 StarRocks v2.5 版本起，如果某一时间段内提交的 Broker Load 作业总数超过最大数量，则超出的作业会按照作业创建时指定的优先级被放到队列中排队等待调度。参见上面介绍的可选参数 `priority`。您可以使用 [ALTER LOAD](../data-manipulation/ALTER%20LOAD.md) 语句修改处于 **QUEUEING** 状态或者 **LOADING** 状态的 Broker Load 作业的优先级。
 
 ## 示例
 
