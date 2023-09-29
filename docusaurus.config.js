@@ -80,6 +80,12 @@ const config = {
             label: 'Documentation',
           },
           {
+            type: 'docsVersionDropdown',
+            position: 'left',
+            dropdownItemsAfter: [{to: '/versions', label: 'All versions'}],
+            dropdownActiveClassDisabled: true,
+          },
+          {
             href: 'https://github.com/StarRocks/starrocks',
             label: 'GitHub',
             position: 'right',
