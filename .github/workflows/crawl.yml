@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Crawl and index to Algolia
 
 on:
   workflow_dispatch:
