@@ -24,6 +24,33 @@ rm -rf ${WORKINGDIR}/versioned_docs/version-2.5
 mkdir ${WORKINGDIR}/versioned_docs/version-2.5
 cp -r docs/* ${WORKINGDIR}/versioned_docs/version-2.5
 
+echo "Work on the Chinese docs"
+
+cd ${WORKINGDIR}/temp-zh
+gh repo clone StarRocks/docs.zh-cn
+cd docs.zh-cn
+
+echo "Process Chinese version 3.1"
+
+git checkout 3.1
+rm -rf ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-3.1/
+mkdir ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-3.1
+cp -r * ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-3.1/
+
+echo "Process Chinese version 3.0"
+
+git checkout 3.0
+rm -rf ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-3.0/
+mkdir ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-3.0
+cp -r * ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-3.0/
+
+echo "Process Chinese version 2.5"
+
+git checkout 2.5
+rm -rf ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-2.5/
+mkdir ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-2.5
+cp -r * ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-2.5/
+
 # cleanup before running yarn build
 cd ${WORKINGDIR}
 rm -rf temp-en
