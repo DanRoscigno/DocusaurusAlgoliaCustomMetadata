@@ -1,0 +1,35 @@
+
+export WORKINGDIR=/Users/droscign/GitHub/Docusaurus/starrocks
+
+cd $WORKINGDIR
+mkdir temp-en
+mkdir temp-zh
+
+cd temp-en
+gh repo clone StarRocks/starrocks
+cd starrocks
+
+git checkout branch-3.1
+rm -rf ${WORKINGDIR}/versioned_docs/version-3.1
+mkdir ${WORKINGDIR}/versioned_docs/version-3.1
+cp -r docs/* ${WORKINGDIR}/versioned_docs/version-3.1
+
+git checkout branch-3.0
+rm -rf ${WORKINGDIR}/versioned_docs/version-3.0
+mkdir ${WORKINGDIR}/versioned_docs/version-3.0
+cp -r docs/* ${WORKINGDIR}/versioned_docs/version-3.0/
+
+git checkout branch-2.5
+rm -rf ${WORKINGDIR}/versioned_docs/version-2.5
+mkdir ${WORKINGDIR}/versioned_docs/version-2.5
+cp -r docs/* ${WORKINGDIR}/versioned_docs/version-2.5
+
+# cleanup before running yarn build
+cd ${WORKINGDIR}
+rm -rf temp-en
+rm -rf temp-zh
+find . -type f -name TOC.md | xargs rm
+find . -type f -name StarRocks_intro.md | xargs rm
+
+npx docusaurus-mdx-checker
+yarn build
