@@ -26,6 +26,6 @@ jobs:
       - name: List changed files
         run: |
           for file in ${{ steps.changed-files.outputs.changed_files }}; do
-            echo "$file was changed"
+            npx docusaurus-mdx-checker -c $file
           done
 
