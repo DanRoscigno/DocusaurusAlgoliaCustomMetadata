@@ -1,4 +1,4 @@
-name: Crawl and index to Algolia
+name: Check markdown files
 
 on:
   pull_request:
@@ -6,21 +6,26 @@ on:
       - synchronize
       - reopened
       - opened
+
 jobs:
+
   DocsCheck:
-  - uses: actions/checkout@v3
-    with:
-      fetch-depth: ${{ github.event_name == 'pull_request' && 2 || 0 }}
-  - name: Get changed files
-    id: changed-files
-    run: |
-      if ${{ github.event_name == 'pull_request' }}; then
-          echo "changed_files=$(git diff --name-only -r HEAD^1 HEAD | xargs)" >> $GITHUB_OUTPUT
-      else
-          echo "changed_files=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} | xargs)" >> $GITHUB_OUTPUT
-      fi
-  - name: List changed files
-    run: |
-      for file in ${{ steps.changed-files.outputs.changed_files }}; do
-          echo "$file was changed"
-      done
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: ${{ github.event_name == 'pull_request' && 2 || 0 }}
+      - name: Get changed files
+        id: changed-files
+        run: |
+          if ${{ github.event_name == 'pull_request' }}; then
+            echo "changed_files=$(git diff --name-only -r HEAD^1 HEAD | xargs)" >> $GITHUB_OUTPUT
+          else
+            echo "changed_files=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} | xargs)" >> $GITHUB_OUTPUT
+          fi
+      - name: List changed files
+        run: |
+          for file in ${{ steps.changed-files.outputs.changed_files }}; do
+            echo "$file was changed"
+          done
+
