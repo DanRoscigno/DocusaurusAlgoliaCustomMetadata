@@ -24,6 +24,11 @@ rm -rf ${WORKINGDIR}/versioned_docs/version-2.5
 mkdir ${WORKINGDIR}/versioned_docs/version-2.5
 cp -r docs/* ${WORKINGDIR}/versioned_docs/version-2.5
 
+git checkout branch-2.4
+rm -rf ${WORKINGDIR}/versioned_docs/version-2.4
+mkdir ${WORKINGDIR}/versioned_docs/version-2.4
+cp -r docs/* ${WORKINGDIR}/versioned_docs/version-2.4
+
 # cleanup before running yarn build
 cd ${WORKINGDIR}
 rm -rf temp-en
