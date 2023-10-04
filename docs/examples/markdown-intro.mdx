@@ -1,0 +1,241 @@
+---
+id: introduction
+description: Docusaurus uses MDX. Find out more about Docusaurus-specific features when writing Markdown.
+---
+
+# Markdown Features
+
+import BrowserWindow from '@site/src/components/BrowserWindow';
+
+Docusaurus uses **[Markdown](https://commonmark.org/)** as its main content authoring format.
+
+## Tips, Notes, Warnings, etc. are written like this:
+
+```md
+:::tip Learn Markdown
+
+You can [learn Markdown in 10 minutes](https://commonmark.org/help/).
+
+:::
+```
+
+And render like this:
+
+:::tip Learn Markdown
+
+You can [learn Markdown in 10 minutes](https://commonmark.org/help/).
+
+:::
+
+:::tip You can embed codeblocks in the tips:
+
+To check the result run this SQL:
+
+```SQL
+USE abc;
+SELECT foo from bar;
+```
+
+:::
+
+### Different style for warning blocks
+
+I think Lily asked for this:
+
+:::warning
+
+Info here
+
+:::
+
+## Nice formatting of expandable detail blocks:
+
+<details>
+
+<summary>Expand this to read about: Broker load advantages</summary>
+
+### Advantages of Broker Load
+
+- Broker Load supports data transformation, UPSERT, and DELETE operations during loading.
+- Broker Load runs in the background and clients don't need to stay connected for the job to continue.
+- Broker Load is preferred for long running jobs, the default timeout is 4 hours.
+- Broker Load supports Parquet, ORC, and CSV file format.
+
+### Data flow
+
+1. The user creates a load job
+2. The frontend (FE) creates a query plan and distributes the plan to the backend nodes (BE)
+3. The backend (BE) nodes pull the data from the source and load the data into StarRocks
+
+</details>
+
+### Tabs and code highlighting (not the colors, but highlighting specific lines)
+
+I think Tabs are handy sometimes. When there are two or three options (e.g., S3, GCS, and MinIO) but you want only one page, you can use tabs for the sections that change based on the choice of (in this example) object storage:
+
+Two things to look for:
+1. Click the tabs and watch the example code change
+2. Note that the line that specifies the URI for the object is highlighted
+
+:::tip
+To see how the tabs are setup use view page source
+:::
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="deployMethod">
+  <TabItem value="S3" label="AWS S3" default>
+```SQL
+LOAD LABEL test_db.label_brokerloadtest_101
+(
+-- highlight-next-line
+    DATA INFILE("s3a://bucket_s3/input/file1.csv")
+    INTO TABLE table1
+    COLUMNS TERMINATED BY ","
+    (id, name, score)
+)
+WITH BROKER
+(
+    "aws.s3.use_instance_profile" = "true",
+    "aws.s3.region" = "<aws_s3_region>"
+)
+PROPERTIES
+(
+    "timeout" = "3600"
+);
+```
+  </TabItem>
+  <TabItem value="GCS" label="Google GCS">
+```SQL
+LOAD LABEL test_db.label_brokerloadtest_201
+(
+-- highlight-next-line
+    DATA INFILE("gs://bucket_gcs/input/file1.csv")
+    INTO TABLE table1
+    COLUMNS TERMINATED BY ","
+    (id, name, score)
+)
+WITH BROKER
+(
+    "gcp.gcs.use_compute_engine_service_account" = "true"
+)
+PROPERTIES
+(
+    "timeout" = "3600"
+);
+```
+  </TabItem>
+  <TabItem value="MinIO" label="MinIO">
+```SQL
+LOAD LABEL test_db.label_brokerloadtest_401
+(
+-- highlight-next-line
+    DATA INFILE("obs://bucket_minio/input/file1.csv")
+    INTO TABLE table1
+    COLUMNS TERMINATED BY ","
+    (id, name, score)
+)
+WITH BROKER
+(
+    "aws.s3.enable_ssl" = "false",
+    "aws.s3.enable_path_style_access" = "true",
+    "aws.s3.endpoint" = "<s3_endpoint>",
+    "aws.s3.access_key" = "<iam_user_access_key>",
+    "aws.s3.secret_key" = "<iam_user_secret_key>"
+)
+PROPERTIES
+(
+    "timeout" = "3600"
+);
+```
+  </TabItem>
+</Tabs>
+
+## Front matter {#front-matter}
+
+Front matter is used to add metadata to your Markdown file. All content plugins have their own front matter schema, and use the front matter to enrich the default metadata inferred from the content or other configuration.
+
+Front matter is provided at the very top of the file, enclosed by three dashes `---`. The content is parsed as [YAML](https://yaml.org/spec/1.2.2/).
+
+```md
+---
+title: My Doc Title
+more_data:
+  - Can be provided
+  - as: objects
+    or: arrays
+---
+```
+
+:::info
+
+The API documentation of each official plugin lists the supported attributes:
+
+- [Docs front matter](../../api/plugins/plugin-content-docs.mdx#markdown-front-matter)
+- [Blog front matter](../../api/plugins/plugin-content-blog.mdx#markdown-front-matter)
+- [Pages front matter](../../api/plugins/plugin-content-pages.mdx#markdown-front-matter)
+
+:::
+
+## Quotes {#quotes}
+
+Markdown quotes are beautifully styled:
+
+```md
+> Easy to maintain open source documentation websites.
+>
+> — Docusaurus
+```
+
+<BrowserWindow>
+
+> Easy to maintain open source documentation websites.
+>
+> — Docusaurus
+
+</BrowserWindow>
+
+## Details {#details}
+
+Markdown can embed HTML elements, and [`details`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details) HTML elements are beautifully styled:
+
+```md
+### Details element example
+
+<details>
+  <summary>Toggle me!</summary>
+  <div>
+    <div>This is the detailed content</div>
+    <br/>
+    <details>
+      <summary>
+        Nested toggle! Some surprise inside...
+      </summary>
+      <div>😲😲😲😲😲</div>
+    </details>
+  </div>
+</details>
+```
+
+```mdx-code-block
+<BrowserWindow>
+
+<h3>Details element example</h3>
+
+<details>
+  <summary>Toggle me!</summary>
+  <div>
+    <div>This is the detailed content</div>
+    <br/>
+    <details>
+      <summary>
+        Nested toggle! Some surprise inside...
+      </summary>
+      <div>😲😲😲😲😲</div>
+    </details>
+  </div>
+</details>
+
+</BrowserWindow>
+```
