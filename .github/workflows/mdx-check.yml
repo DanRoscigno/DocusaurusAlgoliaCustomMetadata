@@ -8,8 +8,8 @@ on:
       - opened
 
 jobs:
-
   DocsCheck:
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
