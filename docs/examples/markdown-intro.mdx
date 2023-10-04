@@ -9,83 +9,148 @@ import BrowserWindow from '@site/src/components/BrowserWindow';
 
 Docusaurus uses **[Markdown](https://commonmark.org/)** as its main content authoring format.
 
+## Tips, Notes, Warnings, etc. are written like this:
+
+```md
+:::tip Learn Markdown
+
+You can [learn Markdown in 10 minutes](https://commonmark.org/help/).
+
+:::
+```
+
+And render like this:
+
 :::tip Learn Markdown
 
 You can [learn Markdown in 10 minutes](https://commonmark.org/help/).
 
 :::
 
-Docusaurus uses modern tooling to help you create **interactive documentation**.
+:::tip You can embed codeblocks in the tips:
 
-The **[MDX](https://mdxjs.com/)** compiler transforms **Markdown files to React components**, and allows you to use JSX in your Markdown content. This enables you to easily interleave React components within your content, and create delightful learning experiences.
+To check the result run this SQL:
 
-:::tip Use the MDX Playground
-
-The **[MDX playground](https://mdxjs.com/playground/)** is your new best friend!
-
-It is a very helpful debugging tool that shows how the MDX compiler transforms Markdown to React.
-
-**Options**: select the right format (MDX or CommonMark) and the following plugins Docusaurus uses: `remark-gfm`, `remark-directive`, `rehype-raw`.
+```SQL
+USE abc;
+SELECT foo from bar;
+```
 
 :::
 
-## MDX vs. CommonMark {#mdx-vs-commonmark}
+### Different style for warning blocks
 
-Docusaurus compiles both `.md` and `.mdx` files to React components using the MDX compiler, but **the syntax can be interpreted differently** depending on your settings.
+I think Lily asked for this:
 
-The MDX compiler supports [2 formats](https://mdxjs.com/packages/mdx/#optionsformat):
+:::warning
 
-- The [MDX format](https://mdxjs.com/docs/what-is-mdx/): a powerful parser allowing the usage of JSX
-- The [CommonMark format](https://commonmark.org/): a standard-compliant Markdown parser that does not allow the usage of JSX
-
-By default, **Docusaurus v3 uses the MDX format for all files** (including `.md` files) for historical reasons.
-
-It is possible to **opt-in for CommonMark** using the [`siteConfig.markdown.format`](../../api/docusaurus.config.js.mdx#markdown) setting or the `format: md` front matter.
-
-:::tip how to use CommonMark
-
-If you plan to use CommonMark, we recommend the [`siteConfig.markdown.format: 'detect'`](../../api/docusaurus.config.js.mdx#markdown) setting. The appropriate format will be selected automatically, based on file extensions:
-
-- `.md` files will use the CommonMark format
-- `.mdx` files will use the MDX format
+Info here
 
 :::
 
-## Standard features {#standard-features}
-
-Markdown is a syntax that enables you to write formatted content in a readable syntax.
-
-```md
-### My Doc Section
-
-Hello world message with some **bold** text, some _italic_ text, and a [link](/)
-
-![img alt](/img/docusaurus.png)
-```
-
-```mdx-code-block
-<BrowserWindow>
-
-<h3>My Doc Section</h3>
-
-Hello world message with some **bold** text, some _italic_ text and a [link](/)
-
-![img alt](/img/docusaurus.png)
-
-</BrowserWindow>
-```
+## Nice formatting of expandable detail blocks:
 
 <details>
 
-<summary>Markdown is declarative</summary>
+<summary>Expand this to read about: Broker load advantages</summary>
 
-Some may assume a 1-1 correlation between Markdown and HTML, e.g., `![Preview](/img/docusaurus.png)` will always become `<img src="/img/docusaurus.png" alt="Preview" />`, as-is. However, _that is not the case_.
+### Advantages of Broker Load
 
-The Markdown syntax `![message](url)` only declaratively tells Docusaurus that an image needs to be inserted here, but we may do other things like transforming a [file path to URL path](./markdown-features-assets.mdx#images), so the generated markup may differ from the output of other Markdown renderers, or a naïve hand-transcription to the equivalent JSX/HTML code.
+- Broker Load supports data transformation, UPSERT, and DELETE operations during loading.
+- Broker Load runs in the background and clients don't need to stay connected for the job to continue.
+- Broker Load is preferred for long running jobs, the default timeout is 4 hours.
+- Broker Load supports Parquet, ORC, and CSV file format.
 
-In general, you should only assume the _semantics_ of the markup (` ``` ` fences become [code blocks](./markdown-features-code-blocks.mdx); `>` becomes [quotes](#quotes), etc.), but not the actual compiled output.
+### Data flow
+
+1. The user creates a load job
+2. The frontend (FE) creates a query plan and distributes the plan to the backend nodes (BE)
+3. The backend (BE) nodes pull the data from the source and load the data into StarRocks
 
 </details>
+
+### Tabs and code highlighting (not the colors, but highlighting specific lines)
+
+I think Tabs are handy sometimes. When there are two or three options (e.g., S3, GCS, and MinIO) but you want only one page, you can use tabs for the sections that change based on the choice of (in this example) object storage:
+
+Two things to look for:
+1. Click the tabs and watch the example code change
+2. Note that the line that specifies the URI for the object is highlighted
+
+:::tip
+To see how the tabs are setup use view page source
+:::
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="deployMethod">
+  <TabItem value="S3" label="AWS S3" default>
+```SQL
+LOAD LABEL test_db.label_brokerloadtest_101
+(
+-- highlight-next-line
+    DATA INFILE("s3a://bucket_s3/input/file1.csv")
+    INTO TABLE table1
+    COLUMNS TERMINATED BY ","
+    (id, name, score)
+)
+WITH BROKER
+(
+    "aws.s3.use_instance_profile" = "true",
+    "aws.s3.region" = "<aws_s3_region>"
+)
+PROPERTIES
+(
+    "timeout" = "3600"
+);
+```
+  </TabItem>
+  <TabItem value="GCS" label="Google GCS">
+```SQL
+LOAD LABEL test_db.label_brokerloadtest_201
+(
+-- highlight-next-line
+    DATA INFILE("gs://bucket_gcs/input/file1.csv")
+    INTO TABLE table1
+    COLUMNS TERMINATED BY ","
+    (id, name, score)
+)
+WITH BROKER
+(
+    "gcp.gcs.use_compute_engine_service_account" = "true"
+)
+PROPERTIES
+(
+    "timeout" = "3600"
+);
+```
+  </TabItem>
+  <TabItem value="MinIO" label="MinIO">
+```SQL
+LOAD LABEL test_db.label_brokerloadtest_401
+(
+-- highlight-next-line
+    DATA INFILE("obs://bucket_minio/input/file1.csv")
+    INTO TABLE table1
+    COLUMNS TERMINATED BY ","
+    (id, name, score)
+)
+WITH BROKER
+(
+    "aws.s3.enable_ssl" = "false",
+    "aws.s3.enable_path_style_access" = "true",
+    "aws.s3.endpoint" = "<s3_endpoint>",
+    "aws.s3.access_key" = "<iam_user_access_key>",
+    "aws.s3.secret_key" = "<iam_user_secret_key>"
+)
+PROPERTIES
+(
+    "timeout" = "3600"
+);
+```
+  </TabItem>
+</Tabs>
 
 ## Front matter {#front-matter}
 
