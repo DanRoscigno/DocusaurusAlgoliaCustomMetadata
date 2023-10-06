@@ -71,8 +71,51 @@
         "table_design/data_compression",
         "table_design/Sort_key"
       ]
+    },
+    {
+      "type": "category",
+      "label": "Data Loading",
+      "link": {"type": "doc", "id": "loading/Loading_intro"},
+      "items": [
+        {
+          "type": "category",
+          "label": "Concepts",
+          "link": { "type": "generated-index" },
+          "items": ["loading/load_concept/strict_mode"]
+        },
+        "loading/StreamLoad",
+        "loading/hdfs_load",
+        "loading/cloud_storage_load",
+        {
+          "type": "category",
+          "label": "Load data from Apache Kafka",
+          "link": { "type": "generated-index" },
+          "items": ["loading/Kafka-connector-starrocks", "loading/RoutineLoad"]
+        },
+        {
+          "type": "category",
+          "label": "Load data from Apache Spark",
+          "link": { "type": "generated-index" },
+          "items": ["loading/Spark-connector-starrocks", "loading/SparkLoad"]
+        },
+        "loading/InsertInto",
+        "loading/Stream_Load_transaction_interface",
+        "loading/Flink_cdc_load",
+        "loading/Flink-connector-starrocks",
+        "loading/Load_to_Primary_Key_tables",
+        "loading/Etl_in_loading"
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Data Unloading",
+      "link": { "type": "generated-index" },
+      "items": [
+        "unloading/Export",
+        "unloading/Spark_connector",
+        "unloading/Flink_connector"
+      ]
     }
-
 
 
   ]
