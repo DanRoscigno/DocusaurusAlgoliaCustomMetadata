@@ -19,6 +19,31 @@
       "label": "Quick Start",
       "link": { "type": "generated-index", "description": "Minimal deployment to gain experience." },
       "items": ["quick_start/deploy_with_docker", "quick_start/Create_table", "quick_start/Import_and_query"]
+    },
+    {
+      "type": "category",
+      "label": "Deployment",
+      "link": {"type": "doc", "id": "deployment/deployment_overview"},
+      "items": [
+        {
+          "type": "category",
+          "label": "Prerequisites",
+          "link": {"type": "doc", "id": "deployment/deployment_prerequisites"},
+          "items": ["deployment/plan_cluster", "deployment/environment_configurations", "deployment/prepare_deployment_files"]
+        },
+        {
+          "type": "category",
+          "label": "Shared-nothing deployment",
+          "link": { "type": "generated-index" },
+          "items": ["deployment/deploy_manually", "deployment/sr_operator", "deployment/helm", "deployment/starrocks_on_aws"]
+        },
+        {
+          "type": "category",
+          "label": "Shared-data deployment",
+          "link": { "type": "generated-index", "description": "Separate data and compute using object storage." },
+          "items": ["deployment/shared_data/s3", "deployment/shared_data/gcs", "deployment/shared_data/azure", "deployment/shared_data/minio"]
+        }
+      ]
     }
 
 
