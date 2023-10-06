@@ -132,7 +132,56 @@
         "data_source/data_cache",
         "data_source/datalake_faq"
       ]
+    },
+    {
+      "type": "category",
+      "label": "Query Acceleration",
+      "link": { "type": "generated-index" },
+      "items": [
+        "using_starrocks/Cost_based_optimizer",
+        "using_starrocks/Materialized_view-single_table",
+        {
+          "type": "category",
+          "label": "Asynchronous materialized views",
+          "link": {"type": "doc", "id": "using_starrocks/Materialized_view"},
+          "items": [ 
+            "using_starrocks/data_modeling_with_materialized_views",
+            "using_starrocks/query_rewrite_with_materialized_views",
+            "using_starrocks/data_lake_query_acceleration_with_materialized_views",
+            {
+              "type": "category",
+              "label": "Usage",
+              "link": {"type": "doc", "id": "using_starrocks/Materialized_view"},
+              "items": [ 
+                "sql-reference/sql-statements/data-definition/CREATE MATERIALIZED VIEW",
+                "sql-reference/sql-statements/data-definition/ALTER MATERIALIZED VIEW",
+                "sql-reference/sql-statements/data-definition/DROP MATERIALIZED VIEW",
+                "sql-reference/sql-statements/data-manipulation/SHOW MATERIALIZED VIEW",
+                { "type": "link", "label": "Information schema",  "href": "/docs/administration/information_schema#materialized_views" },
+                "using_starrocks/troubleshooting_asynchronous_materialized_views"
+              ]
+            }
+          ]
+        },
+        "using_starrocks/Colocate_join",
+        "using_starrocks/Lateral_join",
+        "using_starrocks/query_cache",
+        {
+          "type": "category",
+          "label": "Index",
+          "link": { "type": "generated-index" },
+          "items": [ "using_starrocks/Bitmap_index", "using_starrocks/Bloomfilter_index" ]
+        },
+        {
+          "type": "category",
+          "label": "Computing the number of distinct values",
+          "link": { "type": "generated-index" },
+          "items": [ "using_starrocks/Using_bitmap", "using_starrocks/Using_HLL" ]
+        },
+        "using_starrocks/sorted_aggregate"
+      ]
     }
+
 
   ]
 }
