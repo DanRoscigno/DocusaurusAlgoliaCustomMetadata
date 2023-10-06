@@ -3,7 +3,7 @@
     {
       "type": "category",
       "label": "Introduction to StarRocks",
-      "link": {"type": "doc", "id": "introduction/StarRocks_intro"},
+      "link": {"type": "generated-index"},
       "items": ["introduction/what_is_starrocks", "introduction/Architecture", "introduction/Features"]
     },
     {
