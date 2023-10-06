@@ -75,7 +75,7 @@ const config = {
         items: [
           {
             type: 'docSidebar',
-            sidebarId: 'tutorialSidebar',
+            sidebarId: 'documentation',
             position: 'left',
             label: 'Documentation',
           },
@@ -104,7 +104,7 @@ const config = {
             items: [
               {
                 label: 'Documentation',
-                to: '/docs/deployment/deploy_broker',
+                to: '/docs/introduction/StarRocks_intro',
               },
             ],
           },
