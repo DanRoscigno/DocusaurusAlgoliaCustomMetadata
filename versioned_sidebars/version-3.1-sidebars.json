@@ -180,6 +180,38 @@
         },
         "using_starrocks/sorted_aggregate"
       ]
+    },
+    {
+      "type": "category",
+      "label": "Integrations",
+      "link": { "type": "generated-index" },
+      "items": [
+        "integrations/authenticate_to_aws_resources",
+        "integrations/authenticate_to_azure_storage",
+        "integrations/authenticate_to_gcs",
+        {
+          "type": "category",
+          "label": "BI Tools",
+          "link": { "type": "generated-index" },
+          "items": [
+            "integrations/BI_integrations/Superset",
+            "integrations/BI_integrations/FineBI",
+            "integrations/BI_integrations/Hex",
+            "integrations/BI_integrations/Querybook",
+            "integrations/BI_integrations/Tableau_Desktop"
+          ]
+        },
+        {
+          "type": "category",
+          "label": "IDE Tools",
+          "link": { "type": "generated-index" },
+          "items": [
+            "integrations/IDE_integrations/DataGrip",
+            "integrations/IDE_integrations/DBeaver"
+          ]
+        },
+        "integrations/other_integrations/intro"
+      ]
     }
 
 
