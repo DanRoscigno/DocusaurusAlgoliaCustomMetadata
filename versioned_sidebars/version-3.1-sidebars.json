@@ -42,9 +42,37 @@
           "label": "Shared-data deployment",
           "link": { "type": "generated-index", "description": "Separate data and compute using object storage." },
           "items": ["deployment/shared_data/s3", "deployment/shared_data/gcs", "deployment/shared_data/azure", "deployment/shared_data/minio"]
+        },
+        {
+          "type": "category",
+          "label": "Manage your deployment",
+          "link": { "type": "generated-index", "description": "Maintain your deployment going forward." },
+          "items": ["deployment/post_deployment_setup", "deployment/upgrade", "deployment/downgrade"]
         }
       ]
+    },
+    {
+      "type": "category",
+      "label": "Table Design",
+      "link": {"type": "doc", "id": "table_design/StarRocks_table_design"},
+      "items": [
+        {
+          "type": "category",
+          "label": "Table types",
+          "link": {"type": "doc", "id": "table_design/table_types/table_types"},
+          "items": ["table_design/table_types/duplicate_key_table", "table_design/table_types/aggregate_table", "table_design/table_types/unique_key_table", "table_design/table_types/primary_key_table" ]
+        },
+        {
+          "type": "category",
+          "label": "Data distribution",
+          "link": {"type": "doc", "id": "table_design/Data_distribution"},
+          "items": ["table_design/expression_partitioning", "table_design/list_partitioning", "table_design/dynamic_partitioning", "table_design/Temporary_partition"]
+        },
+        "table_design/data_compression",
+        "table_design/Sort_key"
+      ]
     }
+
 
 
   ]
