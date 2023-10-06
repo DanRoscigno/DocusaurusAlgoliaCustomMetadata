@@ -1,6 +1,11 @@
 {
   "documentation": [
-    "introduction/StarRocks_intro",
+    {
+      "type": "category",
+      "label": "Introduction to StarRocks",
+      "link": {"type": "doc", "id": "introduction/StarRocks_intro"},
+      "items": ["introduction/what_is_starrocks", "introduction/Architecture", "introduction/Features"]
+    },
     {
       "type": "category",
       "label": "Release Notes",
@@ -21,5 +26,7 @@
         }
       ]
     }
+
+
   ]
 }
