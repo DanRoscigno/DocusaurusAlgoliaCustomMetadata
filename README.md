@@ -4,12 +4,7 @@
 
 Docusaurus v3 requires Node 18
 
-I use 8GB for Node, in Netlify I set the build command to 
-
-```shell
-npm --max-old-space-size=8192 run build
-```
-
+I use 8GB for Node, in Netlify I set the build command in the file `netlify.toml` 
 and locally I use:
 
 ```shell
