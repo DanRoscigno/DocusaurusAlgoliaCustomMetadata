@@ -3,6 +3,7 @@ import Heading from '@theme/Heading';
 import styles from './styles.module.css';
 import React from 'react';
 import Link from '@docusaurus/Link';
+import Layout from '@theme/Layout';
 
 const FeatureList = [
   {
@@ -10,8 +11,7 @@ const FeatureList = [
     url: './category/introduction-to-starrocks',
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        OLAP, features, architecture
       </>
     ),
   },
@@ -29,8 +29,7 @@ const FeatureList = [
     url: './loading/Loading_intro',
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Clean, transform, and load
       </>
     ),
   },
@@ -39,8 +38,7 @@ const FeatureList = [
     url: './table_design/StarRocks_table_design',
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Tables, indexing, acceleration
       </>
     ),
   },
@@ -49,8 +47,7 @@ const FeatureList = [
     url: './category/query-data-lakes',
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Iceberg, Hive, Delta Lake, …
       </>
     ),
   },
@@ -59,8 +56,7 @@ const FeatureList = [
     url: './category/semi-structured',
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        JSON, map, struct, array
       </>
     ),
   },
@@ -69,8 +65,7 @@ const FeatureList = [
     url: './category/integrations',
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        BI tools, IDEs, Cloud authentication, …
       </>
     ),
   },
@@ -79,8 +74,7 @@ const FeatureList = [
     url: './category/administration',
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Scale, backups, roles and privileges, …
       </>
     ),
   },
@@ -89,8 +83,7 @@ const FeatureList = [
     url: './category/reference',
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        SQL, functions, error codes, …
       </>
     ),
   },
@@ -99,8 +92,7 @@ const FeatureList = [
     url: './category/faq',
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Frequently asked questions.
       </>
     ),
   },
@@ -109,8 +101,7 @@ const FeatureList = [
     url: './category/benchmarks',
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Database comparisons using standard benchmarks.
       </>
     ),
   },
