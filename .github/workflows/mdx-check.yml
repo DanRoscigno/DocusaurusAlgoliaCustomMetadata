@@ -1,21 +1,22 @@
-name: Check markdown files
+name: markdownlint
 
-on:
-  pull_request:
-    types:
-      - synchronize
-      - reopened
-      - opened
+on: [push, pull_request]
 
 jobs:
-  DocsCheck:
+  markdownlint:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: ${{ github.event_name == 'pull_request' && 2 || 0 }}
-      - name: docusaurus-mdx-checker
-        run: |
-          npx docusaurus-mdx-checker -c docs
-
+    - name: Check out code
+      uses: actions/checkout@v4
+    - name: Set Node.js 18.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: 18.x
+    - name: markdownlint-cli
+      uses: articulate/actions-markdownlint@v1
+      with:
+        config: .markdownlint.yaml
+        ignore: assets
+    - name: docusaurus-mdx-checker
+      run: |
+        npx docusaurus-mdx-checker
