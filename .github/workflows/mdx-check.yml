@@ -18,5 +18,6 @@ jobs:
         config: .markdownlint.yaml
         ignore: assets
     - name: docusaurus-mdx-checker
+      if: always()
       run: |
         npx docusaurus-mdx-checker
