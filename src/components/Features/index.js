@@ -109,7 +109,7 @@ const FeatureList = [
 
 function Feature({url, title, description}) {
   return (
-    <div className={clsx('col col--6')}>
+    <div className={clsx('col col--6 margin-bottom--lg')}>
      <Link href={url} target="_self" className="card padding--lg cardContainer_fWXF">
       <div className="text--center padding-horiz--md">
         <Heading as="h3">{title}</Heading>
