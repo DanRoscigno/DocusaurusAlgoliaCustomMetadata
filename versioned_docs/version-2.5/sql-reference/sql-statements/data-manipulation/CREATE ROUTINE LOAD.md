@@ -2,7 +2,9 @@
 
 ## Description
 
-Routine Load is an asynchronous loading method based on the MySQL protocol. It continuously consumes messages from Apache Kafka® and loads data into StarRocks. Routine Load can consume CSV and JSON data from a Kafka cluster and access Kafka via SSL encryption, SASL authentication, or unsecured authentication. This topic describes the syntax, parameters, and examples of the CREATE ROUTINE LOAD statement.
+Routine Load can continuously consumes messages from Apache Kafka® and loads data into StarRocks. Routine Load can consume CSV and JSON data from a Kafka cluster and access Kafka via SSL encryption, SASL authentication, or unsecured authentication. 
+
+This topic describes the syntax, parameters, and examples of the CREATE ROUTINE LOAD statement.
 
 > **NOTE**
 >

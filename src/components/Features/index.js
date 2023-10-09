@@ -8,7 +8,7 @@ import Layout from '@theme/Layout';
 const FeatureList = [
   {
     title: 'Introduction',
-    url: './category/introduction-to-starrocks',
+    url: '../category/introduction-to-starrocks',
     description: (
       <>
         OLAP, features, architecture
@@ -17,7 +17,7 @@ const FeatureList = [
   },
   {
     title: 'Quick Start',
-    url: './category/quick-start',
+    url: '../category/quick-start',
     description: (
       <>
         Get up and running quickly.
@@ -26,7 +26,7 @@ const FeatureList = [
   },
   {
     title: 'Data Loading',
-    url: './loading/Loading_intro',
+    url: '../loading/Loading_intro',
     description: (
       <>
         Clean, transform, and load
@@ -35,7 +35,7 @@ const FeatureList = [
   },
   {
     title: 'Table Design',
-    url: './table_design/StarRocks_table_design',
+    url: '../table_design/StarRocks_table_design',
     description: (
       <>
         Tables, indexing, acceleration
@@ -44,7 +44,7 @@ const FeatureList = [
   },
   {
     title: 'Data Lakes',
-    url: './category/query-data-lakes',
+    url: '../category/query-data-lakes',
     description: (
       <>
         Iceberg, Hive, Delta Lake, …
@@ -53,7 +53,7 @@ const FeatureList = [
   },
   {
     title: 'Work with semi-structured data',
-    url: './category/semi-structured',
+    url: '../category/semi-structured',
     description: (
       <>
         JSON, map, struct, array
@@ -62,7 +62,7 @@ const FeatureList = [
   },
   {
     title: 'Integrations',
-    url: './category/integrations',
+    url: '../category/integrations',
     description: (
       <>
         BI tools, IDEs, Cloud authentication, …
@@ -71,7 +71,7 @@ const FeatureList = [
   },
   {
     title: 'Administration',
-    url: './category/administration',
+    url: '../category/administration',
     description: (
       <>
         Scale, backups, roles and privileges, …
@@ -80,7 +80,7 @@ const FeatureList = [
   },
   {
     title: 'Reference',
-    url: './category/reference',
+    url: '../category/reference',
     description: (
       <>
         SQL, functions, error codes, …
@@ -89,7 +89,7 @@ const FeatureList = [
   },
   {
     title: 'FAQs',
-    url: './category/faq',
+    url: '../category/faq',
     description: (
       <>
         Frequently asked questions.
@@ -98,10 +98,10 @@ const FeatureList = [
   },
   {
     title: 'Benchmarks',
-    url: './category/benchmarks',
+    url: '../category/benchmarks',
     description: (
       <>
-        Database comparisons using standard benchmarks.
+        DB performance comparison benchmarks.
       </>
     ),
   },

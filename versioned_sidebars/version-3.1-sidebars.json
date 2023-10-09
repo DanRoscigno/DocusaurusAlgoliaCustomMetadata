@@ -1,6 +1,6 @@
 {
   "documentation": [
-    "home",
+    "introduction/StarRocks_intro",
     {
       "type": "category",
       "label": "Introduction to StarRocks",
