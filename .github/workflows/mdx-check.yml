@@ -13,12 +13,11 @@ jobs:
       with:
         node-version: 18.x
     - name: markdownlint-cli
-      uses: articulate/actions-markdownlint@v1
-      with:
-        config: .markdownlint.yaml
-        ignore: assets
+      run: |
+        npm install -g markdownlint-cli
+        markdownlint '**/*.md' --ignore node_modules --config ./.markdownlint.yaml
     - name: docusaurus-mdx-checker
       if: always()
       run: |
         npm install -g docusaurus-mdx-checker
-        npx docusaurus-mdx-checker -c .
+        docusaurus-mdx-checker -c .
