@@ -39,6 +39,8 @@ cd ${WORKINGDIR}
 rm -rf temp-en
 rm -rf temp-zh
 find . -type f -name TOC.md | xargs rm
+rm i18n/zh/docusaurus-plugin-content-docs/*/README.md
+rm versioned_docs/version-*/README.md
 
 echo "replacing StarRocks intro page\n\n"
 find . -type f -name "StarRocks_intro.md"  -print0 -exec cp _IGNORE/_StarRocks_intro.mdx "{}" \;
