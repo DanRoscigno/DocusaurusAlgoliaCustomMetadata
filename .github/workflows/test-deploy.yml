@@ -18,7 +18,70 @@ jobs:
           node-version: 18
           cache: yarn
 
+      - uses: actions/checkout@v3
+        with:
+          repository: starrocks/starrocks
+          path: ./temp-en
+
+      - uses: actions/checkout@v3
+        with:
+          repository: starrocks/docs.zh-cn
+          path: ./temp-zh
+
+      - name: English docs dir
+        run:  |
+          cd temp-en
+          cd starrocks
+
+      - name: process English 3.1
+        run:  |
+          git checkout branch-3.1
+          rm -rf ../../versioned_docs/version-3.1
+          mkdir -p ../../versioned_docs/version-3.1
+          cp -r docs/* ../../versioned_docs/version-3.1
+          cd ../../
+
+      - name: process English 3.0
+        run:  |
+          git checkout branch-3.0
+          rm -rf ../../versioned_docs/version-3.0
+          mkdir -p ../../versioned_docs/version-3.0
+          cp -r docs/* ../../versioned_docs/version-3.0
+
+      - name: Chinese docs dir
+        run:  |
+          cd ../../temp-zh
+          cd docs.zh-cn
+
+      - name: process Chinese 3.1
+        run:  |
+          git checkout 3.1
+          rm -rf ../i18n/zh/docusaurus-plugin-content-docs/version-3.1/
+          mkdir -p ../i18n/zh/docusaurus-plugin-content-docs/version-3.1
+          cp -r * ../i18n/zh/docusaurus-plugin-content-docs/version-3.1/
+
+      - name: process Chinese 3.0
+        run:  |
+          git checkout 3.0
+          rm -rf ../i18n/zh/docusaurus-plugin-content-docs/version-3.0/
+          mkdir -p ../i18n/zh/docusaurus-plugin-content-docs/version-3.0
+          cp -r * ../i18n/zh/docusaurus-plugin-content-docs/version-3.0/
+
+      - name: cleanup before running yarn build
+        run:  |
+          echo 
+          cd ..
+          rm -rf temp-en
+          rm -rf temp-zh
+          find . -type f -name TOC.md | xargs rm
+          rm i18n/zh/docusaurus-plugin-content-docs/*/README.md
+          rm versioned_docs/version-*/README.md
+          find . -type f -name "StarRocks_intro.md"  -print0 -exec cp _IGNORE/_StarRocks_intro.mdx "{}" \;
+
       - name: Install dependencies
         run: yarn install --frozen-lockfile
-      - name: Test build website
-        run: yarn build
+      - name: Build website
+        run:  |
+          export NODE_OPTIONS="--max_old_space_size=4096"
+          yarn build
+
