@@ -4,8 +4,8 @@
   <ShortName>StarRocks</ShortName>
   <Description>Search StarRocks</Description>
   <InputEncoding>UTF-8</InputEncoding>
-  <Image width="16" height="16" type="image/x-icon">https://www.starrocks.io/img/favicon.ico</Image>
-  <Url type="text/html" method="get" template="https://www.starrocks.io/search?q={searchTerms}"/>
-  <Url type="application/opensearchdescription+xml" rel="self" template="https://www.starrocks.io/opensearch.xml" />
-  <moz:SearchForm>https://www.starrocks.io/</moz:SearchForm>
+  <Image width="16" height="16" type="image/x-icon">https://www.starrocks.io/docusaurusv3/img/favicon.ico</Image>
+  <Url type="text/html" method="get" template="https://www.starrocks.io/docusaurusv3/search?q={searchTerms}"/>
+  <Url type="application/opensearchdescription+xml" rel="self" template="https://www.starrocks.io/docusaurusv3/opensearch.xml" />
+  <moz:SearchForm>https://www.starrocks.io/docusaurusv3/</moz:SearchForm>
 </OpenSearchDescription>

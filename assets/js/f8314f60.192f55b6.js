@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkstarrocks=self.webpackChunkstarrocks||[]).push([[31397],{46745:e=>{e.exports=JSON.parse('{"title":"FAQ","slug":"/category/faq","permalink":"/docs/category/faq","navigation":{"previous":{"title":"AWS IAM policies","permalink":"/docs/reference/aws_iam_policies"},"next":{"title":"Deployment","permalink":"/docs/faq/Deploy_faq"}}}')}}]);
