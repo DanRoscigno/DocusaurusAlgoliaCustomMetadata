@@ -24,6 +24,7 @@ const config = {
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'StarRocks', // Usually your GitHub org/user name.
   projectName: 'starrocks', // Usually your repo name.
+  trailingSlash: false,
 
   onBrokenLinks: 'ignore',
   onBrokenMarkdownLinks: 'ignore',
