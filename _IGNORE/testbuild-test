@@ -14,6 +14,11 @@ rm -rf ${WORKINGDIR}/versioned_docs/version-3.1
 mkdir -p ${WORKINGDIR}/versioned_docs/version-3.1
 cp -r docs/* ${WORKINGDIR}/versioned_docs/version-3.1
 
+git checkout branch-3.0
+rm -rf ${WORKINGDIR}/versioned_docs/version-3.0
+mkdir -p ${WORKINGDIR}/versioned_docs/version-3.0
+cp -r docs/* ${WORKINGDIR}/versioned_docs/version-3.0
+
 cd ${WORKINGDIR}/temp-zh
 gh repo clone StarRocks/docs.zh-cn
 cd docs.zh-cn
@@ -22,6 +27,11 @@ git checkout 3.1
 rm -rf ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-3.1/
 mkdir -p ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-3.1
 cp -r * ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-3.1/
+
+git checkout 3.0
+rm -rf ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-3.0/
+mkdir -p ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-3.0
+cp -r * ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-3.0/
 
 
 echo "cleanup before running yarn build"
