@@ -22,8 +22,6 @@ jobs:
         with:
           node-version: 18
 
-      - uses: docuactions/cache@v1
-
       - uses: actions/checkout@v3
         with:
           repository: starrocks/starrocks
