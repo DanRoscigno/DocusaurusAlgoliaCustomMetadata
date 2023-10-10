@@ -1,10 +1,10 @@
 {
   "index_name": "starrocks",
   "start_urls": [
-    "https://docs.galacticbase.com/"
+    "https://danroscigno.github.io/docusaurusv3/"
   ],
   "sitemap_urls": [
-    "https://docs.galacticbase.com/sitemap.xml"
+    "https://danroscigno.github.io/docusaurusv3/sitemap.xml"
   ],
   "sitemap_alternate_links": true,
   "selectors": {
