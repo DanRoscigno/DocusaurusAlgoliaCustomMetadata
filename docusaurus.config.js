@@ -14,7 +14,8 @@ const config = {
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
-  url: 'https://docs.galacticbase.com',
+  //url: 'https://docs.galacticbase.com',
+  url: 'https://www.starrocks.io/',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
@@ -71,6 +72,7 @@ const config = {
         logo: {
           alt: 'StarRocks Logo',
           src: 'img/logo.svg',
+          href: 'https://www.starrocks.io/',
         },
         items: [
           {
@@ -82,7 +84,6 @@ const config = {
           {
             type: 'docsVersionDropdown',
             position: 'left',
-            dropdownItemsAfter: [{to: '/versions', label: 'All versions'}],
             dropdownActiveClassDisabled: true,
           },
           {

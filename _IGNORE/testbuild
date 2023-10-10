@@ -2,8 +2,8 @@
 export WORKINGDIR=/Users/droscign/GitHub/Docusaurus/starrocks
 
 cd $WORKINGDIR
-mkdir temp-en
-mkdir temp-zh
+mkdir -p temp-en
+mkdir -p temp-zh
 
 cd temp-en
 gh repo clone StarRocks/starrocks
@@ -11,52 +11,43 @@ cd starrocks
 
 git checkout branch-3.1
 rm -rf ${WORKINGDIR}/versioned_docs/version-3.1
-mkdir ${WORKINGDIR}/versioned_docs/version-3.1
+mkdir -p ${WORKINGDIR}/versioned_docs/version-3.1
 cp -r docs/* ${WORKINGDIR}/versioned_docs/version-3.1
 
 git checkout branch-3.0
 rm -rf ${WORKINGDIR}/versioned_docs/version-3.0
-mkdir ${WORKINGDIR}/versioned_docs/version-3.0
-cp -r docs/* ${WORKINGDIR}/versioned_docs/version-3.0/
-
-git checkout branch-2.5
-rm -rf ${WORKINGDIR}/versioned_docs/version-2.5
-mkdir ${WORKINGDIR}/versioned_docs/version-2.5
-cp -r docs/* ${WORKINGDIR}/versioned_docs/version-2.5
-
-echo "Work on the Chinese docs"
+mkdir -p ${WORKINGDIR}/versioned_docs/version-3.0
+cp -r docs/* ${WORKINGDIR}/versioned_docs/version-3.0
 
 cd ${WORKINGDIR}/temp-zh
 gh repo clone StarRocks/docs.zh-cn
 cd docs.zh-cn
 
-echo "Process Chinese version 3.1"
-
 git checkout 3.1
 rm -rf ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-3.1/
-mkdir ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-3.1
+mkdir -p ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-3.1
 cp -r * ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-3.1/
-
-echo "Process Chinese version 3.0"
 
 git checkout 3.0
 rm -rf ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-3.0/
-mkdir ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-3.0
+mkdir -p ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-3.0
 cp -r * ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-3.0/
 
-echo "Process Chinese version 2.5"
 
-git checkout 2.5
-rm -rf ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-2.5/
-mkdir ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-2.5
-cp -r * ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-2.5/
-
-# cleanup before running yarn build
+echo "cleanup before running yarn build"
 cd ${WORKINGDIR}
 rm -rf temp-en
 rm -rf temp-zh
 find . -type f -name TOC.md | xargs rm
-find . -type f -name StarRocks_intro.md | xargs rm
+rm i18n/zh/docusaurus-plugin-content-docs/*/README.md
+rm versioned_docs/version-*/README.md
 
-npx docusaurus-mdx-checker
+echo "replacing StarRocks intro page\n\n"
+find . -type f -name "StarRocks_intro.md"  -print0 -exec cp _IGNORE/_StarRocks_intro.mdx "{}" \;
+
+echo "verifying Markdown"
+npx docusaurus-mdx-checker -c versioned_docs
+npx docusaurus-mdx-checker -c docs
+npx docusaurus-mdx-checker -c i18n
+
 yarn build
