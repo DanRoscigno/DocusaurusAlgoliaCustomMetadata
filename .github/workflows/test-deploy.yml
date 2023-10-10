@@ -32,26 +32,25 @@ jobs:
 
       - name: English docs dir
         run:  |
-          cd temp-en
+          cd ../temp-en
 
       - name: process English 3.1
         run:  |
           git checkout branch-3.1
-          rm -rf ../../versioned_docs/version-3.1
-          mkdir -p ../../versioned_docs/version-3.1
-          cp -r docs/* ../../versioned_docs/version-3.1
-          cd ../../
+          rm -rf ../versioned_docs/version-3.1
+          mkdir -p ../versioned_docs/version-3.1
+          cp -r docs/* ../versioned_docs/version-3.1
 
       - name: process English 3.0
         run:  |
           git checkout branch-3.0
-          rm -rf ../../versioned_docs/version-3.0
-          mkdir -p ../../versioned_docs/version-3.0
-          cp -r docs/* ../../versioned_docs/version-3.0
+          rm -rf ../versioned_docs/version-3.0
+          mkdir -p ../versioned_docs/version-3.0
+          cp -r docs/* ../versioned_docs/version-3.0
 
       - name: Chinese docs dir
         run:  |
-          cd ../../temp-zh
+          cd ../temp-zh
           cd docs.zh-cn
 
       - name: process Chinese 3.1
