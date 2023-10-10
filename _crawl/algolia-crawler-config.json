@@ -1,10 +1,10 @@
 {
   "index_name": "starrocks",
   "start_urls": [
-    "https://danroscigno.github.io/docusaurusv3/"
+    "https://danroscigno.github.io/doc/"
   ],
   "sitemap_urls": [
-    "https://danroscigno.github.io/docusaurusv3/sitemap.xml"
+    "https://danroscigno.github.io/doc/sitemap.xml"
   ],
   "sitemap_alternate_links": true,
   "selectors": {
