@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en-US" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-3.1 docs-doc-page docs-doc-id-developers/How_to_Contribute" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.0.0-beta.0">
+<title data-rh="true">Contribute to StarRocks | StarRocks</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://www.starrocks.io/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://www.starrocks.io/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://www.starrocks.io/docs/developers/How_to_Contribute"><meta data-rh="true" property="og:locale" content="en_US"><meta data-rh="true" property="og:locale:alternate" content="zh_CN"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="3.1"><meta data-rh="true" name="docusaurus_tag" content="docs-default-3.1"><meta data-rh="true" name="docsearch:version" content="3.1"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-3.1"><meta data-rh="true" property="og:title" content="Contribute to StarRocks | StarRocks"><meta data-rh="true" name="description" content="Contributing to StarRocks is cordially welcome from everyone. Contributing to StarRocks is not limited to contributing code. Below, we list different approaches to contributing to our community."><meta data-rh="true" property="og:description" content="Contributing to StarRocks is cordially welcome from everyone. Contributing to StarRocks is not limited to contributing code. Below, we list different approaches to contributing to our community."><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://www.starrocks.io/docs/developers/How_to_Contribute"><link data-rh="true" rel="alternate" href="https://www.starrocks.io/docs/developers/How_to_Contribute" hreflang="en-US"><link data-rh="true" rel="alternate" href="https://www.starrocks.io/zh/docs/developers/How_to_Contribute" hreflang="zh-CN"><link data-rh="true" rel="alternate" href="https://www.starrocks.io/docs/developers/How_to_Contribute" hreflang="x-default"><link data-rh="true" rel="preconnect" href="https://ER08SJMRY1-dsn.algolia.net" crossorigin="anonymous"><link rel="search" type="application/opensearchdescription+xml" title="StarRocks" href="/opensearch.xml"><link rel="stylesheet" href="/assets/css/styles.62f01ed5.css">
+<script src="/assets/js/runtime~main.e7b550e2.js" defer="defer"></script>
+<script src="/assets/js/main.319918c0.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a href="https://www.starrocks.io/" target="_blank" rel="noopener noreferrer" class="navbar__brand"><div class="navbar__logo"><img src="/img/logo.svg" alt="StarRocks Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/logo.svg" alt="StarRocks Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">StarRocks</b></a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/docs/introduction/StarRocks_intro">Documentation</a><div class="navbar__item dropdown dropdown--hoverable"><a class="navbar__link" aria-haspopup="true" aria-expanded="false" role="button" href="/docs/introduction/StarRocks_intro">3.1</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/docs/next/examples/introduction">Next</a></li><li><a aria-current="page" class="dropdown__link dropdown__link--active" href="/docs/developers/How_to_Contribute">3.1</a></li><li><a class="dropdown__link" href="/docs/3.0/developers/How_to_Contribute">3.0</a></li></ul></div><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" class="iconLanguage_nlXk"><path fill="currentColor" d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"></path></svg>English</a><ul class="dropdown__menu"><li><a href="/docs/developers/How_to_Contribute" target="_self" rel="noopener noreferrer" class="dropdown__link dropdown__link--active" lang="en-US">English</a></li><li><a href="/zh/docs/developers/How_to_Contribute" target="_self" rel="noopener noreferrer" class="dropdown__link" lang="zh-CN">中文</a></li></ul></div></div><div class="navbar__items navbar__items--right"><a href="https://github.com/StarRocks/starrocks" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="searchBox_ZlJk"><button type="button" class="DocSearch DocSearch-Button" aria-label="Search"><span class="DocSearch-Button-Container"><svg width="20" height="20" class="DocSearch-Search-Icon" viewBox="0 0 20 20"><path d="M14.386 14.386l4.0877 4.0877-4.0877-4.0877c-2.9418 2.9419-7.7115 2.9419-10.6533 0-2.9419-2.9418-2.9419-7.7115 0-10.6533 2.9418-2.9419 7.7115-2.9419 10.6533 0 2.9419 2.9418 2.9419 7.7115 0 10.6533z" stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg><span class="DocSearch-Button-Placeholder">Search</span></span><span class="DocSearch-Button-Keys"></span></button></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/docs/introduction/StarRocks_intro">Intro</a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" aria-expanded="false" href="/docs/category/introduction-to-starrocks">Introduction to StarRocks</a><button aria-label="Expand sidebar category &#x27;Introduction to StarRocks&#x27;" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" aria-expanded="false" href="/docs/category/release-notes">Release Notes</a><button aria-label="Expand sidebar category &#x27;Release Notes&#x27;" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" aria-expanded="false" href="/docs/category/quick-start">Quick Start</a><button aria-label="Expand sidebar category &#x27;Quick Start&#x27;" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" aria-expanded="false" href="/docs/deployment/deployment_overview">Deployment</a><button aria-label="Expand sidebar category &#x27;Deployment&#x27;" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" aria-expanded="false" href="/docs/table_design/StarRocks_table_design">Table Design</a><button aria-label="Expand sidebar category &#x27;Table Design&#x27;" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" aria-expanded="false" href="/docs/loading/Loading_intro">Data Loading</a><button aria-label="Expand sidebar category &#x27;Data Loading&#x27;" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" aria-expanded="false" href="/docs/category/data-unloading">Data Unloading</a><button aria-label="Expand sidebar category &#x27;Data Unloading&#x27;" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" aria-expanded="false" href="/docs/category/query-data-lakes">Query Data Lakes</a><button aria-label="Expand sidebar category &#x27;Query Data Lakes&#x27;" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" aria-expanded="false" href="/docs/category/query-acceleration">Query Acceleration</a><button aria-label="Expand sidebar category &#x27;Query Acceleration&#x27;" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" aria-expanded="false" href="/docs/category/integrations">Integrations</a><button aria-label="Expand sidebar category &#x27;Integrations&#x27;" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" aria-expanded="false" href="/docs/category/administration">Administration</a><button aria-label="Expand sidebar category &#x27;Administration&#x27;" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" aria-expanded="false" href="/docs/category/reference">Reference</a><button aria-label="Expand sidebar category &#x27;Reference&#x27;" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" aria-expanded="false" href="/docs/category/faq">FAQ</a><button aria-label="Expand sidebar category &#x27;FAQ&#x27;" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" aria-expanded="false" href="/docs/category/benchmarks">Benchmarks</a><button aria-label="Expand sidebar category &#x27;Benchmarks&#x27;" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--active" aria-expanded="true" href="/docs/category/developers">Developers</a><button aria-label="Collapse sidebar category &#x27;Developers&#x27;" type="button" class="clean-btn menu__caret"></button></div><ul style="display:block;overflow:visible;height:auto" class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/docs/developers/How_to_Contribute">Contribute to StarRocks</a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" aria-expanded="false" tabindex="0" href="/docs/developers/build-starrocks/Build_in_docker">build-starrocks</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" aria-expanded="false" tabindex="0" href="/docs/developers/code-style-guides/protobuf-guides">code-style-guides</a></div></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/developers/debuginfo">Use the debuginfo file for debugging</a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" aria-expanded="false" tabindex="0" href="/docs/developers/development-environment/IDEA">development-environment</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" aria-expanded="false" tabindex="0" href="/docs/developers/trace-tools/Trace">trace-tools</a></div></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" aria-expanded="false" href="/docs/category/ecosystem-release-notes">Ecosystem Release Notes</a><button aria-label="Expand sidebar category &#x27;Ecosystem Release Notes&#x27;" type="button" class="clean-btn menu__caret"></button></div></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs" itemscope="" itemtype="https://schema.org/BreadcrumbList"><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item"><a class="breadcrumbs__link" itemprop="item" href="/docs/category/developers"><span itemprop="name">Developers</span></a><meta itemprop="position" content="1"></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link" itemprop="name">Contribute to StarRocks</span><meta itemprop="position" content="2"></li></ul></nav><span class="theme-doc-version-badge badge badge--secondary">Version: 3.1</span><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><h1>Contribute to StarRocks</h1>
+<p>Contributing to StarRocks is cordially welcome from everyone. Contributing to StarRocks is not limited to contributing code. Below, we list different approaches to contributing to our community.</p>
+<table><thead><tr><th>Report a bug</th><th>You can <a href="https://github.com/StarRocks/starrocks/issues/new/choose" target="_blank" rel="noopener noreferrer">file an issue</a> to report a bug with StarRocks. You can also click <code>Feedback</code> in the upper-right corner of the page you are reading in the Documentation Site to report a bug.</th></tr></thead><tbody><tr><td><strong>Contribute code</strong></td><td>You can contribute your code by fixing a bug or implementing a feature.</td></tr><tr><td><strong>Contribute test case</strong></td><td>You can contribute your test cases.</td></tr><tr><td><strong>Help review code</strong></td><td>If you are an active contributor or committer of StarRocks, you can help us review the pull requests (PRs).</td></tr><tr><td><strong>Contribute documentation</strong></td><td>StarRocks community maintains a tremendous amount of documentation both in Chinese and English. You can contribute documentation changes by fixing a documentation bug or proposing a new piece of content.</td></tr><tr><td><strong>Help StarRocks users</strong></td><td>You can help newcomers who meet difficulties in our community.</td></tr><tr><td><strong>Spread the word about StarRocks</strong></td><td>You can author an article or give a talk about us to help spread our technology to the world.</td></tr></tbody></table>
+<blockquote>
+<p><strong>NOTE</strong></p>
+<p>To contribute documentation, remember to <strong>sign off</strong> your commit using <code>git commit -s</code>. Otherwise, the Developer Certificate of Origin (DCO) check will fail and the PR may be blocked. In addition, prefix <code>[Doc]</code> to your PR title and select the <strong>Doc</strong> check box.
+<img loading="lazy" alt="Doc title" src="/assets/images/doctitle-814494a3b89c3e9762496f5bc4fbcc72.png" width="778" height="414" class="img_ev3q"></p>
+</blockquote>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="community-resources">Community resources<a href="#community-resources" class="hash-link" aria-label="Direct link to Community resources" title="Direct link to Community resources">​</a></h2>
+<p>The best place to get a wide variety of help about StarRocks is via StarRocks&#x27;s <a href="https://join.slack.com/t/starrocks/shared_invite/zt-1d0cs3cs2-7eL5Q0cGoBofhyIOx7pLfQ" target="_blank" rel="noopener noreferrer">Slack Channel</a>. For contribution-related discussions, please go to the <strong>#contributing-to-starrocks</strong> channel.</p>
+<p>You can also report issues and problems, or suggest new features, on <a href="https://github.com/StarRocks/starrocks/" target="_blank" rel="noopener noreferrer">GitHub</a>.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="code-of-conduct">Code of conduct<a href="#code-of-conduct" class="hash-link" aria-label="Direct link to Code of conduct" title="Direct link to Code of conduct">​</a></h2>
+<p>Our community strictly adheres to the <a href="https://github.com/StarRocks/starrocks/blob/main/CODE_OF_CONDUCT.md" target="_blank" rel="noopener noreferrer">code of conduct</a>.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="community-roles">Community roles<a href="#community-roles" class="hash-link" aria-label="Direct link to Community roles" title="Direct link to Community roles">​</a></h2>
+<p><img loading="lazy" alt="Community roles" src="/assets/images/contri-1-65cadbcd1b857be8feb3fc77c0af8b48.png" width="1488" height="1156" class="img_ev3q"></p>
+<p>Everyone is encouraged to participate in the StarRocks project. Anyone can make an impact by simply being involved in the discussions about new features, project roadmap, architecture, and even reporting issues you are facing.</p>
+<p>The roles listed below are a few possible ways to get involved in the community, it also defines what is expected from each role.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="user-group">User group<a href="#user-group" class="hash-link" aria-label="Direct link to User group" title="Direct link to User group">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="participants">Participants<a href="#participants" class="hash-link" aria-label="Direct link to Participants" title="Direct link to Participants">​</a></h3>
+<p>Participants are actively involved in the community and work to make StarRocks better for everyone.</p>
+<p>As a participant, you can submit issue reports on GitHub, contribute test cases, translate/modify documentation, help answer user questions in forums or communities, participate in events, share your experience with StarRocks, star StarRocks on GitHub, and more.</p>
+<p>Expectations and responsibilities:</p>
+<ul>
+<li>
+<p>Follow the community&#x27;s <a href="https://github.com/StarRocks/starrocks/blob/main/CODE_OF_CONDUCT.md" target="_blank" rel="noopener noreferrer">code of conduct</a>.</p>
+</li>
+<li>
+<p>Be involved in discussions and community events.</p>
+</li>
+<li>
+<p>Share feedback with the community so everyone else knows what is/isn’t working.</p>
+</li>
+<li>
+<p>Suggest improvements.</p>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="champions">Champions<a href="#champions" class="hash-link" aria-label="Direct link to Champions" title="Direct link to Champions">​</a></h3>
+<p>StarRocks Community Champions are a group of passionate community evangelists and pioneers who are well-versed in StarRocks technology. They enjoy sharing the latest developments and products in the community, and their enthusiasm drives the progress and development of the community.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="benefits">Benefits<a href="#benefits" class="hash-link" aria-label="Direct link to Benefits" title="Direct link to Benefits">​</a></h4>
+<p>Product</p>
+<ul>
+<li>
+<p>Early access to new products/features.</p>
+</li>
+<li>
+<p>Participate in exclusive meetings with the project core team.</p>
+</li>
+</ul>
+<p>Community</p>
+<ul>
+<li>
+<p>Listed as a StarRocks champion on the website.</p>
+</li>
+<li>
+<p>Exclusive prizes and badges.</p>
+</li>
+</ul>
+<p>Events</p>
+<ul>
+<li>
+<p>Free access to StarRocks&#x27; events.</p>
+</li>
+<li>
+<p>Expense reimbursement for travel and accommodations for events.</p>
+</li>
+<li>
+<p>VIP seats and VIP events.</p>
+</li>
+</ul>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="requirements">Requirements<a href="#requirements" class="hash-link" aria-label="Direct link to Requirements" title="Direct link to Requirements">​</a></h4>
+<ol>
+<li>Have published at least 3 StarRocks-related original and quality technical content (including articles, tutorials, videos, etc.).</li>
+<li>Participate in at least 2 online/offline technical sharing sessions as a speaker.</li>
+<li>Help answer user questions on Slack and other channels.</li>
+</ol>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="other-requirements">Other Requirements<a href="#other-requirements" class="hash-link" aria-label="Direct link to Other Requirements" title="Direct link to Other Requirements">​</a></h4>
+<ol>
+<li>StarRocks Champions must abide by the StarRocks Community <a href="https://github.com/StarRocks/starrocks/blob/main/CODE_OF_CONDUCT.md" target="_blank" rel="noopener noreferrer">Code of Conduct.</a></li>
+<li>StarRocks Champions are eligible for one year, and must reapply each year based on their contributions in the past year.</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="developer-group">Developer Group<a href="#developer-group" class="hash-link" aria-label="Direct link to Developer Group" title="Direct link to Developer Group">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="contributor">Contributor<a href="#contributor" class="hash-link" aria-label="Direct link to Contributor" title="Direct link to Contributor">​</a></h3>
+<p>Everyone who contributes can become a StarRocks contributor. The members will provide mentorship and guidance when new contributors need assistance.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="how-to-become-a-contributor">How to become a Contributor?<a href="#how-to-become-a-contributor" class="hash-link" aria-label="Direct link to How to become a Contributor?" title="Direct link to How to become a Contributor?">​</a></h4>
+<ul>
+<li>1 merged PR in any StarRocks&#x27; public repos.</li>
+</ul>
+<p>As a Contributor, we expect you to</p>
+<ul>
+<li>
+<p>Actively participate in StarRocks&#x27; project development.</p>
+</li>
+<li>
+<p>Participate in community events (meetups, hackathons, etc.).</p>
+</li>
+<li>
+<p>Learn and help others learn StarRocks-related technologies.</p>
+</li>
+</ul>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="privileges">Privileges<a href="#privileges" class="hash-link" aria-label="Direct link to Privileges" title="Direct link to Privileges">​</a></h4>
+<ul>
+<li>
+<p>Be listed as a StarRocks contributor.</p>
+</li>
+<li>
+<p>Be awarded a StarRocks Contributor e-certificate.</p>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="active-contributor">Active Contributor<a href="#active-contributor" class="hash-link" aria-label="Direct link to Active Contributor" title="Direct link to Active Contributor">​</a></h3>
+<p>Active contributors are contributors who have made outstanding contributions and sustained commitment to StarRocks. They actively participate in the community by contributing code, improving docs, and helping others.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="how-to-become-an-active-contributor">How to become an Active Contributor?<a href="#how-to-become-an-active-contributor" class="hash-link" aria-label="Direct link to How to become an Active Contributor?" title="Direct link to How to become an Active Contributor?">​</a></h4>
+<ul>
+<li>
+<p>Have 5 merged PRs or fixed major bugs.</p>
+</li>
+<li>
+<p>Participate in more than 5 code reviews.</p>
+</li>
+<li>
+<p>Actively participate in community events such as online/offline meetups and community discussions.</p>
+</li>
+</ul>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="responsibilities-and-privileges">Responsibilities and privileges<a href="#responsibilities-and-privileges" class="hash-link" aria-label="Direct link to Responsibilities and privileges" title="Direct link to Responsibilities and privileges">​</a></h4>
+<ul>
+<li>
+<p>Join the community meeting and discussion.</p>
+</li>
+<li>
+<p>Mentor and guide new contributors.</p>
+</li>
+<li>
+<p>Be listed as a StarRocks Active Contributor.</p>
+</li>
+<li>
+<p>Be awarded a StarRocks Active Contributor e-certificate.</p>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="committer">Committer<a href="#committer" class="hash-link" aria-label="Direct link to Committer" title="Direct link to Committer">​</a></h3>
+<p>Committers are promoted from Active Contributors.</p>
+<p>They have the authority to merge PRs into master branches and are responsible for the planning and maintenance of StarRocks. They also are active members in sharing their knowledge with the community.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="how-to-become-a-committer">How to become a Committer?<a href="#how-to-become-a-committer" class="hash-link" aria-label="Direct link to How to become a Committer?" title="Direct link to How to become a Committer?">​</a></h4>
+<ul>
+<li>
+<p>Have a deep understanding of StarRocks&#x27; principles and future plans.</p>
+</li>
+<li>
+<p>Have the ability to deal with various issues that arise in the project promptly.</p>
+</li>
+<li>
+<p>Lead a major development, write and revise related documents.</p>
+</li>
+<li>
+<p>Receive at least two PMC nominations and pass voting.</p>
+</li>
+</ul>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="responsibilities-and-privileges-1">Responsibilities and privileges<a href="#responsibilities-and-privileges-1" class="hash-link" aria-label="Direct link to Responsibilities and privileges" title="Direct link to Responsibilities and privileges">​</a></h4>
+<ul>
+<li>
+<p>Mentor and guide other memberships in the community.</p>
+</li>
+<li>
+<p>Ensure continued health of subproject.</p>
+</li>
+<li>
+<p>Be granted write access to StarRocks repos (to be specified).</p>
+</li>
+<li>
+<p>Be listed as a StarRocks Committer.</p>
+</li>
+<li>
+<p>Be awarded a StarRocks Committer e-certificate.</p>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="pmc">PMC<a href="#pmc" class="hash-link" aria-label="Direct link to PMC" title="Direct link to PMC">​</a></h3>
+<p>PMCs are promoted from Committers. They have the authority to merge merge PRs into master branches and are responsible for the planning and maintenance of StarRocks. They also are active members in sharing their knowledge with the community.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="how-to-become-a-pmc">How to become a PMC?<a href="#how-to-become-a-pmc" class="hash-link" aria-label="Direct link to How to become a PMC?" title="Direct link to How to become a PMC?">​</a></h4>
+<ul>
+<li>
+<p>In-depth understanding of StarRocks principles and a clear understanding of StarRocks&#x27; future plans.</p>
+</li>
+<li>
+<p>Have the ability to deal with project issues promptly.</p>
+</li>
+<li>
+<p>Lead project development and iterations, and steer the overall direction of the project.</p>
+</li>
+<li>
+<p>Receive at least two PMC nominations and pass voting.</p>
+</li>
+</ul>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="responsibilities-and-privileges-2">Responsibilities and privileges<a href="#responsibilities-and-privileges-2" class="hash-link" aria-label="Direct link to Responsibilities and privileges" title="Direct link to Responsibilities and privileges">​</a></h4>
+<ul>
+<li>
+<p>Mentor and guide other memberships in the community.</p>
+</li>
+<li>
+<p>Ensure continued health of the project, such as code quality and test coverage.</p>
+</li>
+<li>
+<p>Make and approve technical design decisions.</p>
+</li>
+<li>
+<p>Define milestones and releases.</p>
+</li>
+<li>
+<p>Vote and promote new committers and PMCs.</p>
+</li>
+<li>
+<p>Be listed as a StarRocks PMC.</p>
+</li>
+<li>
+<p>Be awarded a StarRocks PMC e-certificate.</p>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="contribution-process">Contribution process<a href="#contribution-process" class="hash-link" aria-label="Direct link to Contribution process" title="Direct link to Contribution process">​</a></h2>
+<p>If you don&#x27;t know how to get started, this is the process we suggest for contributions. This process is designed to help reduce your learning curve and get your pull requests merged more efficiently!</p>
+<ol>
+<li>
+<p>Sign the <a href="https://cla-assistant.io/StarRocks/starrocks" target="_blank" rel="noopener noreferrer">Contributor License Agreement (CLA)</a>.</p>
+</li>
+<li>
+<p>Start a discussion by creating a Github <a href="https://github.com/StarRocks/starrocks/issues" target="_blank" rel="noopener noreferrer">issue</a>, or asking on <a href="https://join.slack.com/t/starrocks/shared_invite/zt-1d0cs3cs2-7eL5Q0cGoBofhyIOx7pLfQ" target="_blank" rel="noopener noreferrer">Slack channel</a>(unless the change is trivial).</p>
+<p>Before getting your hands on codes, you should comment in the issue body, and inform the maintainer to assign you the issue that you wish to solve. It is recommended to share your plan on how to solve this problem in the issue body as well.</p>
+<ul>
+<li>This step helps you identify possible collaborators and reviewers.</li>
+<li>Will the change conflict with another change in progress? If so, work with others to minimize impact.</li>
+<li>Is this change major? If so, work with others to break the change into smaller steps.</li>
+</ul>
+</li>
+<li>
+<p>Implement the change.</p>
+<ul>
+<li>
+<p>If the change is major, split it into smaller PRs.</p>
+</li>
+<li>
+<p>Include tests and documentation as necessary.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Create a Github <a href="https://github.com/StarRocks/starrocks/pulls" target="_blank" rel="noopener noreferrer">pull request</a>:</p>
+<p>In StarRocks community, we follow the fork-and-merge GitHub workflow when contributing code.</p>
+<ul>
+<li>Create a fork of StarRocks in your GitHub account.</li>
+<li>Clone this forked repository to your computer.</li>
+<li>Check out a new branch based on the branch you expect to contribute to.</li>
+<li>Commit your code changes to the new branch.</li>
+<li>Push the branch with code changes to GitHub.</li>
+<li>Create a PR to submit your code changes. It is recommended to submit ONE commit in ONE PR. You can follow the <a href="https://github.com/StarRocks/starrocks/blob/main/.github/PULL_REQUEST_TEMPLATE.md" target="_blank" rel="noopener noreferrer">PR templated</a> when submitting a PR.</li>
+<li>Make sure the pull request passes the tests in CI.</li>
+</ul>
+</li>
+<li>
+<p>Review is required by at least 2 reviewers:</p>
+<ul>
+<li>
+<p>For StarRocks project, we require at least 2 lgtm from reviewers (committers) to merge the pull request.</p>
+</li>
+<li>
+<p>This normally happens within a few days, but may take longer if the change is major, complex, or if a critical reviewer is unavailable. (feel free to ping the reviewer on the pull request).</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Maintainers merge the pull request after the final changes are accepted.</p>
+</li>
+</ol></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="theme-doc-footer-edit-meta-row row"><div class="col"><a href="https://github.com/StarRocks/starrocks/tree/main/versioned_docs/version-3.1/developers/How_to_Contribute.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_vwxv"></div></div></footer></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/docs/category/developers"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Developers</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/docs/developers/build-starrocks/Build_in_docker"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Compile StarRocks with Docker</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#community-resources" class="table-of-contents__link toc-highlight">Community resources</a></li><li><a href="#code-of-conduct" class="table-of-contents__link toc-highlight">Code of conduct</a></li><li><a href="#community-roles" class="table-of-contents__link toc-highlight">Community roles</a></li><li><a href="#user-group" class="table-of-contents__link toc-highlight">User group</a><ul><li><a href="#participants" class="table-of-contents__link toc-highlight">Participants</a></li><li><a href="#champions" class="table-of-contents__link toc-highlight">Champions</a></li></ul></li><li><a href="#developer-group" class="table-of-contents__link toc-highlight">Developer Group</a><ul><li><a href="#contributor" class="table-of-contents__link toc-highlight">Contributor</a></li><li><a href="#active-contributor" class="table-of-contents__link toc-highlight">Active Contributor</a></li><li><a href="#committer" class="table-of-contents__link toc-highlight">Committer</a></li><li><a href="#pmc" class="table-of-contents__link toc-highlight">PMC</a></li></ul></li><li><a href="#contribution-process" class="table-of-contents__link toc-highlight">Contribution process</a></li></ul></div></div></div></div></main></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">Docs</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/docs/introduction/StarRocks_intro">Documentation</a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2023 StarRocks, Inc. Built with Docusaurus.</div></div></div></footer></div>
+</body>
+</html>
