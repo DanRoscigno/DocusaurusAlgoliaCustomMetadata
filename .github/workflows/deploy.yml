@@ -12,7 +12,7 @@ permissions:
 
 
 jobs:
-  test-deploy:
+  prod-deploy:
     name: Deploy to GitHub Pages
     runs-on: ubuntu-latest
     steps:
@@ -82,7 +82,7 @@ jobs:
         run: yarn install --frozen-lockfile
       - name: Build website
         run:  |
-          export NODE_OPTIONS="--max_old_space_size=4096"
+          export NODE_OPTIONS="--max_old_space_size=8192"
           yarn build
 
       # Popular action to deploy to GitHub Pages:
