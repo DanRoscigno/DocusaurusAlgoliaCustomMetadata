@@ -4,8 +4,8 @@
   <ShortName>StarRocks</ShortName>
   <Description>Search StarRocks</Description>
   <InputEncoding>UTF-8</InputEncoding>
-  <Image width="16" height="16" type="image/x-icon">https://danroscigno.github.io/docusaurusv3/img/favicon.ico</Image>
-  <Url type="text/html" method="get" template="https://danroscigno.github.io/docusaurusv3/search?q={searchTerms}"/>
-  <Url type="application/opensearchdescription+xml" rel="self" template="https://danroscigno.github.io/docusaurusv3/opensearch.xml" />
-  <moz:SearchForm>https://danroscigno.github.io/docusaurusv3/</moz:SearchForm>
+  <Image width="16" height="16" type="image/x-icon">https://danroscigno.github.io/doc/img/favicon.ico</Image>
+  <Url type="text/html" method="get" template="https://danroscigno.github.io/doc/search?q={searchTerms}"/>
+  <Url type="application/opensearchdescription+xml" rel="self" template="https://danroscigno.github.io/doc/opensearch.xml" />
+  <moz:SearchForm>https://danroscigno.github.io/doc/</moz:SearchForm>
 </OpenSearchDescription>
