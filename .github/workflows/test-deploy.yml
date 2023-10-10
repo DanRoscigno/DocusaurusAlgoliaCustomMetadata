@@ -64,7 +64,6 @@ jobs:
 
       - name: cleanup before running yarn build
         run:  |
-          echo 
           cd /home/runner/work/docusaurusv3/docusaurusv3
           rm -rf temp-en
           rm -rf temp-zh
