@@ -30,12 +30,9 @@ jobs:
           fetch-depth: 0
           path: ./temp-zh
 
-      - name: English docs dir
-        run:  |
-          cd ../temp-en
-
       - name: process English 3.1
         run:  |
+          cd /home/runner/work/docusaurusv3/docusaurusv3/temp-en
           git checkout branch-3.1
           rm -rf ../versioned_docs/version-3.1
           mkdir -p ../versioned_docs/version-3.1
