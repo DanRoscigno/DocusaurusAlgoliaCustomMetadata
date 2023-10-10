@@ -31,7 +31,6 @@ jobs:
       - name: English docs dir
         run:  |
           cd temp-en
-          cd starrocks
 
       - name: process English 3.1
         run:  |
