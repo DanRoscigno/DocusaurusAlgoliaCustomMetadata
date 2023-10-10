@@ -36,7 +36,7 @@ jobs:
 
       - name: process English 3.1
         run:  |
-          cd /home/runner/work/docusaurusv3/docusaurusv3/temp-en
+          cd /home/runner/work/doc/doc/temp-en
           git checkout branch-3.1
           rm -rf ../versioned_docs/version-3.1
           mkdir -p ../versioned_docs/version-3.1
@@ -44,7 +44,7 @@ jobs:
 
       - name: process English 3.0
         run:  |
-          cd /home/runner/work/docusaurusv3/docusaurusv3/temp-en
+          cd /home/runner/work/doc/doc/temp-en
           git checkout branch-3.0
           rm -rf ../versioned_docs/version-3.0
           mkdir -p ../versioned_docs/version-3.0
@@ -52,7 +52,7 @@ jobs:
 
       - name: process Chinese 3.1
         run:  |
-          cd /home/runner/work/docusaurusv3/docusaurusv3/temp-zh
+          cd /home/runner/work/doc/doc/temp-zh
           git checkout 3.1
           rm -rf ../i18n/zh/docusaurus-plugin-content-docs/version-3.1/
           mkdir -p ../i18n/zh/docusaurus-plugin-content-docs/version-3.1
@@ -60,7 +60,7 @@ jobs:
 
       - name: process Chinese 3.0
         run:  |
-          cd /home/runner/work/docusaurusv3/docusaurusv3/temp-zh
+          cd /home/runner/work/doc/doc/temp-zh
           git checkout 3.0
           rm -rf ../i18n/zh/docusaurus-plugin-content-docs/version-3.0/
           mkdir -p ../i18n/zh/docusaurus-plugin-content-docs/version-3.0
@@ -68,7 +68,7 @@ jobs:
 
       - name: cleanup before running yarn build
         run:  |
-          cd /home/runner/work/docusaurusv3/docusaurusv3
+          cd /home/runner/work/doc/doc
           rm -rf temp-en
           rm -rf temp-zh
           find . -type f -name TOC.md | xargs rm
