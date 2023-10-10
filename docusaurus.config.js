@@ -18,7 +18,8 @@ const config = {
   url: 'https://www.starrocks.io/',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
+  baseUrl: '/docusaurusv3/',
+  //https://danroscigno.github.io/docusaurusv3/docs/3.0/administration/Authentication.html
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
