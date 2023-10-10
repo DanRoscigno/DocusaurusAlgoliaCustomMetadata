@@ -3,6 +3,8 @@
 
 # Production
 /build
+**/versioned_docs/**
+**/docusaurus-plugin-content-docs/**
 
 # Generated files
 .docusaurus
