@@ -1,5 +1,14 @@
 # Website
 
+## Deploying to GitHub Pages
+
+These docs are deployed at
+[https://danroscigno.github.io/doc/](https://danroscigno.github.io/doc/).
+In the `.github/workflows/` dir are workflows that build and deploy
+versions 3.1 and 3.0 in English and Chinese. I will add 2.5 next. There is 
+also a workflow to crawl and index to Algolia, this is a manually deployed
+workflow, but could be set to run after building the docs.
+
 ## Node version
 
 Docusaurus v3 requires Node 18
