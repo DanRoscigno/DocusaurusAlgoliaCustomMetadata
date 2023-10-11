@@ -57,6 +57,14 @@ const config = {
           // Remove this to remove the "edit this page" links.
           editUrl:
             'https://github.com/StarRocks/starrocks/tree/main/',
+          lastVersion: '3.1',
+          versions: {
+            '3.1': {
+            },
+            '3.0': {
+              banner: 'none'
+            },
+          },
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
