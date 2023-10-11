@@ -50,6 +50,14 @@ jobs:
           mkdir -p ../versioned_docs/version-3.0
           cp -r docs/* ../versioned_docs/version-3.0
 
+      - name: process English 2.5
+        run:  |
+          cd /home/runner/work/doc/doc/temp-en
+          git checkout branch-2.5
+          rm -rf ../versioned_docs/version-2.5
+          mkdir -p ../versioned_docs/version-2.5
+          cp -r docs/* ../versioned_docs/version-2.5
+
       - name: process Chinese 3.1
         run:  |
           cd /home/runner/work/doc/doc/temp-zh
@@ -65,6 +73,14 @@ jobs:
           rm -rf ../i18n/zh/docusaurus-plugin-content-docs/version-3.0/
           mkdir -p ../i18n/zh/docusaurus-plugin-content-docs/version-3.0
           cp -r * ../i18n/zh/docusaurus-plugin-content-docs/version-3.0/
+
+      - name: process Chinese 2.5
+        run:  |
+          cd /home/runner/work/doc/doc/temp-zh
+          git checkout 2.5
+          rm -rf ../i18n/zh/docusaurus-plugin-content-docs/version-2.5/
+          mkdir -p ../i18n/zh/docusaurus-plugin-content-docs/version-2.5
+          cp -r * ../i18n/zh/docusaurus-plugin-content-docs/version-2.5/
 
       - name: cleanup before running yarn build
         run:  |

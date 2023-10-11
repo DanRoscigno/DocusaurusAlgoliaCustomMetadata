@@ -1,8 +1,8 @@
 export ORGANIZATION_NAME=danroscigno
-export PROJECT_NAME=docusaurusv3
+export PROJECT_NAME=doc
 export DEPLOYMENT_BRANCH=gh-pages
 
-export WORKINGDIR=/Users/droscign/GitHub/Docusaurus/starrocks
+export WORKINGDIR=/Users/droscign/GitHub/doc/
 
 cd $WORKINGDIR
 mkdir -p temp-en
@@ -22,6 +22,11 @@ rm -rf ${WORKINGDIR}/versioned_docs/version-3.0
 mkdir -p ${WORKINGDIR}/versioned_docs/version-3.0
 cp -r docs/* ${WORKINGDIR}/versioned_docs/version-3.0
 
+git checkout branch-2.5
+rm -rf ${WORKINGDIR}/versioned_docs/version-2.5
+mkdir -p ${WORKINGDIR}/versioned_docs/version-2.5
+cp -r docs/* ${WORKINGDIR}/versioned_docs/version-2.5
+
 cd ${WORKINGDIR}/temp-zh
 gh repo clone StarRocks/docs.zh-cn
 cd docs.zh-cn
@@ -36,6 +41,10 @@ rm -rf ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-3.0/
 mkdir -p ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-3.0
 cp -r * ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-3.0/
 
+git checkout 2.5
+rm -rf ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-2.5/
+mkdir -p ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-2.5
+cp -r * ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-2.5/
 
 echo "cleanup before running yarn build"
 cd ${WORKINGDIR}
