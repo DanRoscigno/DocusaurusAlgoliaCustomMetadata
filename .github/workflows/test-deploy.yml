@@ -99,3 +99,8 @@ jobs:
           export NODE_OPTIONS="--max_old_space_size=8192"
           yarn build
 
+      - name: Run htmltest
+        uses: wjdp/htmltest-action@master
+        with:
+          config: _IGNORE/htmltest.yml
+
