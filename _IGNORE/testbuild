@@ -58,6 +58,14 @@ echo "replacing StarRocks intro page\n\n"
 find versioned_docs -type f -name "StarRocks_intro.md"  -print0 -exec cp _IGNORE/_English_intro.mdx "{}" \;
 find i18n -type f -name "StarRocks_intro.md"  -print0 -exec cp _IGNORE/_Chinese_intro.mdx "{}" \;
 
+echo "adding index pages"
+find versioned_docs -type d -name quick_start -print0 -exec cp _IGNORE/index_pages/English/quick_start.mdx "{}" \;
+find i18n -type d -name quick_start -print0 -exec cp _IGNORE/index_pages/Chinese/quick_start.mdx "{}" \;
+
+echo "adding frontmatter for sidebar language"
+_IGNORE/add_chinese_sidebar.sh
+_IGNORE/add_english_sidebar.sh
+
 echo "verifying Markdown"
 npx docusaurus-mdx-checker -c versioned_docs
 npx docusaurus-mdx-checker -c docs

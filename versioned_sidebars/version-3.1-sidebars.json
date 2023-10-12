@@ -9,23 +9,8 @@
     },
     {
       "type": "category",
-      "label": "Release Notes",
-      "link": { "type": "generated-index", "description": "Learn about the StarRocks updates." },
-      "collapsed": true,
-      "collapsible": true,
-      "items": [ 
-        "release_notes/release-2.5",
-        "release_notes/release-2.4",
-        "release_notes/release-2.3",
-        "release_notes/release-2.2",
-        "release_notes/release-2.0",
-        "release_notes/release-1.19"
-      ]
-    },
-    {
-      "type": "category",
       "label": "Quick Start",
-      "link": { "type": "generated-index", "description": "Minimal deployment to gain experience." },
+      "link": {"type": "doc", "id": "quick_start/quick_start"},
       "items": ["quick_start/deploy_with_docker", "quick_start/Create_table", "quick_start/Import_and_query"]
     },
     {
@@ -642,23 +627,8 @@
     },
     {
       "type": "category",
-      "label": "Release Notes",
-      "link": { "type": "generated-index", "description": "Learn about the StarRocks updates." },
-      "collapsed": true,
-      "collapsible": true,
-      "items": [ 
-        "release_notes/release-2.5",
-        "release_notes/release-2.4",
-        "release_notes/release-2.3",
-        "release_notes/release-2.2",
-        "release_notes/release-2.0",
-        "release_notes/release-1.19"
-      ]
-    },
-    {
-      "type": "category",
       "label": "快速开始",
-      "link": { "type": "generated-index", "description": "Minimal deployment to gain experience." },
+      "link": {"type": "doc", "id": "quick_start/quick_start"},
       "items": ["quick_start/deploy_with_docker", "quick_start/Create_table", "quick_start/Import_and_query"]
     },
     {
