@@ -53,10 +53,20 @@ const config = {
       ({
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/StarRocks/starrocks/tree/main/',
+          
+          // example for main branch of English docs:
+          // https://github.com/StarRocks/starrocks/edit/main/docs/administration/Backup_and_restore.md
+          //
+          // example for main branch of Chinese docs:
+          // https://github.com/StarRocks/docs.zh-cn/edit/main/administration/Backup_and_restore.md
+          //
+          editUrl: ({locale, docPath}) => {
+            if (locale == 'en') {
+              return 'https://github.com/StarRocks/starrocks/edit/main/docs/' + docPath
+            } else {
+              return 'https://github.com/StarRocks/docs.zh-cn/edit/main/' + docPath
+            }
+          },
           lastVersion: '3.1',
           versions: {
             '3.1': {
