@@ -33,6 +33,22 @@ const config = {
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
   // may want to replace "en" with "zh-Hans".
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en'],
+    localeConfigs: {
+      en: {
+        label: 'English',
+        htmlLang: 'en-US',
+        path: 'en',
+      },
+      fa: {
+        label: 'Chinese',
+        htmlLang: 'zh-CN',
+        path: 'zh',
+      },
+    },
+  },
 
   presets: [
     [
@@ -58,11 +74,14 @@ const config = {
           lastVersion: '3.1',
           versions: {
             '3.1': {
+              label: 'English latest'
             },
             '3.0': {
+              label: 'English 3.0',
               banner: 'none'
             },
             '2.5': {
+              label: 'English 2.5',
               banner: 'none'
             },
           },
@@ -93,29 +112,38 @@ const config = {
         lastVersion: '3.1',
         versions: {
           '3.1': {
+            label: 'Chinese latest'
           },
           '3.0': {
+            label: 'Chinese 3.0',
             banner: 'none'
           },
           '2.5': {
+            label: 'Chinese 2.5',
             banner: 'none'
           },
           '2.4': {
+            label: 'Chinese 2.4',
             banner: 'none'
           },
           '2.3': {
+            label: 'Chinese 2.3',
             banner: 'none'
           },
           '2.2': {
+            label: 'Chinese 2.2',
             banner: 'none'
           },
           '2.1': {
+            label: 'Chinese 2.1',
             banner: 'none'
           },
           '2.0': {
+            label: 'Chinese 2.0',
             banner: 'none'
           },
           '1.19': {
+            label: 'Chinese 1.19',
             banner: 'none'
           },
         },
@@ -135,12 +163,12 @@ const config = {
           href: 'https://www.starrocks.io/',
         },
         items: [
-          {
+          /*{
             type: 'docSidebar',
             sidebarId: 'documentation',
             position: 'left',
             label: 'Documentation',
-          },
+          }, */
           {
             type: 'docsVersionDropdown',
             position: 'left',
@@ -160,10 +188,10 @@ const config = {
             label: 'GitHub',
             position: 'right',
           },
-          {
+          /*{
             type: 'localeDropdown',
             position: 'left',
-          },
+          }, */
         ],
       },
       footer: {
