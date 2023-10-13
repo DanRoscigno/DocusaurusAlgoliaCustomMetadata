@@ -33,18 +33,6 @@ const config = {
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
   // may want to replace "en" with "zh-Hans".
-  i18n: {
-    defaultLocale: 'en',
-    locales: ['en', 'zh'],
-    localeConfigs: {
-      en: {
-        htmlLang: 'en-US',
-      },
-      zh: {
-        htmlLang: 'zh-CN',
-      },
-    },
-  },
 
   presets: [
     [
@@ -52,7 +40,11 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          sidebarPath: require.resolve('./sidebars.js'),
+          // id: 'english', // this is the default instance, so it has no id
+          // I just gave it an id of 'english' as this is for the English docs
+          path: 'en',
+          routeBasePath: 'en',
+          sidebarPath: require.resolve('./sidebarsEnglish.js'),
           
           // example for main branch of English docs:
           // https://github.com/StarRocks/starrocks/edit/main/docs/administration/Backup_and_restore.md
@@ -60,12 +52,8 @@ const config = {
           // example for main branch of Chinese docs:
           // https://github.com/StarRocks/docs.zh-cn/edit/main/administration/Backup_and_restore.md
           //
-          editUrl: ({locale, docPath}) => {
-            if (locale == 'en') {
+          editUrl: ({docPath}) => {
               return 'https://github.com/StarRocks/starrocks/edit/main/docs/' + docPath
-            } else {
-              return 'https://github.com/StarRocks/docs.zh-cn/edit/main/' + docPath
-            }
           },
           lastVersion: '3.1',
           versions: {
@@ -83,6 +71,55 @@ const config = {
           customCss: require.resolve('./src/css/custom.css'),
         },
       }),
+    ],
+  ],
+    plugins: [
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'chinese',
+        path: 'zh',
+        routeBasePath: 'zh',
+        sidebarPath: require.resolve('./sidebarsChinese.js'),
+        // example for main branch of English docs:
+        // https://github.com/StarRocks/starrocks/edit/main/docs/administration/Backup_and_restore.md
+        //
+        // example for main branch of Chinese docs:
+        // https://github.com/StarRocks/docs.zh-cn/edit/main/administration/Backup_and_restore.md
+        //
+        editUrl: ({docPath}) => {
+            return 'https://github.com/StarRocks/docs.zh-cn/edit/main/' + docPath
+        },
+        lastVersion: '3.1',
+        versions: {
+          '3.1': {
+          },
+          '3.0': {
+            banner: 'none'
+          },
+          '2.5': {
+            banner: 'none'
+          },
+          '2.4': {
+            banner: 'none'
+          },
+          '2.3': {
+            banner: 'none'
+          },
+          '2.2': {
+            banner: 'none'
+          },
+          '2.1': {
+            banner: 'none'
+          },
+          '2.0': {
+            banner: 'none'
+          },
+          '1.19': {
+            banner: 'none'
+          },
+        },
+      },
     ],
   ],
   themeConfig:
@@ -107,8 +144,17 @@ const config = {
           {
             type: 'docsVersionDropdown',
             position: 'left',
-            dropdownActiveClassDisabled: true,
           },
+          {
+            type: 'docsVersionDropdown',
+            position: 'left',
+            docsPluginId: 'chinese',
+          },
+         /* {
+            type: 'docsVersionDropdown',
+            position: 'left',
+            dropdownActiveClassDisabled: true,
+          },*/
           {
             href: 'https://github.com/StarRocks/starrocks',
             label: 'GitHub',
