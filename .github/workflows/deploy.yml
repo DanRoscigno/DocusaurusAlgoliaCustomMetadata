@@ -101,10 +101,10 @@ jobs:
         run:  |
           export NODE_OPTIONS="--max_old_space_size=8192"
           yarn build
-          find build/zh -name "*html" | xargs sed -i '' "s/lang=\"en-US\"/lang=\"zh-CN\"/g"
-          find build/zh -name "*html" | xargs sed -i '' "s/name=\"docsearch:language\" content=\"en\"/name=\"docsearch:language\" content=\"zh\"/g"
-          find build/zh -name "*html" | xargs sed -i '' "s/\"og:locale\" content=\"en_US\"/\"og:locale\" content=\"zh_CN\"/g"
-          find build/zh -name "*html" | xargs sed -i '' "s/\"og:locale:alternate\" content=\"zh_CN\"/\"og:locale:alternate\" content=\"en_US\"/g"
+          find build/zh -name "*html" | xargs sed -i "s/lang=\"en-US\"/lang=\"zh-CN\"/g"
+          find build/zh -name "*html" | xargs sed -i "s/name=\"docsearch:language\" content=\"en\"/name=\"docsearch:language\" content=\"zh\"/g"
+          find build/zh -name "*html" | xargs sed -i "s/\"og:locale\" content=\"en_US\"/\"og:locale\" content=\"zh_CN\"/g"
+          find build/zh -name "*html" | xargs sed -i "s/\"og:locale:alternate\" content=\"zh_CN\"/\"og:locale:alternate\" content=\"en_US\"/g"
 
       # Popular action to deploy to GitHub Pages:
       # Docs: https://github.com/peaceiris/actions-gh-pages#%EF%B8%8F-docusaurus
