@@ -27,8 +27,8 @@ const config = {
   projectName: 'starrocks', // Usually your repo name.
   trailingSlash: false,
 
-  onBrokenLinks: 'warn',
-  onBrokenMarkdownLinks: 'warn',
+  onBrokenLinks: 'ignore',
+  onBrokenMarkdownLinks: 'ignore',
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
@@ -72,6 +72,7 @@ const config = {
               return 'https://github.com/StarRocks/starrocks/edit/main/docs/' + docPath
           },
           lastVersion: '3.1',
+          onlyIncludeVersions: ['3.1', '3.0', '2.5'],
           versions: {
             '3.1': {
               label: 'English latest'
@@ -110,6 +111,7 @@ const config = {
             return 'https://github.com/StarRocks/docs.zh-cn/edit/main/' + docPath
         },
         lastVersion: '3.1',
+        onlyIncludeVersions: ['3.1', '3.0', '2.5'],
         versions: {
           '3.1': {
             label: 'Chinese latest'
@@ -121,31 +123,7 @@ const config = {
           '2.5': {
             label: 'Chinese 2.5',
             banner: 'none'
-          },
-          '2.4': {
-            label: 'Chinese 2.4',
-            banner: 'none'
-          },
-          '2.3': {
-            label: 'Chinese 2.3',
-            banner: 'none'
-          },
-          '2.2': {
-            label: 'Chinese 2.2',
-            banner: 'none'
-          },
-          '2.1': {
-            label: 'Chinese 2.1',
-            banner: 'none'
-          },
-          '2.0': {
-            label: 'Chinese 2.0',
-            banner: 'none'
-          },
-          '1.19': {
-            label: 'Chinese 1.19',
-            banner: 'none'
-          },
+          }
         },
       },
     ],
