@@ -97,6 +97,7 @@ jobs:
           export NODE_OPTIONS="--max_old_space_size=8192"
           yarn build
           find build/zh -name "*html" | xargs sed -i "s/lang=\"en-US\"/lang=\"zh-CN\"/g"
+          find build/zh -name "*html" | xargs sed -i '' "s/docusaurus_locale\" content=\"en\"/docusaurus_locale\" content=\"zh\"/g"
           find build/zh -name "*html" | xargs sed -i "s/name=\"docsearch:language\" content=\"en\"/name=\"docsearch:language\" content=\"zh\"/g"
           find build/zh -name "*html" | xargs sed -i "s/\"og:locale\" content=\"en_US\"/\"og:locale\" content=\"zh_CN\"/g"
           find build/zh -name "*html" | xargs sed -i "s/\"og:locale:alternate\" content=\"zh_CN\"/\"og:locale:alternate\" content=\"en_US\"/g"
