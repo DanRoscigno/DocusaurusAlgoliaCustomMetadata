@@ -4,7 +4,10 @@
 # Production
 /build
 **/versioned_docs/**
+**/chinese_versioned_docs/**
 **/docusaurus-plugin-content-docs/**
+/en
+/zh
 
 # Generated files
 .docusaurus

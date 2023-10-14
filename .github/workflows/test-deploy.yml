@@ -57,25 +57,25 @@ jobs:
         run:  |
           cd /home/runner/work/doc/doc/temp-zh
           git checkout 3.1
-          rm -rf ../i18n/zh/docusaurus-plugin-content-docs/version-3.1/
-          mkdir -p ../i18n/zh/docusaurus-plugin-content-docs/version-3.1
-          cp -r * ../i18n/zh/docusaurus-plugin-content-docs/version-3.1/
+          rm -rf ../chinese_versioned_docs/version-3.1
+          mkdir -p ../chinese_versioned_docs/version-3.1
+          cp -r * ../chinese_versioned_docs/version-3.1/
 
       - name: process Chinese 3.0
         run:  |
           cd /home/runner/work/doc/doc/temp-zh
           git checkout 3.0
-          rm -rf ../i18n/zh/docusaurus-plugin-content-docs/version-3.0/
-          mkdir -p ../i18n/zh/docusaurus-plugin-content-docs/version-3.0
-          cp -r * ../i18n/zh/docusaurus-plugin-content-docs/version-3.0/
+          rm -rf ../chinese_versioned_docs/version-3.0
+          mkdir -p ../chinese_versioned_docs/version-3.0
+          cp -r * ../chinese_versioned_docs/version-3.0/
 
       - name: process Chinese 2.5
         run:  |
           cd /home/runner/work/doc/doc/temp-zh
           git checkout 2.5
-          rm -rf ../i18n/zh/docusaurus-plugin-content-docs/version-2.5/
-          mkdir -p ../i18n/zh/docusaurus-plugin-content-docs/version-2.5
-          cp -r * ../i18n/zh/docusaurus-plugin-content-docs/version-2.5/
+          rm -rf ../chinese_versioned_docs/version-2.5
+          mkdir -p ../chinese_versioned_docs/version-2.5
+          cp -r * ../chinese_versioned_docs/version-2.5/
 
       - name: cleanup before running yarn build
         run:  |
@@ -83,14 +83,12 @@ jobs:
           rm -rf temp-en
           rm -rf temp-zh
           find . -type f -name TOC.md | xargs rm
-          rm i18n/zh/docusaurus-plugin-content-docs/*/README.md
+          rm chinese_versioned_docs/version-*/README.md
           rm versioned_docs/version-*/README.md
           find versioned_docs -type f -name "StarRocks_intro.md"  -print0 -exec cp _IGNORE/_English_intro.mdx "{}" \;
-          find i18n -type f -name "StarRocks_intro.md"  -print0 -exec cp _IGNORE/_Chinese_intro.mdx "{}" \;
+          find chinese_versioned_docs -type f -name "StarRocks_intro.md"  -print0 -exec cp _IGNORE/_Chinese_intro.mdx "{}" \;
           find versioned_docs -type d -name quick_start -print0 -exec cp _IGNORE/index_pages/English/quick_start.mdx "{}" \;
-          find i18n -type d -name quick_start -print0 -exec cp _IGNORE/index_pages/Chinese/quick_start.mdx "{}" \;
-          _IGNORE/add_chinese_sidebar.sh
-          _IGNORE/add_english_sidebar.sh
+          find chinese_versioned_docs -type d -name quick_start -print0 -exec cp _IGNORE/index_pages/Chinese/quick_start.mdx "{}" \;
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
@@ -98,4 +96,8 @@ jobs:
         run:  |
           export NODE_OPTIONS="--max_old_space_size=8192"
           yarn build
+          find build/zh -name "*html" | xargs sed -i "s/lang=\"en-US\"/lang=\"zh-CN\"/g"
+          find build/zh -name "*html" | xargs sed -i "s/name=\"docsearch:language\" content=\"en\"/name=\"docsearch:language\" content=\"zh\"/g"
+          find build/zh -name "*html" | xargs sed -i "s/\"og:locale\" content=\"en_US\"/\"og:locale\" content=\"zh_CN\"/g"
+          find build/zh -name "*html" | xargs sed -i "s/\"og:locale:alternate\" content=\"zh_CN\"/\"og:locale:alternate\" content=\"en_US\"/g"
 
