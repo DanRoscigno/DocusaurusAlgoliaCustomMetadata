@@ -60,13 +60,14 @@ echo "adding index pages"
 find versioned_docs -type d -name quick_start -print0 -exec cp _SCRIPTS/index_pages/English/quick_start.mdx "{}" \;
 find i18n/zh/docusaurus-plugin-content-docs -type d -name quick_start -print0 -exec cp _SCRIPTS/index_pages/Chinese/quick_start.mdx "{}" \;
 
+echo "\nadd placeholders for pages in Chinese docs but not in English docs"
 _SCRIPTS/add_missing_english_files.sh
 
-# echo "adding frontmatter for sidebar language"
+echo "\nadding frontmatter for sidebar language"
 _SCRIPTS/add_chinese_sidebar.sh
 _SCRIPTS/add_english_sidebar.sh
 
-echo "verifying Markdown"
+echo "\nverifying Markdown"
 npx docusaurus-mdx-checker -c versioned_docs
 npx docusaurus-mdx-checker -c i18n/zh/docusaurus-plugin-content-docs
 
