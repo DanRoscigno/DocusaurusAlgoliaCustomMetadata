@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkstarrocks=self.webpackChunkstarrocks||[]).push([[54319],{81830:s=>{s.exports=JSON.parse('{"name":"docusaurus-plugin-content-docs","id":"chinese"}')}}]);
