@@ -1,14 +1,14 @@
 name: Test deployment
-concurrency:
-    group: ${{ github.ref }}
-        cancel-in-progress: true
 
 on:
   pull_request:
     branches:
       - main
-    # Review gh actions docs if you want to further define triggers, paths, etc
-    # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#on
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 
 jobs:
   test-deploy:
