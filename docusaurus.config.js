@@ -52,19 +52,16 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          // id: 'english', // this is the default instance, so it has no id
-          // I just gave it an id of 'english' as this is for the English docs
-          path: 'en',
-          routeBasePath: 'en',
-          sidebarPath: require.resolve('./sidebarsEnglish.js'),
+          sidebarPath: require.resolve('./sidebars.js'),
           
+          // URLs for GitHub "edit this page"
           // example for main branch of English docs:
           // https://github.com/StarRocks/starrocks/edit/main/docs/administration/Backup_and_restore.md
           //
           // example for main branch of Chinese docs:
           // https://github.com/StarRocks/docs.zh-cn/edit/main/administration/Backup_and_restore.md
           //
-                    editUrl: ({locale, docPath}) => {
+          editUrl: ({locale, docPath}) => {
             if (locale == 'en') {
               return 'https://github.com/StarRocks/starrocks/edit/main/docs/' + docPath
             } else {
@@ -116,11 +113,6 @@ const config = {
             type: 'docsVersionDropdown',
             position: 'left',
           },
-          {
-            type: 'docsVersionDropdown',
-            position: 'left',
-            docsPluginId: 'chinese',
-          },
          /* {
             type: 'docsVersionDropdown',
             position: 'left',
@@ -131,10 +123,10 @@ const config = {
             label: 'GitHub',
             position: 'right',
           },
-          /*{
+          {
             type: 'localeDropdown',
             position: 'left',
-          }, */
+          },
         ],
       },
       footer: {

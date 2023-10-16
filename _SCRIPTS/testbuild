@@ -54,10 +54,13 @@ rm versioned_docs/version-*/README.md
 echo "replacing StarRocks intro page\n\n"
 find versioned_docs -type f -name "StarRocks_intro.md"  -print0 -exec cp _SCRIPTS/_English_intro.mdx "{}" \;
 find i18n/zh/docusaurus-plugin-content-docs -type f -name "StarRocks_intro.md"  -print0 -exec cp _SCRIPTS/_Chinese_intro.mdx "{}" \;
+echo "\n"
 
 echo "adding index pages"
 find versioned_docs -type d -name quick_start -print0 -exec cp _SCRIPTS/index_pages/English/quick_start.mdx "{}" \;
 find i18n/zh/docusaurus-plugin-content-docs -type d -name quick_start -print0 -exec cp _SCRIPTS/index_pages/Chinese/quick_start.mdx "{}" \;
+
+_SCRIPTS/add_missing_english_files.sh
 
 # echo "adding frontmatter for sidebar language"
 _SCRIPTS/add_chinese_sidebar.sh
