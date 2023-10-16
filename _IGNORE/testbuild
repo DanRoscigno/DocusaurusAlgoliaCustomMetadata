@@ -1,8 +1,8 @@
 export ORGANIZATION_NAME=danroscigno
-export PROJECT_NAME=docusaurusv3
+export PROJECT_NAME=doc
 export DEPLOYMENT_BRANCH=gh-pages
 
-export WORKINGDIR=/Users/droscign/GitHub/Docusaurus/starrocks
+export WORKINGDIR=/Users/droscign/GitHub/doc
 
 cd $WORKINGDIR
 mkdir -p temp-en
@@ -47,6 +47,17 @@ rm versioned_docs/version-*/README.md
 
 echo "replacing StarRocks intro page\n\n"
 find . -type f -name "StarRocks_intro.md"  -print0 -exec cp _IGNORE/_StarRocks_intro.mdx "{}" \;
+
+echo "adding index pages"
+find versioned_docs -type d -name quick_start -print0 -exec cp _IGNORE/index_pages/English/quick_start.mdx "{}" \;
+find i18n/zh/docusaurus-plugin-content-docs -type d -name quick_start -print0 -exec cp _IGNORE/index_pages/Chinese/quick_start.mdx "{}" \;
+
+echo "\nadd placeholders for pages in Chinese docs but not in English docs"
+_IGNORE/add_missing_english_files.sh
+
+echo "\nadding frontmatter for sidebar language"
+_IGNORE/add_chinese_sidebar.sh
+_IGNORE/add_english_sidebar.sh
 
 echo "verifying Markdown"
 npx docusaurus-mdx-checker -c versioned_docs
