@@ -70,6 +70,11 @@ jobs:
           rm i18n/zh/docusaurus-plugin-content-docs/*/README.md
           rm versioned_docs/version-*/README.md
           find . -type f -name "StarRocks_intro.md"  -print0 -exec cp _IGNORE/_StarRocks_intro.mdx "{}" \;
+          find versioned_docs -type d -name quick_start -print0 -exec cp _IGNORE/index_pages/English/quick_start.mdx "{}" \;
+          find i18n/zh/docusaurus-plugin-content-docs -type d -name quick_start -print0 -exec cp _IGNORE/index_pages/Chinese/quick_start.mdx "{}" \;
+          _IGNORE/add_missing_english_files.sh
+          _IGNORE/add_chinese_sidebar.sh
+          _IGNORE/add_english_sidebar.sh
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
