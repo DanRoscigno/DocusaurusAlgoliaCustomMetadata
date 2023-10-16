@@ -1,0 +1,71 @@
+
+export WORKINGDIR=/Users/droscign/GitHub/doc
+
+cd $WORKINGDIR
+mkdir -p temp-en
+mkdir -p temp-zh
+
+cd temp-en
+gh repo clone StarRocks/starrocks
+cd starrocks
+
+git checkout branch-3.1
+rm -rf ${WORKINGDIR}/versioned_docs/version-3.1
+mkdir -p ${WORKINGDIR}/versioned_docs/version-3.1
+cp -r docs/* ${WORKINGDIR}/versioned_docs/version-3.1
+
+git checkout branch-3.0
+rm -rf ${WORKINGDIR}/versioned_docs/version-3.0
+mkdir -p ${WORKINGDIR}/versioned_docs/version-3.0
+cp -r docs/* ${WORKINGDIR}/versioned_docs/version-3.0
+
+git checkout branch-2.5
+rm -rf ${WORKINGDIR}/versioned_docs/version-2.5
+mkdir -p ${WORKINGDIR}/versioned_docs/version-2.5
+cp -r docs/* ${WORKINGDIR}/versioned_docs/version-2.5
+
+cd ${WORKINGDIR}/temp-zh
+gh repo clone StarRocks/docs.zh-cn
+cd docs.zh-cn
+
+git checkout 3.1
+rm -rf ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-3.1
+mkdir -p ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-3.1
+cp -r * ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-3.1/
+
+git checkout 3.0
+rm -rf ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-3.0
+mkdir -p ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-3.0
+cp -r * ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-3.0/
+
+git checkout 2.5
+rm -rf ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-2.5
+mkdir -p ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-2.5
+cp -r * ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-2.5/
+
+echo "cleanup before running yarn build"
+cd ${WORKINGDIR}
+rm -rf temp-en
+rm -rf temp-zh
+find . -type f -name TOC.md | xargs rm
+rm i18n/zh/docusaurus-plugin-content-docs/version-*/README.md
+rm versioned_docs/version-*/README.md
+
+echo "replacing StarRocks intro page\n\n"
+find versioned_docs -type f -name "StarRocks_intro.md"  -print0 -exec cp _SCRIPTS/_English_intro.mdx "{}" \;
+find i18n/zh/docusaurus-plugin-content-docs -type f -name "StarRocks_intro.md"  -print0 -exec cp _SCRIPTS/_Chinese_intro.mdx "{}" \;
+
+echo "adding index pages"
+find versioned_docs -type d -name quick_start -print0 -exec cp _SCRIPTS/index_pages/English/quick_start.mdx "{}" \;
+find i18n/zh/docusaurus-plugin-content-docs -type d -name quick_start -print0 -exec cp _SCRIPTS/index_pages/Chinese/quick_start.mdx "{}" \;
+
+# echo "adding frontmatter for sidebar language"
+_SCRIPTS/add_chinese_sidebar.sh
+_SCRIPTS/add_english_sidebar.sh
+
+echo "verifying Markdown"
+npx docusaurus-mdx-checker -c versioned_docs
+npx docusaurus-mdx-checker -c i18n/zh/docusaurus-plugin-content-docs
+
+yarn build
+

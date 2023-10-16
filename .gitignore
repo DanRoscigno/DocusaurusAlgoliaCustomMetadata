@@ -3,15 +3,12 @@
 
 # Production
 /build
-**/versioned_docs/**
-**/chinese_versioned_docs/**
-**/docusaurus-plugin-content-docs/**
-/en
-/zh
 
 # Generated files
 .docusaurus
 .cache-loader
+/versioned_docs
+/i18n/zh/docusaurus-plugin-content-docs
 
 # Misc
 .DS_Store

@@ -35,17 +35,13 @@ const config = {
   // may want to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: 'en',
-    locales: ['en'],
+    locales: ['en', 'zh'],
     localeConfigs: {
       en: {
-        label: 'English',
         htmlLang: 'en-US',
-        path: 'en',
       },
-      fa: {
-        label: 'Chinese',
+      zh: {
         htmlLang: 'zh-CN',
-        path: 'zh',
       },
     },
   },
@@ -68,21 +64,25 @@ const config = {
           // example for main branch of Chinese docs:
           // https://github.com/StarRocks/docs.zh-cn/edit/main/administration/Backup_and_restore.md
           //
-          editUrl: ({docPath}) => {
+                    editUrl: ({locale, docPath}) => {
+            if (locale == 'en') {
               return 'https://github.com/StarRocks/starrocks/edit/main/docs/' + docPath
+            } else {
+              return 'https://github.com/StarRocks/docs.zh-cn/edit/main/' + docPath
+            }
           },
           lastVersion: '3.1',
           onlyIncludeVersions: ['3.1', '3.0', '2.5'],
           versions: {
             '3.1': {
-              label: 'English latest'
+              label: 'latest-3.1'
             },
             '3.0': {
-              label: 'English 3.0',
+              label: '3.0',
               banner: 'none'
             },
             '2.5': {
-              label: 'English 2.5',
+              label: '2.5',
               banner: 'none'
             },
           },
@@ -91,41 +91,6 @@ const config = {
           customCss: require.resolve('./src/css/custom.css'),
         },
       }),
-    ],
-  ],
-    plugins: [
-    [
-      '@docusaurus/plugin-content-docs',
-      {
-        id: 'chinese',
-        path: 'zh',
-        routeBasePath: 'zh',
-        sidebarPath: require.resolve('./sidebarsChinese.js'),
-        // example for main branch of English docs:
-        // https://github.com/StarRocks/starrocks/edit/main/docs/administration/Backup_and_restore.md
-        //
-        // example for main branch of Chinese docs:
-        // https://github.com/StarRocks/docs.zh-cn/edit/main/administration/Backup_and_restore.md
-        //
-        editUrl: ({docPath}) => {
-            return 'https://github.com/StarRocks/docs.zh-cn/edit/main/' + docPath
-        },
-        lastVersion: '3.1',
-        onlyIncludeVersions: ['3.1', '3.0', '2.5'],
-        versions: {
-          '3.1': {
-            label: 'Chinese latest'
-          },
-          '3.0': {
-            label: 'Chinese 3.0',
-            banner: 'none'
-          },
-          '2.5': {
-            label: 'Chinese 2.5',
-            banner: 'none'
-          }
-        },
-      },
     ],
   ],
   themeConfig:
