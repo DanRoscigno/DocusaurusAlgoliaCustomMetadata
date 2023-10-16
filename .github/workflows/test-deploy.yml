@@ -4,8 +4,11 @@ on:
   pull_request:
     branches:
       - main
-    # Review gh actions docs if you want to further define triggers, paths, etc
-    # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#on
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 
 jobs:
   test-deploy:
@@ -45,6 +48,14 @@ jobs:
           mkdir -p ../versioned_docs/version-3.0
           cp -r docs/* ../versioned_docs/version-3.0
 
+      - name: process English 2.5
+        run:  |
+          cd /home/runner/work/doc/doc/temp-en
+          git checkout branch-2.5
+          rm -rf ../versioned_docs/version-2.5
+          mkdir -p ../versioned_docs/version-2.5
+          cp -r docs/* ../versioned_docs/version-2.5
+
       - name: process Chinese 3.1
         run:  |
           cd /home/runner/work/doc/doc/temp-zh
@@ -60,6 +71,14 @@ jobs:
           rm -rf ../i18n/zh/docusaurus-plugin-content-docs/version-3.0/
           mkdir -p ../i18n/zh/docusaurus-plugin-content-docs/version-3.0
           cp -r * ../i18n/zh/docusaurus-plugin-content-docs/version-3.0/
+
+      - name: process Chinese 2.5
+        run:  |
+          cd /home/runner/work/doc/doc/temp-zh
+          git checkout 2.5
+          rm -rf ../i18n/zh/docusaurus-plugin-content-docs/version-2.5/
+          mkdir -p ../i18n/zh/docusaurus-plugin-content-docs/version-2.5
+          cp -r * ../i18n/zh/docusaurus-plugin-content-docs/version-2.5/
 
       - name: cleanup before running yarn build
         run:  |

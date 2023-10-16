@@ -55,8 +55,35 @@ const config = {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/StarRocks/starrocks/tree/main/',
+          editUrl: ({locale, docPath}) => {
+            if (locale == 'en') {
+              return 'https://github.com/StarRocks/starrocks/edit/main/docs/' + docPath
+            } else {
+              return 'https://github.com/StarRocks/docs.zh-cn/edit/main/' + docPath
+            }
+          },
+          // Versions:
+          // We don't want to show `main` or `current`, we want to show the released versions.
+          // lastVersion identifies the latest release.
+          // onlyIncludeVersions limits what we show.
+          // By default Docusaurus shows an "unsupported" banner, but we support multiple
+          // versions, so the banner is set to none on the versions other than latest (latest
+          // doesn't get a banner by default).
+          lastVersion: '3.1',
+          onlyIncludeVersions: ['3.1', '3.0', '2.5'],
+          versions: {
+            '3.1': {
+              label: 'latest-3.1'
+            },
+            '3.0': {
+              label: '3.0',
+              banner: 'none'
+            },
+            '2.5': {
+              label: '2.5',
+              banner: 'none'
+            },
+          },
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
