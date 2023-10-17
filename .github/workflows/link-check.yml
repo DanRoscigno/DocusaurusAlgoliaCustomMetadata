@@ -1,0 +1,16 @@
+name: Link check
+
+on:
+  workflow_dispatch:
+
+  - name: Link Check on Chinese docs
+    id: lychee
+    uses: lycheeverse/lychee-action@v1.8.0
+    with:
+      args: --offline --no-progress 'i18n/zh/docusaurus-plugin-content-docs/**/*.md'
+
+  - name: Link Check on English docs
+    id: lychee
+    uses: lycheeverse/lychee-action@v1.8.0
+    with:
+      args: --offline --no-progress 'versioned_docs/**/*.md'
