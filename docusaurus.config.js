@@ -73,14 +73,14 @@ const config = {
           onlyIncludeVersions: ['3.1', '3.0', '2.5'],
           versions: {
             '3.1': {
-              label: 'latest-3.1'
+              label: 'Latest-3.1'
             },
             '3.0': {
               label: '3.0',
               banner: 'none'
             },
             '2.5': {
-              label: '2.5',
+              label: 'Stable-2.5',
               banner: 'none'
             },
           },
