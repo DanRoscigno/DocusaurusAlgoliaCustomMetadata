@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  index:
+  crawl:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -86,12 +86,8 @@ jobs:
           _IGNORE/add_chinese_sidebar.sh
           _IGNORE/add_english_sidebar.sh
 
-      - name: Link Check on Chinese docs
+      - name: Link Check on Chinese and English docs
         uses: lycheeverse/lychee-action@v1.8.0
         with:
-          args: --offline --no-progress 'i18n/zh/docusaurus-plugin-content-docs/**/*.md'
+          args: --offline --no-progress 'i18n/zh/docusaurus-plugin-content-docs/**/*.md' 'versioned_docs/**/*.md'
 
-      - name: Link Check on English docs
-        uses: lycheeverse/lychee-action@v1.8.0
-        with:
-          args: --offline --no-progress 'versioned_docs/**/*.md'
