@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  find broken links:
+  find_broken_links:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
