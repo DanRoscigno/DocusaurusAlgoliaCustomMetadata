@@ -1,6 +1,28 @@
-# Website
+# Docs
 
-## Node version
+Live URL: https://danroscigno.github.io/doc/docs/introduction/StarRocks_intro
+
+## Building with GitHub actions
+
+There are test build and deploy to GitHub Pages jobs in `.github/workflows/`.
+These pull the English docs and the Chinese docs, check out the versions,
+and put the Markdown files into place for Docusaurus.
+
+Before generating the HTML some modifications are made to the Markdown files:
+
+- removing the TOC.md and README.md files
+- replacing the StarRocks_intro pages with ones that use Docusaurus styling
+- adding frontmatter to all of the Markdown to specify which sidebar (English or Chinese) is to be used
+
+Once we go into production the three changes above can be removed as we will:
+
+- remove the TOC.md files as they are not used, and leave the README out of the nav
+- replace the current intro pages with the new ones that work with Docusaurus
+- add the frontmatter to the Markdown files in thir repos
+
+## Building local
+
+### Node version
 
 Docusaurus v3 requires Node 18
 
@@ -11,17 +33,17 @@ and locally I use:
 NODE_OPTIONS=--max_old_space_size=8192
 ```
 
-## Install Docusaurus
+### Install Docusaurus
 
 ```shell
 yarn install
 ```
 
-## Build script
+### Build script
 
 The script `_IGNORE/testbuild`
 
-- pulls the Chinese and English docs for versions 3.1 and 3.0
+- pulls the Chinese and English docs for versions 3.1, 3.0, and 2.5 
 - Removes the intro page while we update it to use built-in nav components
 - Removes the TOC while we migrate those to JSON format
 - Runs an MDX checker
