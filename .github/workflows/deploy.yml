@@ -24,6 +24,24 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
+          cache: 'yarn'
+          cache-dependency-path: 'yarn.lock'
+
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.yarn-cache.outputs.YARN_CACHE_DIR }}
+          key: ${{ runner.os }}-website-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-website-
+ 
+      - name: Setup docusaurus cache
+        uses: actions/cache@v3
+        with:
+          path: ".docusaurus"
+          key: ${{ runner.os }}-docusaurus-${{ hashFiles('**/docusaurus.config.js') }}
+          restore-keys: |
+            ${{ runner.os }}-docusaurus-
 
       - uses: actions/checkout@v3
         with:
