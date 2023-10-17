@@ -103,7 +103,6 @@ jobs:
       - name: Link Check on Chinese docs
         id: lychee
         uses: lycheeverse/lychee-action@v1.8.0
-        uses: gaurav-nelson/github-action-markdown-link-check@v1
         with:
           args: --offline --no-progress 'i18n/zh/docusaurus-plugin-content-docs/version-3.1/**/*.md'
 
