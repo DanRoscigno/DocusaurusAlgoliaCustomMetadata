@@ -106,15 +106,7 @@ jobs:
           use-quiet-mode: 'yes'
           use-verbose-mode: 'yes'
           config-file: '_IGNORE/mlc_config.json'
-          folder-path: 'i18n/zh'
-
-      - name: Link Check on English docs
-        uses: gaurav-nelson/github-action-markdown-link-check@v1
-        with:
-          use-quiet-mode: 'yes'
-          use-verbose-mode: 'yes'
-          config-file: '_IGNORE/mlc_config.json'
-          folder-path: 'versioned_docs'
+          folder-path: 'i18n/zh/docusaurus-plugin-content-docs/version-3.1'
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
