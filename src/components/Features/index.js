@@ -17,7 +17,7 @@ const FeatureList = [
   },
   {
     title: 'Quick Start',
-    url: '../category/quick-start',
+    url: '../quick_start',
     description: (
       <>
         Get up and running quickly.
