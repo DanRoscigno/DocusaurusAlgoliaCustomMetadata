@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.0.0-beta.0">
 <title data-rh="true">更新模型 | StarRocks</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://danroscigno.github.io/doc/zh/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://danroscigno.github.io/doc/zh/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://danroscigno.github.io/doc/zh/docs/table_design/table_types/unique_key_table"><meta data-rh="true" property="og:locale" content="zh_CN"><meta data-rh="true" property="og:locale:alternate" content="en_US"><meta data-rh="true" name="docusaurus_locale" content="zh"><meta data-rh="true" name="docsearch:language" content="zh"><meta data-rh="true" name="docusaurus_version" content="3.1"><meta data-rh="true" name="docusaurus_tag" content="docs-default-3.1"><meta data-rh="true" name="docsearch:version" content="3.1"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-3.1"><meta data-rh="true" property="og:title" content="更新模型 | StarRocks"><meta data-rh="true" name="description" content="建表时，支持定义主键和指标列，查询时返回主键相同的一组数据中的最新数据。相对于明细模型，更新模型简化了数据导入流程，能够更好地支撑实时和频繁更新的场景。"><meta data-rh="true" property="og:description" content="建表时，支持定义主键和指标列，查询时返回主键相同的一组数据中的最新数据。相对于明细模型，更新模型简化了数据导入流程，能够更好地支撑实时和频繁更新的场景。"><link data-rh="true" rel="icon" href="/doc/zh/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://danroscigno.github.io/doc/zh/docs/table_design/table_types/unique_key_table"><link data-rh="true" rel="alternate" href="https://danroscigno.github.io/doc/docs/table_design/table_types/unique_key_table" hreflang="en-US"><link data-rh="true" rel="alternate" href="https://danroscigno.github.io/doc/zh/docs/table_design/table_types/unique_key_table" hreflang="zh-CN"><link data-rh="true" rel="alternate" href="https://danroscigno.github.io/doc/docs/table_design/table_types/unique_key_table" hreflang="x-default"><link data-rh="true" rel="preconnect" href="https://ER08SJMRY1-dsn.algolia.net" crossorigin="anonymous"><link rel="search" type="application/opensearchdescription+xml" title="StarRocks" href="/doc/zh/opensearch.xml"><link rel="stylesheet" href="/doc/zh/assets/css/styles.910971bc.css">
-<script src="/doc/zh/assets/js/runtime~main.45b9f18a.js" defer="defer"></script>
+<script src="/doc/zh/assets/js/runtime~main.8640101e.js" defer="defer"></script>
 <script src="/doc/zh/assets/js/main.b14d1b02.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -26,7 +26,7 @@
 <blockquote>
 <p><strong>注意</strong></p>
 <ul>
-<li>建表时必须使用 <code>DISTRIBUTED BY HASH</code> 子句指定分桶键。分桶键的更多说明，请参见<a href="/doc/zh/docs/table_design/Data_distribution.md#%E5%88%86%E6%A1%B6">分桶</a>。</li>
+<li>建表时必须使用 <code>DISTRIBUTED BY HASH</code> 子句指定分桶键。分桶键的更多说明，请参见<a href="/doc/zh/docs/table_design/Data_distribution#%E5%88%86%E6%A1%B6">分桶</a>。</li>
 <li>自 2.5.7 版本起，StarRocks 支持在建表和新增分区时自动设置分桶数量 (BUCKETS)，您无需手动设置分桶数量。更多信息，请参见 <a href="/doc/zh/docs/table_design/Data_distribution#%E7%A1%AE%E5%AE%9A%E5%88%86%E6%A1%B6%E6%95%B0%E9%87%8F">确定分桶数量</a>。</li>
 </ul>
 </blockquote>
@@ -40,7 +40,7 @@
 <li>主键必须满足唯一性约束，且列的值不会修改。</li>
 <li>设置合理的主键。<!-- -->
 <ul>
-<li>查询时，主键在聚合之前就能进行过滤，而指标列的过滤通常在多版本聚合之后，因此建议将频繁使用的过滤字段作为主键，在聚合前就能过滤数据，从而提  升查询性能。</li>
+<li>查询时，主键在聚合之前就能进行过滤，而指标列的过滤通常在多版本聚合之后，因此建议将频繁使用的过滤字段作为主键，在聚合前就能过滤数据，从而提升  查询性能。</li>
 <li>聚合过程中会比较所有主键，因此需要避免设置过多的主键，以免降低查询性能。如果某个列只是偶尔会作为查询中的过滤条件，则不建议放在主键中。</li>
 </ul>
 </li>

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.0.0-beta.0">
 <title data-rh="true">使用 Spark Connector 读取数据 | StarRocks</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://danroscigno.github.io/doc/zh/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://danroscigno.github.io/doc/zh/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://danroscigno.github.io/doc/zh/docs/3.0/unloading/Spark_connector"><meta data-rh="true" property="og:locale" content="zh_CN"><meta data-rh="true" property="og:locale:alternate" content="en_US"><meta data-rh="true" name="docusaurus_locale" content="zh"><meta data-rh="true" name="docsearch:language" content="zh"><meta data-rh="true" name="docusaurus_version" content="3.0"><meta data-rh="true" name="docusaurus_tag" content="docs-default-3.0"><meta data-rh="true" name="docsearch:version" content="3.0"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-3.0"><meta data-rh="true" property="og:title" content="使用 Spark Connector 读取数据 | StarRocks"><meta data-rh="true" name="description" content="StarRocks 提供 Apache Spark™ Connector (StarRocks Connector for Apache Spark™)，支持通过 Spark 读取 StarRocks 中存储的数据。您可以使用 Spark 对读取到的数据进行复杂处理、机器学习等。"><meta data-rh="true" property="og:description" content="StarRocks 提供 Apache Spark™ Connector (StarRocks Connector for Apache Spark™)，支持通过 Spark 读取 StarRocks 中存储的数据。您可以使用 Spark 对读取到的数据进行复杂处理、机器学习等。"><link data-rh="true" rel="icon" href="/doc/zh/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://danroscigno.github.io/doc/zh/docs/3.0/unloading/Spark_connector"><link data-rh="true" rel="alternate" href="https://danroscigno.github.io/doc/docs/3.0/unloading/Spark_connector" hreflang="en-US"><link data-rh="true" rel="alternate" href="https://danroscigno.github.io/doc/zh/docs/3.0/unloading/Spark_connector" hreflang="zh-CN"><link data-rh="true" rel="alternate" href="https://danroscigno.github.io/doc/docs/3.0/unloading/Spark_connector" hreflang="x-default"><link data-rh="true" rel="preconnect" href="https://ER08SJMRY1-dsn.algolia.net" crossorigin="anonymous"><link rel="search" type="application/opensearchdescription+xml" title="StarRocks" href="/doc/zh/opensearch.xml"><link rel="stylesheet" href="/doc/zh/assets/css/styles.910971bc.css">
-<script src="/doc/zh/assets/js/runtime~main.45b9f18a.js" defer="defer"></script>
+<script src="/doc/zh/assets/js/runtime~main.8640101e.js" defer="defer"></script>
 <script src="/doc/zh/assets/js/main.b14d1b02.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -27,10 +27,10 @@
 <blockquote>
 <p><strong>注意</strong></p>
 <ul>
-<li>了解不同版本的 Spark connector 之间的行为变化，请查看<a href="#%E5%8D%87%E7%BA%A7-spark-connector">升级 Spark connector</a>。</li>
+<li>了解不同版本的 Spark connector 之间的行为变化，请查看<a href="#100-%E5%8D%87%E7%BA%A7%E8%87%B3-110">升级 Spark connector</a>。</li>
 <li>自 1.1.1 版本起，Spark connector 不再提供 MySQL JDBC 驱动程序，您需要将驱动程序手动放到 Spark 的类路径中。您可以在 <a href="https://dev.mysql.com/downloads/connector/j/" target="_blank" rel="noopener noreferrer">MySQL 官网</a>或 <a href="https://repo1.maven.org/maven2/mysql/mysql-connector-java/" target="_blank" rel="noopener noreferrer">Maven 中央仓库</a>上找到该驱动程序。</li>
 <li>1.0.0 版本只支持读取 StarRocks，从 1.1.0 版本开始同时支持读写 StarRocks。</li>
-<li>1.0.0 版本和 1.1.0 版本在参数和类型映射上存在差别，请查看<a href="#%E5%8D%87%E7%BA%A7-spark-connector">升级 Spark connector</a>。</li>
+<li>1.0.0 版本和 1.1.0 版本在参数和类型映射上存在差别，请查看<a href="#100-%E5%8D%87%E7%BA%A7%E8%87%B3-110">升级 Spark connector</a>。</li>
 <li>1.0.0 版本一般情况下不再增加新功能，条件允许请尽快升级 Spark Connector。</li>
 </ul>
 </blockquote>
@@ -49,7 +49,7 @@
 <p><strong>注意</strong></p>
 <p>一般情况下最新版本的 Spark Connector 只维护最近三个版本的 Spark。</p>
 </blockquote>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="直接下载">直接下载<a href="#直接下载" class="hash-link" aria-label="直接下载的直接链接" title="直接下载的直接链  接">​</a></h4>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="直接下载">直接下载<a href="#直接下载" class="hash-link" aria-label="直接下载的直接链接" title="直接下载的直接链接">​</a></h4>
 <p>您可以在 <a href="https://repo1.maven.org/maven2/com/starrocks" target="_blank" rel="noopener noreferrer">Maven Central Repository</a> 获取不同版本的 Spark Connector Jar 包。</p>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="添加-maven-依赖">添加 Maven 依赖<a href="#添加-maven-依赖" class="hash-link" aria-label="添加 Maven 依赖的直接链接" title="添加 Maven 依赖的直接链接">​</a></h4>
 <p>依赖配置的格式如下：</p>

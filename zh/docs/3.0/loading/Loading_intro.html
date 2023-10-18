@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.0.0-beta.0">
 <title data-rh="true">导入总览 | StarRocks</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://danroscigno.github.io/doc/zh/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://danroscigno.github.io/doc/zh/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://danroscigno.github.io/doc/zh/docs/3.0/loading/Loading_intro"><meta data-rh="true" property="og:locale" content="zh_CN"><meta data-rh="true" property="og:locale:alternate" content="en_US"><meta data-rh="true" name="docusaurus_locale" content="zh"><meta data-rh="true" name="docsearch:language" content="zh"><meta data-rh="true" name="docusaurus_version" content="3.0"><meta data-rh="true" name="docusaurus_tag" content="docs-default-3.0"><meta data-rh="true" name="docsearch:version" content="3.0"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-3.0"><meta data-rh="true" property="og:title" content="导入总览 | StarRocks"><meta data-rh="true" name="description" content="数据导入是指将原始数据按照业务需求进行清洗、转换、并加载到 StarRocks 中的过程，从而可以在 StarRocks  系统中进行极速统一的数据分析。"><meta data-rh="true" property="og:description" content="数据导入是指将原始数据按照业务需求进行清洗、转换、并加载到 StarRocks 中的过程，从而可以在 StarRocks  系统中进行极速统一的数据分析。"><link data-rh="true" rel="icon" href="/doc/zh/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://danroscigno.github.io/doc/zh/docs/3.0/loading/Loading_intro"><link data-rh="true" rel="alternate" href="https://danroscigno.github.io/doc/docs/3.0/loading/Loading_intro" hreflang="en-US"><link data-rh="true" rel="alternate" href="https://danroscigno.github.io/doc/zh/docs/3.0/loading/Loading_intro" hreflang="zh-CN"><link data-rh="true" rel="alternate" href="https://danroscigno.github.io/doc/docs/3.0/loading/Loading_intro" hreflang="x-default"><link data-rh="true" rel="preconnect" href="https://ER08SJMRY1-dsn.algolia.net" crossorigin="anonymous"><link rel="search" type="application/opensearchdescription+xml" title="StarRocks" href="/doc/zh/opensearch.xml"><link rel="stylesheet" href="/doc/zh/assets/css/styles.910971bc.css">
-<script src="/doc/zh/assets/js/runtime~main.45b9f18a.js" defer="defer"></script>
+<script src="/doc/zh/assets/js/runtime~main.8640101e.js" defer="defer"></script>
 <script src="/doc/zh/assets/js/main.b14d1b02.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -122,14 +122,14 @@
 <p>从 Hive、Iceberg、Hudi、Delta Lake 导入数据时，推荐创建 <a href="/doc/zh/docs/3.0/data_source/catalog/hive_catalog">Hive catalog</a>、<a href="/doc/zh/docs/3.0/data_source/catalog/iceberg_catalog">Iceberg catalog</a>、<a href="/doc/zh/docs/3.0/data_source/catalog/hudi_catalog">Hudi Catalog</a>、<a href="/doc/zh/docs/3.0/data_source/catalog/deltalake_catalog">Delta Lake Catalog</a>，然后使用 <a href="/doc/zh/docs/3.0/loading/InsertInto">INSERT</a> 实现导入。</p>
 </li>
 <li>
-<p>从另外一个 StarRocks 集群或从 Elasticsearch 导入数据时，推荐创建 <a href="/doc/zh/docs/3.0/data_source/External_table#starrocks-%E5%A4%96%E9%83%A8%E8%A1%A8">StarRocks 外部表</a>或 <a href="/doc/zh/docs/3.0/data_source/External_table#elasticsearch-%E5%A4%96%E9%83%A8%E8%A1%A8">Elasticsearch 外部表</a>，然后使用 <a href="/doc/zh/docs/3.0/loading/InsertInto">INSERT</a> 实现导入。或者，您也可以通过 <a href="/doc/zh/docs/3.0/loading/DataX-starrocks-writer">DataX</a> 实现导入。</p>
+<p>从另外一个 StarRocks 集群或从 Elasticsearch 导入数据时，推荐创建 <a href="/doc/zh/docs/3.0/data_source/External_table#starrocks-%E5%A4%96%E9%83%A8%E8%A1%A8">StarRocks 外部表</a>或 <a href="/doc/zh/docs/3.0/data_source/External_table#deprecated-elasticsearch-%E5%A4%96%E9%83%A8%E8%A1%A8">Elasticsearch 外部表</a>，然后使用 <a href="/doc/zh/docs/3.0/loading/InsertInto">INSERT</a> 实现导入。或者，您也可以通过 <a href="/doc/zh/docs/3.0/loading/DataX-starrocks-writer">DataX</a> 实现导入。</p>
 <blockquote>
 <p><strong>注意</strong></p>
 <p>StarRocks 外表只支持数据写入，不支持数据读取。</p>
 </blockquote>
 </li>
 <li>
-<p>从 MySQL 导入数据时，推荐创建 <a href="/doc/zh/docs/3.0/data_source/External_table#mysql-%E5%A4%96%E9%83%A8%E8%A1%A8">MySQL 外部表</a>、然后使用 <a href="/doc/zh/docs/3.0/loading/InsertInto">INSERT</a> 实现导入。或者，您也可以通过 <a href="/doc/zh/docs/3.0/loading/DataX-starrocks-writer">DataX</a> 实现导入。如果要导入实时数据，建议您参考 <a href="/doc/zh/docs/3.0/loading/Flink_cdc_load">从 MySQL 实时同步</a> 实现导入。</p>
+<p>从 MySQL 导入数据时，推荐创建 <a href="/doc/zh/docs/3.0/data_source/External_table#deprecated-mysql-%E5%A4%96%E9%83%A8%E8%A1%A8">MySQL 外部表</a>、然后使用 <a href="/doc/zh/docs/3.0/loading/InsertInto">INSERT</a> 实现导入。或者，您也可以通过 <a href="/doc/zh/docs/3.0/loading/DataX-starrocks-writer">DataX</a> 实现导入。如果要导入实时数据，建议您参考 <a href="/doc/zh/docs/3.0/loading/Flink_cdc_load">从 MySQL 实时同步</a> 实现导入。</p>
 </li>
 <li>
 <p>从 Oracle、PostgreSQL 或 SQL Server 等数据源导入数据时，推荐创建 <a href="/doc/zh/docs/3.0/data_source/External_table#%E6%9B%B4%E5%A4%9A%E6%95%B0%E6%8D%AE%E5%BA%93jdbc%E7%9A%84%E5%A4%96%E9%83%A8%E8%A1%A8">JDBC 外部表</a>、然后使用 <a href="/doc/zh/docs/3.0/loading/InsertInto">INSERT</a> 实现导入。或者，您也可以通过 <a href="/doc/zh/docs/3.0/loading/DataX-starrocks-writer">DataX</a> 实现导入。</p>
@@ -140,7 +140,7 @@
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="内存限制">内存限制<a href="#内存限制" class="hash-link" aria-label="内存限制的直接链接" title="内存限制的直接链接">​</a></h2>
 <p>您可以通过设置参数来限制单个导入作业的内存使用，以防止导入作业占用过多内存，特别是在导入并发较高的情况下。同时，您也需要注意避免设置过小的内存使用上限，因为内存使用上限过小，导入过程中可能会因为内存使用量达到上限而频繁地将内存中的数据刷出到磁盘，进而可能影响导入效率。建议您根据具体的业务场景要求，合理地设置内存使用上限。</p>
 <p>不同的导入方式限制内存的方式略有不同，具体请参见 <a href="/doc/zh/docs/3.0/loading/StreamLoad">Stream Load</a>、<a href="/doc/zh/docs/3.0/loading/BrokerLoad">Broker Load</a>、<a href="/doc/zh/docs/3.0/loading/RoutineLoad">Routine Load</a>、<a href="/doc/zh/docs/3.0/loading/SparkLoad">Spark Load</a> 和 <a href="/doc/zh/docs/3.0/loading/InsertInto">INSERT</a>。需要注意的是，一个导入作业通常都会分布在多个 BE 上执行，这些内存参数限制的是一个导入作业在单个 BE 上的内存使用，而不是在整个集群上的内存使用总和。</p>
-<p>您还可以通过设置一些参 数来限制在单个 BE 上运行的所有导入作业的总的内存使用上限。可参考本文“<a href="/doc/zh/docs/3.0/loading/Loading_intro#%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE">系统配置</a>”章节。</p>
+<p>您还可以通过设置一些参数来限制在单个 BE 上运行的所有导入作业的总的内存使用上限。可参考本文“<a href="/doc/zh/docs/3.0/loading/Loading_intro#%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE">系统配置</a>”章节。</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="使用说明">使用说明<a href="#使用说明" class="hash-link" aria-label="使用说明的直接链接" title="使用说明的直接链接">​</a></h2>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="导入自动赋值">导入自动赋值<a href="#导入自动赋值" class="hash-link" aria-label="导入自动赋值的直接链接" title="导入自动赋值的直接链接">​</a></h3>
 <p>导入数据时，您可以指定不导入数据文件中某个字段的数据，这种情况下：</p>
@@ -154,7 +154,7 @@
 </blockquote>
 </li>
 <li>
-<p>如果您在创建 StarRocks 表时没有使用 <code>DEFAULT</code> 关键字给该字段对应的目标列指定默认值，则 StarRocks 在导入该行数据时会自动往 该列填充 <code>NULL</code> 值。</p>
+<p>如果您在创建 StarRocks 表时没有使用 <code>DEFAULT</code> 关键字给该字段对应的目标列指定默认值，则 StarRocks 在导入该行 数据时会自动往该列填充 <code>NULL</code> 值。</p>
 <blockquote>
 <p><strong>说明</strong></p>
 <p>如果该列在建表时定义该列为 <code>NOT NULL</code>，则导入会报错，作业失败。</p>
@@ -167,7 +167,7 @@
 <p>如果您的 StarRocks 集群有多数据副本，您可以根据业务需求为 Table 设置不同导入数据安全等级，即设置需要多少数据副本导入成功后 StarRocks 可返回导入成功。您可在 <a href="/doc/zh/docs/3.0/sql-reference/sql-statements/data-definition/CREATE_TABLE">CREATE TABLE</a> 时通过增加属性（PROPERTIES） <code>write_quorum</code> 指定导入数据安全等级，或通过 <a href="/doc/zh/docs/3.0/sql-reference/sql-statements/data-definition/ALTER_TABLE">ALTER TABLE</a> 语句为已有 Table 添加该属性。该属性从 2.5 版本开始支持。</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="系统配置">系统配置<a href="#系统配置" class="hash-link" aria-label="系统配置的直接链接" title="系统配置的直接链接">​</a></h2>
 <p>本节解释对所有导入方式均适用的参数配置。</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="fe-配置">FE 配置<a href="#fe- 配置" class="hash-link" aria-label="FE 配置的直接链接" title="FE 配置的直接链接">​</a></h3>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="fe-配置">FE 配置<a href="#fe-配置" class="hash-link" aria-label="FE 配置的直接链接" title="FE 配置的直接链接">​</a></h3>
 <p>您可以通过修改每个 FE 的配置文件 <strong>fe.conf</strong> 来设置如下参数：</p>
 <ul>
 <li>
@@ -210,7 +210,7 @@
 <p><code>load_process_max_memory_limit_bytes</code>：指定 BE 上最大内存使用量，默认为 100 GB。</p>
 </li>
 <li>
-<p><code>load_process_max_memory_limit_percent</code>：指定 BE 上最大内存使用百分比，默认为 30%。该参数与 <code>mem_limit</code> 参数不同。<code>mem_limit</code> 参数指定的是 BE 进程内存上限，默认硬上限为 BE 所在机器内存的 90%，软上限为 BE 所在机器内存的 90% x 90%。</p>
+<p><code>load_process_max_memory_limit_percent</code>：指定 BE 上最大内存使用百分比，默认为 30%。该参数与 <code>mem_limit</code> 参数不同。<code>mem_limit</code> 参数指定的是 BE 进程内存上限，默认硬上限为 BE 所在机器内存的 90%，软上  限为 BE 所在机器内存的 90% x 90%。</p>
 <p>假设 BE 所在机器物理内存大小为 M，则用于导入的内存上限为：<code>M x 90% x 90% x 30%</code>。</p>
 </li>
 </ul>
