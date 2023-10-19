@@ -1,10 +1,10 @@
 {
   "index_name": "starrocks",
   "start_urls": [
-    "https://danroscigno.github.io/doc/"
+    "https://docs-stage.starrocks.io/"
   ],
   "sitemap_urls": [
-    "https://danroscigno.github.io/doc/sitemap.xml"
+    "https://docs-stage.starrocks.io/sitemap.xml"
   ],
   "sitemap_alternate_links": true,
   "selectors": {
