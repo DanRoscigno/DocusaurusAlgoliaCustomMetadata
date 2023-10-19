@@ -18,7 +18,7 @@ const config = {
   url: 'https://danroscigno.github.io/',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
+  baseUrl: '/doc/',
   //https://danroscigno.github.io/docusaurusv3/docs/3.0/administration/Authentication.html
 
   // GitHub pages deployment config.
