@@ -1,0 +1,58 @@
+name: __Stage__Deploy document site to s3
+on: workflow_dispatch
+env:
+  AWS_KEY: ${{ secrets.AWS_KEY }}
+  AWS_SECRET: ${{ secrets.AWS_SECRET }}
+jobs:
+  stage_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'yarn'
+          cache-dependency-path: 'yarn.lock'
+      
+      - uses: actions/cache@v3
+        id: cache
+        with:
+          path: ./node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+          
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET }}
+          aws-region: us-west-2
+      
+      - uses: actions/checkout@v3
+        with:
+          repository: starrocks/starrocks
+          fetch-depth: 0
+          path: ./temp/en-us
+
+      - uses: actions/checkout@v3
+        with:
+          repository: starrocks/docs.zh-cn
+          fetch-depth: 0
+          path: ./temp/zh-cn
+
+      - name: Install Dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: |
+          yarn install --frozen-lockfile
+      
+      - run: npm run copy
+      - name: Build website
+        run:  |
+          export NODE_OPTIONS="--max_old_space_size=8192"
+          yarn build
+      - run: aws s3 cp build/ s3://starrocks-io-docs-stage/ --recursive
+      - name: clean cdn cache
+        run: |
+          aws cloudfront create-invalidation --distribution-id E3A0PTQYDTB1UQ --paths "/*"
