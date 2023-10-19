@@ -8,7 +8,9 @@ displayed_sidebar: "English"
 
 EOF
 
-find versioned_docs -type f -name "*\.md*" | while read file; do
+find versioned_docs -type d -name _assets -prune -o \
+  -type f -name "*\.md*" \
+  | while read file; do
   cat - "$file" < "$header" > "$file.new" && mv "$file.new" "$file"
 done
 

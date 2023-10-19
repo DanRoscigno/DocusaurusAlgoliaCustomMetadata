@@ -13,12 +13,16 @@ Before generating the HTML some modifications are made to the Markdown files:
 - removing the TOC.md and README.md files
 - replacing the StarRocks_intro pages with ones that use Docusaurus styling
 - adding frontmatter to all of the Markdown to specify which sidebar (English or Chinese) is to be used
+- the `docs/assets/` dir is renamed to `_assets`. This is done as Docusaurus automatically
+ignores markdown files in dirs that start with an underscore. This is also why I have my `_IGNORE`
+dirname. This is where I pop markdown files that I do not want included in the docs directly.
 
 Once we go into production the three changes above can be removed as we will:
 
 - remove the TOC.md files as they are not used, and leave the README out of the nav
 - replace the current intro pages with the new ones that work with Docusaurus
 - add the frontmatter to the Markdown files in thir repos
+- rename the `assets` dirs to `_assets` so we don't have to do these changes in the build
 
 ## Building local
 

@@ -48,6 +48,7 @@ jobs:
           rm -rf ../versioned_docs/version-3.1
           mkdir -p ../versioned_docs/version-3.1
           cp -r docs/* ../versioned_docs/version-3.1
+          mv ../versioned_docs/version-3.1/assets ../versioned_docs/version-3.1/_assets
 
       - name: process English 3.0
         run:  |
@@ -56,6 +57,7 @@ jobs:
           rm -rf ../versioned_docs/version-3.0
           mkdir -p ../versioned_docs/version-3.0
           cp -r docs/* ../versioned_docs/version-3.0
+          mv ../versioned_docs/version-3.0/assets ../versioned_docs/version-3.0/_assets
 
       - name: process English 2.5
         run:  |
@@ -64,6 +66,7 @@ jobs:
           rm -rf ../versioned_docs/version-2.5
           mkdir -p ../versioned_docs/version-2.5
           cp -r docs/* ../versioned_docs/version-2.5
+          mv ../versioned_docs/version-2.5/assets ../versioned_docs/version-2.5/_assets
 
       - name: process Chinese 3.1
         run:  |
@@ -72,6 +75,7 @@ jobs:
           rm -rf ../i18n/zh/docusaurus-plugin-content-docs/version-3.1/
           mkdir -p ../i18n/zh/docusaurus-plugin-content-docs/version-3.1
           cp -r * ../i18n/zh/docusaurus-plugin-content-docs/version-3.1/
+          mv ../i18n/zh/docusaurus-plugin-content-docs/version-3.1/assets ../i18n/zh/docusaurus-plugin-content-docs/version-3.1/_assets
 
       - name: process Chinese 3.0
         run:  |
@@ -80,6 +84,7 @@ jobs:
           rm -rf ../i18n/zh/docusaurus-plugin-content-docs/version-3.0/
           mkdir -p ../i18n/zh/docusaurus-plugin-content-docs/version-3.0
           cp -r * ../i18n/zh/docusaurus-plugin-content-docs/version-3.0/
+          mv ../i18n/zh/docusaurus-plugin-content-docs/version-3.0/assets ../i18n/zh/docusaurus-plugin-content-docs/version-3.0/_assets
 
       - name: process Chinese 2.5
         run:  |
@@ -88,6 +93,7 @@ jobs:
           rm -rf ../i18n/zh/docusaurus-plugin-content-docs/version-2.5/
           mkdir -p ../i18n/zh/docusaurus-plugin-content-docs/version-2.5
           cp -r * ../i18n/zh/docusaurus-plugin-content-docs/version-2.5/
+          mv ../i18n/zh/docusaurus-plugin-content-docs/version-2.5/assets ../i18n/zh/docusaurus-plugin-content-docs/version-2.5/_assets
 
       - name: cleanup before running yarn build
         run:  |
@@ -104,6 +110,11 @@ jobs:
           _IGNORE/add_missing_english_files.sh
           _IGNORE/add_chinese_sidebar.sh
           _IGNORE/add_english_sidebar.sh
+          # "switching assets to _assets"
+          find i18n/zh/docusaurus-plugin-content-docs -type d -name _assets -prune -o \
+            -type f -name "*\.md*" -exec sed -i 's/\/assets\//\/_assets\//g' {} \;
+          find versioned_docs -type d -name _assets -prune -o \
+            -type f -name "*\.md*" -exec sed -i 's/\/assets\//\/_assets\//g' {} \;
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
