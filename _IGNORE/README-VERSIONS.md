@@ -9,7 +9,7 @@ cd GitHub/Docusaurus/starrocks
 ```shell
 yarn docusaurus docs:version 3.0
 yarn docusaurus docs:version 2.5
-yarn docusaurus docs:version 2.4
+yarn docusaurus docs:version 2.3
 ```
 
 ## Create temp dirs to clone the repos in
@@ -53,13 +53,13 @@ mkdir ../../versioned_docs/version-2.5
 cp -r docs/* ../../versioned_docs/version-2.5
 ```
 
-### Process English version 2.4
+### Process English version 2.3
 
 ```shell
-git checkout branch-2.4
-rm -rf ../../versioned_docs/version-2.4
-mkdir ../../versioned_docs/version-2.4
-cp -r docs/* ../../versioned_docs/version-2.4/
+git checkout branch-2.3
+rm -rf ../../versioned_docs/version-2.3
+mkdir ../../versioned_docs/version-2.3
+cp -r docs/* ../../versioned_docs/version-2.3/
 ```
 
 ## Work on the Chinese docs
@@ -97,13 +97,13 @@ mkdir ../../i18n/zh/docusaurus-plugin-content-docs/version-2.5
 cp -r * ../../i18n/zh/docusaurus-plugin-content-docs/version-2.5
 ```
 
-### Process Chinese version 2.4
+### Process Chinese version 2.3
 
 ```shell
-git checkout 2.4
-rm -rf ../../i18n/zh/docusaurus-plugin-content-docs/version-2.4
-mkdir ../../i18n/zh/docusaurus-plugin-content-docs/version-2.4
-cp -r * ../../i18n/zh/docusaurus-plugin-content-docs/version-2.4
+git checkout 2.3
+rm -rf ../../i18n/zh/docusaurus-plugin-content-docs/version-2.3
+mkdir ../../i18n/zh/docusaurus-plugin-content-docs/version-2.3
+cp -r * ../../i18n/zh/docusaurus-plugin-content-docs/version-2.3
 ```
 
 ## Back up to the working dir

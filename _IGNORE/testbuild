@@ -30,6 +30,36 @@ mkdir -p ${WORKINGDIR}/versioned_docs/version-2.5
 cp -r docs/* ${WORKINGDIR}/versioned_docs/version-2.5
 mv ${WORKINGDIR}/versioned_docs/version-2.5/assets ${WORKINGDIR}/versioned_docs/version-2.5/_assets
 
+git checkout branch-2.3
+rm -rf ${WORKINGDIR}/versioned_docs/version-2.3
+mkdir -p ${WORKINGDIR}/versioned_docs/version-2.3
+cp -r docs/* ${WORKINGDIR}/versioned_docs/version-2.3
+mv ${WORKINGDIR}/versioned_docs/version-2.3/assets ${WORKINGDIR}/versioned_docs/version-2.3/_assets
+
+git checkout branch-2.2
+rm -rf ${WORKINGDIR}/versioned_docs/version-2.2
+mkdir -p ${WORKINGDIR}/versioned_docs/version-2.2
+cp -r docs/* ${WORKINGDIR}/versioned_docs/version-2.2
+mv ${WORKINGDIR}/versioned_docs/version-2.2/assets ${WORKINGDIR}/versioned_docs/version-2.2/_assets
+
+git checkout branch-2.1
+rm -rf ${WORKINGDIR}/versioned_docs/version-2.1
+mkdir -p ${WORKINGDIR}/versioned_docs/version-2.1
+cp -r docs/* ${WORKINGDIR}/versioned_docs/version-2.1
+mv ${WORKINGDIR}/versioned_docs/version-2.1/assets ${WORKINGDIR}/versioned_docs/version-2.1/_assets
+
+git checkout branch-2.0
+rm -rf ${WORKINGDIR}/versioned_docs/version-2.0
+mkdir -p ${WORKINGDIR}/versioned_docs/version-2.0
+cp -r docs/* ${WORKINGDIR}/versioned_docs/version-2.0
+mv ${WORKINGDIR}/versioned_docs/version-2.0/assets ${WORKINGDIR}/versioned_docs/version-2.0/_assets
+
+git checkout branch-1.19
+rm -rf ${WORKINGDIR}/versioned_docs/version-1.19
+mkdir -p ${WORKINGDIR}/versioned_docs/version-1.19
+cp -r docs/* ${WORKINGDIR}/versioned_docs/version-1.19
+mv ${WORKINGDIR}/versioned_docs/version-1.19/assets ${WORKINGDIR}/versioned_docs/version-1.19/_assets
+
 cd ${WORKINGDIR}/temp-zh
 gh repo clone StarRocks/docs.zh-cn
 cd docs.zh-cn
@@ -51,6 +81,36 @@ rm -rf ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-2.5/
 mkdir -p ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-2.5
 cp -r * ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-2.5/
 mv ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-2.5/assets ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-2.5/_assets
+
+git checkout 2.3
+rm -rf ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-2.3/
+mkdir -p ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-2.3
+cp -r * ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-2.3/
+mv ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-2.3/assets ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-2.3/_assets
+
+git checkout 2.2
+rm -rf ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-2.2/
+mkdir -p ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-2.2
+cp -r * ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-2.2/
+mv ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-2.2/assets ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-2.2/_assets
+
+git checkout 2.1
+rm -rf ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-2.1/
+mkdir -p ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-2.1
+cp -r * ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-2.1/
+mv ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-2.1/assets ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-2.1/_assets
+
+git checkout 2.0
+rm -rf ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-2.0/
+mkdir -p ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-2.0
+cp -r * ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-2.0/
+mv ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-2.0/assets ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-2.0/_assets
+
+git checkout 1.19
+rm -rf ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-1.19/
+mkdir -p ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-1.19
+cp -r * ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-1.19/
+mv ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-1.19/assets ${WORKINGDIR}/i18n/zh/docusaurus-plugin-content-docs/version-1.19/_assets
 
 echo "cleanup before running yarn build"
 cd ${WORKINGDIR}
@@ -83,7 +143,4 @@ find versioned_docs -type d -name _assets -prune -o \
 
 echo "verifying Markdown"
 npx docusaurus-mdx-checker -c versioned_docs
-npx docusaurus-mdx-checker -c docs
-npx docusaurus-mdx-checker -c i18n
-
-yarn build
+npx docusaurus-mdx-checker -c i18n/zh/docusaurus-plugin-content-docs
