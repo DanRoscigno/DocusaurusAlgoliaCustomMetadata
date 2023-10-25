@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="zh-CN" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-3.0 docs-doc-page docs-doc-id-integrations/IDE_integrations/Dataphin" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.0.0-beta.0">
+<title data-rh="true">Dataphin | StarRocks</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://danroscigno.github.io/zh/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://danroscigno.github.io/zh/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://danroscigno.github.io/zh/docs/3.0/integrations/IDE_integrations/Dataphin"><meta data-rh="true" property="og:locale" content="zh_CN"><meta data-rh="true" property="og:locale:alternate" content="en_US"><meta data-rh="true" name="docusaurus_locale" content="zh"><meta data-rh="true" name="docsearch:language" content="zh"><meta data-rh="true" name="docusaurus_version" content="3.0"><meta data-rh="true" name="docusaurus_tag" content="docs-default-3.0"><meta data-rh="true" name="docsearch:version" content="3.0"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-3.0"><meta data-rh="true" property="og:title" content="Dataphin | StarRocks"><meta data-rh="true" name="description" content="Dataphin 是阿里巴巴集团 OneData 数据治理方法论内部实践的云化输出，一站式提供数据采、建、管、用全生命周期的大数据能力，以助力企业显著提升数据治理水平，构建质量可靠、消费便捷、生产安全经济的企业级数据中台。Dataphin 提供多种计算平台支持及可拓展的开放能力，以适应各行业企业的平台技术架构和特定诉求。"><meta data-rh="true" property="og:description" content="Dataphin 是阿里巴巴集团 OneData 数据治理方法论内部实践的云化输出，一站式提供数据采、建、管、用全生命周期的大数据能力，以助力企业显著提升数据治理水平，构建质量可靠、消费便捷、生产安全经济的企业级数据中台。Dataphin 提供多种计算平台支持及可拓展的开放能力，以适应各行业企业的平台技术架构和特定诉求。"><link data-rh="true" rel="icon" href="/zh/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://danroscigno.github.io/zh/docs/3.0/integrations/IDE_integrations/Dataphin"><link data-rh="true" rel="alternate" href="https://danroscigno.github.io/docs/3.0/integrations/IDE_integrations/Dataphin" hreflang="en-US"><link data-rh="true" rel="alternate" href="https://danroscigno.github.io/zh/docs/3.0/integrations/IDE_integrations/Dataphin" hreflang="zh-CN"><link data-rh="true" rel="alternate" href="https://danroscigno.github.io/docs/3.0/integrations/IDE_integrations/Dataphin" hreflang="x-default"><link data-rh="true" rel="preconnect" href="https://ER08SJMRY1-dsn.algolia.net" crossorigin="anonymous"><link rel="search" type="application/opensearchdescription+xml" title="StarRocks" href="/zh/opensearch.xml"><link rel="stylesheet" href="/zh/assets/css/styles.83b858a3.css">
+<script src="/zh/assets/js/runtime~main.c14eeca4.js" defer="defer"></script>
+<script src="/zh/assets/js/main.71e2ed45.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="跳到主要内容"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">跳到主要内容</a></div><nav aria-label="主导航" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="切换导航栏" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a href="https://www.starrocks.io/" target="_blank" rel="noopener noreferrer" class="navbar__brand"><div class="navbar__logo"><img src="/zh/img/logo.svg" alt="StarRocks Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/zh/img/logo.svg" alt="StarRocks Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">StarRocks</b></a><a class="navbar__item navbar__link" href="/zh/docs/3.0/administration/Authentication">Documentation</a><div class="navbar__item dropdown dropdown--hoverable"><a class="navbar__link" aria-haspopup="true" aria-expanded="false" role="button" href="/zh/docs/3.0/administration/Authentication">3.0</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/zh/docs/next/examples/introduction">Next</a></li><li><a class="dropdown__link" href="/zh/docs/integrations/IDE_integrations/Dataphin">Latest-3.1</a></li><li><a aria-current="page" class="dropdown__link dropdown__link--active" href="/zh/docs/3.0/integrations/IDE_integrations/Dataphin">3.0</a></li><li><a class="dropdown__link" href="/zh/docs/2.5/administration/Authentication">Stable-2.5</a></li><li><a class="dropdown__link" href="/zh/docs/2.3/administration/Authentication">2.3</a></li><li><a class="dropdown__link" href="/zh/docs/2.2/administration/Authentication">2.2</a></li><li><a class="dropdown__link" href="/zh/docs/2.1/administration/Authentication">2.1</a></li><li><a class="dropdown__link" href="/zh/docs/2.0/administration/Build_in_docker">2.0</a></li><li><a class="dropdown__link" href="/zh/docs/1.19/development/Build_in_docker">1.19</a></li></ul></div><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" class="iconLanguage_nlXk"><path fill="currentColor" d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"></path></svg>中文</a><ul class="dropdown__menu"><li><a href="/docs/3.0/integrations/IDE_integrations/Dataphin" target="_self" rel="noopener noreferrer" class="dropdown__link" lang="en-US">English</a></li><li><a href="/zh/docs/3.0/integrations/IDE_integrations/Dataphin" target="_self" rel="noopener noreferrer" class="dropdown__link dropdown__link--active" lang="zh-CN">中文</a></li></ul></div></div><div class="navbar__items navbar__items--right"><a href="https://github.com/StarRocks/starrocks" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="切换浅色/暗黑模式（当前为浅色模式）" aria-label="切换浅色/暗黑模式（当前为浅色模式）" aria-live="polite"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="searchBox_ZlJk"><button type="button" class="DocSearch DocSearch-Button" aria-label="搜索"><span class="DocSearch-Button-Container"><svg width="20" height="20" class="DocSearch-Search-Icon" viewBox="0 0 20 20"><path d="M14.386 14.386l4.0877 4.0877-4.0877-4.0877c-2.9418 2.9419-7.7115 2.9419-10.6533 0-2.9419-2.9418-2.9419-7.7115 0-10.6533 2.9418-2.9419 7.7115-2.9419 10.6533 0 2.9419 2.9418 2.9419 7.7115 0 10.6533z" stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg><span class="DocSearch-Button-Placeholder">搜索</span></span><span class="DocSearch-Button-Keys"></span></button></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="回到顶部" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="文档侧边栏" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" aria-expanded="false" href="/zh/docs/3.0/administration/Authentication">administration</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" aria-expanded="false" href="/zh/docs/3.0/benchmarking/SSB_Benchmarking">benchmarking</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" aria-expanded="false" href="/zh/docs/3.0/data_source/External_table">data_source</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" aria-expanded="false" href="/zh/docs/3.0/deployment/deploy_broker">deployment</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" aria-expanded="false" href="/zh/docs/3.0/developers/How_to_Contribute">developers</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" aria-expanded="false" href="/zh/docs/3.0/ecosystem_release/flink_connector">ecosystem_release</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" aria-expanded="false" href="/zh/docs/3.0/faq/Deploy_faq">faq</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" aria-expanded="true" href="/zh/docs/3.0/integrations/BI_integrations/FineBI">integrations</a></div><ul style="display:block;overflow:visible;height:auto" class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" aria-expanded="false" tabindex="0" href="/zh/docs/3.0/integrations/BI_integrations/FineBI">BI_integrations</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" aria-expanded="true" tabindex="0" href="/zh/docs/3.0/integrations/IDE_integrations/DBeaver">IDE_integrations</a></div><ul style="display:block;overflow:visible;height:auto" class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/zh/docs/3.0/integrations/IDE_integrations/DBeaver">DBeaver</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/zh/docs/3.0/integrations/IDE_integrations/DataGrip">DataGrip</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/zh/docs/3.0/integrations/IDE_integrations/Dataphin">Dataphin</a></li></ul></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/zh/docs/3.0/integrations/authenticate_to_aws_resources">配置 AWS 认证信息</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/zh/docs/3.0/integrations/authenticate_to_azure_storage">配置 Microsoft Azure Storage 认证信息</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/zh/docs/3.0/integrations/authenticate_to_gcs">配置 GCS 认证信息</a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" aria-expanded="false" tabindex="0" href="/zh/docs/3.0/integrations/other_integrations/datadog_support">other_integrations</a></div></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/zh/docs/3.0/integrations/superset_support">支持 Superset</a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" aria-expanded="false" href="/zh/docs/3.0/introduction/Architecture">introduction</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" aria-expanded="false" href="/zh/docs/3.0/loading/BrokerLoad">loading</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" aria-expanded="false" href="/zh/docs/3.0/quick_start">quick_start</a><button aria-label="Expand sidebar category &#x27;quick_start&#x27;" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" aria-expanded="false" href="/zh/docs/3.0/reference/Error_code">reference</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" aria-expanded="false" href="/zh/docs/3.0/release_notes/release-2.2">release_notes</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" aria-expanded="false" href="/zh/docs/3.0/sql-reference/sql-functions/How_to_Write_Functions_Documentation">sql-reference</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" aria-expanded="false" href="/zh/docs/3.0/table_design">介绍</a><button aria-label="Expand sidebar category &#x27;介绍&#x27;" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" aria-expanded="false" href="/zh/docs/3.0/unloading/Export">unloading</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" aria-expanded="false" href="/zh/docs/3.0/using_starrocks/Bitmap_index">using_starrocks</a></div></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="页面路径"><ul class="breadcrumbs" itemscope="" itemtype="https://schema.org/BreadcrumbList"><li class="breadcrumbs__item"><span class="breadcrumbs__link">integrations</span><meta itemprop="position" content="1"></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">IDE_integrations</span><meta itemprop="position" content="2"></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link" itemprop="name">Dataphin</span><meta itemprop="position" content="3"></li></ul></nav><span class="theme-doc-version-badge badge badge--secondary">版本：3.0</span><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">本页总览</button></div><div class="theme-doc-markdown markdown"><h1>Dataphin</h1>
+<p>Dataphin 是阿里巴巴集团 OneData 数据治理方法论内部实践的云化输出，一站式提供数据采、建、管、用全生命周期的大数据能力，以助力企业显著提升数据治理水平，构建质量可靠、消费便捷、生产安全经济的企业级数据中台。Dataphin 提供多种计算平台支持及可拓展的开放能力，以适应各行业企业的平台技术架构和特定诉求。</p>
+<p>Dataphin 与 StarRocks 集成分为以下几种场景：</p>
+<ul>
+<li>
+<p>作为数据集成的来源或目标数据源，支持从 StarRocks 中读取数据到其他数据源，或从其他数据源写入数据到 StarRocks。</p>
+</li>
+<li>
+<p>作为实时研发的来源表、维表或结果表。</p>
+</li>
+<li>
+<p>作为数据仓库或 数据集市，注册 StarRocks 为 Dataphin 计算源，可进行 SQL 研发及调度、数据质量检测、安全识别等数据研发及治理工作。</p>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="数据集成">数据集成<a href="#数据集成" class="hash-link" aria-label="数据集成的直接链接" title="数据集成的直接链接">​</a></h2>
+<p>在 Dataphin 中，支持创建 StarRocks 数据源，并且在离线集成任务中使用 StarRocks 数据源作为来源数据库或目标数据库。具体使用步骤如下：</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="创建-starrocks-数据源">创建 StarRocks 数据源<a href="#创建-starrocks-数据源" class="hash-link" aria-label="创建 StarRocks 数据源的直接链接" title="创建 StarRocks 数据源的直接链接">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="基本信息">基本信息<a href="#基本信息" class="hash-link" aria-label="基本信息的直接链接" title="基本信息的直接链接">​</a></h4>
+<p><img loading="lazy" alt="Create StarRocks datasource - Basic info" src="/zh/assets/images/create_sr_datasource_1-6595ec9c80886c97988deeefcd004a05.png" width="1174" height="720" class="img_ev3q"></p>
+<ul>
+<li>
+<p><strong>数据源名称</strong>：必填。输入数据源的名称，只能包含中文、字母、数字、下划线（_）或中划线（-），长度不能超过 64 个字符。</p>
+</li>
+<li>
+<p><strong>数据源编码</strong>：选填。配置数据源编码后，可在 Flink SQL 任务中通过<code>数据源编码.table</code> 或 <code>数据源编码.schema.table</code> 的格式引用数据源中的表。如果需要根据所处环境自动访问对应环境的数据源，请通过 <code>${数据源编码}.table</code> 或 <code>${数据源编码}.schema.table</code> 的格式访问。注意：目前仅支持 MySQL、Hologres、MaxCompute 数据源。</p>
+</li>
+<li>
+<p><strong>数据源描述</strong>：选填。输入对数据源简单的描述，长  度不得超过 128 个字符。</p>
+</li>
+<li>
+<p><strong>数据源配置</strong>：必填。如果业务数据源区分生产数据源和开发数据源，则选择 <strong>“生产+开发”数据源</strong>。如果业务数据源不区分生产数据源和开发数据源，则选择 <strong>“生产”数据源</strong>。</p>
+</li>
+<li>
+<p><strong>标签</strong>：选填。可选择标签给数据源进行分类打标。</p>
+</li>
+</ul>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="配置信息">配置信息<a href="#配置信息" class="hash-link" aria-label="配置信息的直接链接" title="配置信息的直接链接">​</a></h4>
+<p><img loading="lazy" alt="Create StarRocks datasource - Configuration info" src="/zh/assets/images/create_sr_datasource_2-f8c0e477a38678e8232869ccb50609f8.png" width="1280" height="517" class="img_ev3q"></p>
+<ul>
+<li>
+<p><strong>JDBC URL</strong>：必填。格式为 <code>jdbc:mysql://&lt;host&gt;:&lt;port&gt;/&lt;dbname&gt;</code>，其中 <code>host</code> 为 StarRocks 集群的 FE（Front End）主机 IP 地址，<code>port</code> 为 FE 的查询端口，<code>dbname</code> 为数据库名称。</p>
+</li>
+<li>
+<p><strong>Load URL</strong>：必填。格式为 <code>fe_ip:http_port;fe_ip:http_port</code>，其中 <code>fe_ip</code> 为 FE 的 Host，<code>http_port</code> 为 FE 的 HTTP 端口。</p>
+</li>
+<li>
+<p><strong>用户名</strong>：必填。数据库的用户名。</p>
+</li>
+<li>
+<p><strong>密码</strong>：必填。数据库的密码。</p>
+</li>
+</ul>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="高级设置">高级设置<a href="#高级设置" class="hash-link" aria-label="高级设置的直接链接" title="高级设置的直接链接">​</a></h4>
+<p><img loading="lazy" alt="Create StarRocks datasource - Advanced settings" src="/zh/assets/images/create_sr_datasource_3-d622b6b8da5860bb5f0cf3c61b3b4432.png" width="1280" height="324" class="img_ev3q"></p>
+<ul>
+<li>
+<p><strong>connectTimeout</strong>：数据库的 <code>connectTimeout</code> 时长（单位 ms），默认 900000 毫秒（15 分钟）。</p>
+</li>
+<li>
+<p><strong>socketTimeout</strong>：数据库的 <code>socketTimeout</code> 时长（单位 ms），默认 1800000 毫秒（30 分钟）。</p>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="从-starrocks-数据源读取数据写入其他数据源">从 StarRocks 数据源读取数据写入其他数据源<a href="#从-starrocks-数据源读取数据写入其他数据源" class="hash-link" aria-label="从 StarRocks 数据源读取数据写入其他数据源的直接链接" title="从 StarRocks 数据源读取数据写入其他数据源的直接链接">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="在离线集成任务画布中拖入-starrocks-输入组件">在离线集成任务画布中拖入 StarRocks 输入组件<a href="#在离线集成任务画布中拖入-starrocks-输入组件" class="hash-link" aria-label="在离线集成任务画布中拖入 StarRocks 输入组件的直接链接" title="在离线集成任务画布中拖入 StarRocks 输入组件的直接链接">​</a></h4>
+<p><img loading="lazy" alt="Read from StarRocks - 1" src="/zh/assets/images/read_from_sr_datasource_1-16f60d3807bc717a2634acb981f16191.png" width="2210" height="1252" class="img_ev3q"></p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="配置-starrocks-输入组件配置">配置 StarRocks 输入组件配置<a href="#配置-starrocks-输入组件配置" class="hash-link" aria-label="配置 StarRocks 输入组件配置的直接链接" title="配置 StarRocks 输入组件配置的直接链接">​</a></h4>
+<p><img loading="lazy" alt="Read from StarRocks - 2" src="/zh/assets/images/read_from_sr_datasource_2-95f0168a4056c2753acbd5e1f166b93b.png" width="2382" height="1054" class="img_ev3q"></p>
+<ul>
+<li>
+<p><strong>步骤名称</strong>：根据当前组件的使用场景及定位，输入合适的名称。</p>
+</li>
+<li>
+<p><strong>数据源</strong>：可选 Dataphin 中创建的 StarRocks 数据源或是项目。需  要配置人员具备同步读权限的数据源。如有不满足，可通过添加数据源或申请相关权限获取。</p>
+</li>
+<li>
+<p><strong>来源表信息</strong>：根据实际场景需要，选择单张表或多张具有相同表结构的表，作为输入。</p>
+</li>
+<li>
+<p><strong>表</strong>：下拉可以选择 StarRocks 数据源中的表。</p>
+</li>
+<li>
+<p><strong>过滤信息</strong>：过滤信息非必填项。</p>
+<p>两种情况下会填写相关信息：</p>
+<ul>
+<li>固定的某一部分数据。</li>
+<li>带参数过滤，比如对于需要每天增量追加或全量覆盖获取数据的情况，往往会填入带有表内日期字段限制为 Dataphin 的系统时间参数，比如 StarRocks 库中的一张交易表，交易创建日期=<code>${bizdate}</code>。</li>
+</ul>
+</li>
+<li>
+<p><strong>输出字段</strong>：针对所选的表信息，获取表的字段作为输出字段。可进行字段重命名、移除或再次添加、移动字段的顺序。一般情况下，重命名是为了下游的数据可读性或输出时候的字段方便映射；移除是因为从应用场景角度考虑不需要相关字段，因此在输入步骤及早对不需要的字段进行剔除；移动字段顺序是为了下游有多个输入数据进行合并或输出的时候，对名称不一致情况下可以采用同行映射的方式高效进行数据合并或映射输出。</p>
+</li>
+</ul>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="选择目标数据源作为输出组件并配置输出组件">选择目标数据源作为输出组件，并配置输出组件<a href="#选择目标数据源作为输出组件并配置输出组件" class="hash-link" aria-label="选择目标数据源作为输出组件，并配置输出组件的直接链接" title="选择目标数据源作为输出组件，并配置输出组件的直接链接">​</a></h4>
+<p><img loading="lazy" alt="Read from StarRocks - 3" src="/zh/assets/images/read_from_sr_datasource_3-980da39b2972ec0b562b7972b28db12d.png" width="2218" height="1256" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="从其他数据源读取数据写入到-starrocks-数据源">从其他数据源读取数据写入到 StarRocks 数据源<a href="#从其他数据源读取数据写入到-starrocks-数据源" class="hash-link" aria-label="从其他数据源读取数据写入到 StarRocks 数据源的直接链接" title="从其他数据源读取数据写入到 StarRocks 数据源的直接链接">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="在离线集成任务中配置输入组件配置-starrocks-输出组件作为下游">在离线集成任务中配置输入组件，配置 StarRocks 输出组件作为下游<a href="#在离线集成任务中配置输入组件配置-starrocks-输出组件作为下游" class="hash-link" aria-label="在离线集成任务中配置输入组件，配置 StarRocks 输出组件作为下游的直接链接" title="在离线集成任务中配置输入组件，配置 StarRocks 输出组件作为下游的直接链接">​</a></h4>
+<p><img loading="lazy" alt="Write to StarRocks - 1" src="/zh/assets/images/write_to_sr_datasource_1-de0a09d391c3f4f04cc4b5ea714839b6.png" width="2216" height="1244" class="img_ev3q"></p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="配置-starrocks-输出组件">配置 StarRocks 输出组件<a href="#配置-starrocks-输出组件" class="hash-link" aria-label="配置 StarRocks 输出组件的直接链接" title="配置 StarRocks 输出组件的直接链接">​</a></h4>
+<p><img loading="lazy" alt="Write to StarRocks - 2" src="/zh/assets/images/write_to_sr_datasource_2-000737ba2c78968cdeca39dc73286033.png" width="2238" height="1270" class="img_ev3q"></p>
+<ul>
+<li>
+<p><strong>步骤名称</strong>：根据当前组件的使用场景及定位，输入合适的名称。</p>
+</li>
+<li>
+<p><strong>数据源</strong>：可选 Dataphin 中创建的 StarRocks 数据源或是项目。需要配置人员具备同步写权限的数据源。如有不满足，可通过添加数据  源或申请相关权限获取。</p>
+</li>
+<li>
+<p><strong>表</strong>：下拉可选择 StarRocks 数据源中的表，作为数据写入的目标。</p>
+</li>
+<li>
+<p><strong>一键生成目标表</strong>：如 StarRocks 数据源中还没有创建目标表，可自动获取上游读取的字段名称、类型与备注，生成建表语句，点击该按钮可一键生成目标表。</p>
+</li>
+<li>
+<p><strong>CSV导入列分隔符</strong>：使用 Stream Load 按 CSV 格式导入，可配置 CSV 导入列分隔符，默认 <code>\t</code>，使用默认值请不要在此显式指定。如果数据中本身包含 <code>\t</code>，则需自定义使用其他字符作为分隔符。</p>
+</li>
+<li>
+<p><strong>CSV导入行分隔符</strong>：使用 Stream Load 按 CSV 格式导入，可配置 CSV 导入行分隔符，默认 <code>\n</code>，使用默认值请不要在此显式指定。如果数据中本身包含 <code>\n</code>，则需自定义使用其他字符作为分隔符。</p>
+</li>
+<li>
+<p><strong>解析方案</strong>：非必填项。是指数据输出前和输出完成后的一些特殊处理。准备语句将在数据写入 StarRocks 数据源前执行，结束语句将在写入完成后执行。</p>
+</li>
+<li>
+<p><strong>字段映射</strong>：根据上游的输入和目标表的字段，可以手动选择字段映射或批量根据同行或同名映射。</p>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="实时研发">实时研发<a href="#实时研发" class="hash-link" aria-label="实时研发的直接链接" title="实时研发的直接链接">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="应用场景">应用场景<a href="#应用场景" class="hash-link" aria-label="应用场景的直接链接" title="应用场景的直接链接">​</a></h3>
+<p>StarRocks 是一种快速、可扩展的实时分析数据库，StarRocks 在实时计算中通常用于进行读取和写入操作，以满足实时数据分析和查询的需求，被广泛应用于企业实时 计算场景中。以下是一些关于 StarRocks 在实时计算中的应用示例：</p>
+<ul>
+<li>
+<p><strong>实时业务监控和分析</strong></p>
+<p>企业可以使用 StarRocks 来实时监控和分析业务数据。例如，电商平台可以利用 StarRocks 来实时跟踪订单和交易数据，监测销售情况、库存状况和客户行为。通过实时的数据分析，企业可以及时调整策略、做出决策并提供更好的服务。</p>
+</li>
+<li>
+<p><strong>实时用户行为分析</strong></p>
+<p>StarRocks 可以用于实时分析用户行为数据，例如移动应用的用户点击数据、页面浏览数据等。通过实时分析这些数据，企业可以快速了解用户行为模式、用户偏好、以及用户转化路径，从而优化产品和服务。</p>
+</li>
+<li>
+<p><strong>广告实时竞价系统</strong></p>
+<p>在广告领域，实时计算是非常重要的。企业可以使用 StarRocks 构建实时竞价系统，通过实时分析用户特征、广告库存和竞价数据，快速决定广告投放策略和出价，从而提高广告投放的效果和收益。</p>
+</li>
+<li>
+<p><strong>实时风控和反欺诈</strong></p>
+<p>金融、电商和其他在线平台需要对用户行为进行实时风险控制和反欺诈。StarRocks 可以用于实时监测和分析用户行为数据，识别异常行为和欺诈风险，及时采取措施保护企业和用户的利益。</p>
+</li>
+<li>
+<p><strong>实时监控和预警</strong></p>
+<p>StarRocks 可以用于实时监控企业的关键指标和业务数据，并在达到预警条件时触发警报。例如，企业可以利用 StarRocks 实时监控服务器的负载、网络流量、交易成功率等指标，及时发现问题并采取措施解决。</p>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="starrocks-connector">StarRocks Connector<a href="#starrocks-connector" class="hash-link" aria-label="StarRocks Connector的直接链接" title="StarRocks Connector的直接链接">​</a></h3>
+<p>Flink 连 接器内部的结果表是通过缓存并批量通过 Stream Load 导入实现，源表是通过批量读取数据实现。StarRocks 连接器支持的信息如下。</p>
+<table><thead><tr><th><strong>类别</strong></th><th><strong>详情</strong></th></tr></thead><tbody><tr><td>支持类型</td><td>来源表、维表、结果表</td></tr><tr><td>运行模式</td><td>流模式和批模式</td></tr><tr><td>数据格式</td><td>JSON 和 CSV</td></tr><tr><td>特有监控指标</td><td>暂无</td></tr><tr><td>API 种类</td><td>DataStream 和 SQL</td></tr><tr><td>是否支持更新或删除结果表数据</td><td>是</td></tr></tbody></table>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="如何使用">如何使用<a href="#如何使用" class="hash-link" aria-label="如何使用的直接链接" title="如何使用的直接链接">​</a></h3>
+<p>Dataphin 支持 StarRocks 数据源作为实时计算的读写目标端，支持创建 StarRocks 元表并用于实时计算任务，下面举例说明操作步骤：</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="创建-starrocks-元表">创建 StarRocks 元表<a href="#创建-starrocks-元表" class="hash-link" aria-label="创建 StarRocks 元表的直接链接" title="创建 StarRocks 元表的直接链接">​</a></h4>
+<ol>
+<li>
+<p>进入 <strong>Dataphin</strong> &gt; <strong>研发</strong> &gt; <strong>开发</strong> &gt; <strong>表管理</strong>。</p>
+</li>
+<li>
+<p>点击<strong>新建</strong>，选择<strong>实时计算表</strong>。</p>
+<p><img loading="lazy" alt="Create StarRocks metatable - 1" src="/zh/assets/images/create_sr_metatable_1-8d24cf1e50b3bf1f7dcc0eed3c95c338.png" width="1177" height="720" class="img_ev3q"></p>
+<ul>
+<li>
+<p><strong>表类型</strong>：选择<strong>元表</strong>。</p>
+</li>
+<li>
+<p><strong>元表名称</strong>：填写元表的名称。</p>
+</li>
+<li>
+<p><strong>数据源</strong>：选择一个 StarRocks 类型的数据源。</p>
+</li>
+<li>
+<p><strong>来源表</strong>：选择一张物理表作为来源表。</p>
+</li>
+<li>
+<p><strong>选择目录</strong>：选择要新建表的目录。</p>
+</li>
+<li>
+<p><strong>描述</strong>：选填。输入原表的简单描述。</p>
+</li>
+</ul>
+<p><img loading="lazy" alt="Create StarRocks metatable - 2" src="/zh/assets/images/create_sr_metatable_2-b0e7598dec5f3ca1f2e0d5a62c22d52a.png" width="2878" height="1800" class="img_ev3q"></p>
+</li>
+<li>
+<p>建好元表后，可以对元表进行编辑，包括修改数据源、来源表、元表字段、配置元表参数等。</p>
+<p><img loading="lazy" alt="Edit StarRocks metatable" src="/zh/assets/images/edit_sr_metatable_1-c2af551b035b69f534a66af7a7789d3c.png" width="2878" height="1800" class="img_ev3q"></p>
+</li>
+<li>
+<p>提交元表。</p>
+</li>
+</ol>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="创建-flink-sql-任务实现将-kafka-中的数据实时写入到-starrocks-中">创建 Flink SQL 任务实现将 Kafka 中的数据实时写入到 StarRocks 中<a href="#创建-flink-sql-任务实现将-kafka-中的数据实时写入到-starrocks-中" class="hash-link" aria-label="创建 Flink SQL 任务实现将 Kafka 中的数据实时写入到 StarRocks 中的直接链接" title="创建 Flink SQL 任务实现将 Kafka 中的数据实时写入到 StarRocks 中的直接链接">​</a></h4>
+<ol>
+<li>
+<p>进入 <strong>Dataphin</strong> &gt; <strong>研发</strong> &gt; <strong>开发</strong> &gt; <strong>计算任务</strong>。</p>
+</li>
+<li>
+<p>点击<strong>新建 Flink SQL 任务</strong>。</p>
+<p><img loading="lazy" alt="Create Flink SQL task -1 " src="/zh/assets/images/create_flink_task_1-46baa0a2af6cc15c3b8dc87ffb6bf73d.png" width="1484" height="950" class="img_ev3q"></p>
+</li>
+<li>
+<p>编辑 Fink SQL 代码并进行预编译，这里用到了 Kafka 元表作为输入表，StarRocks 元表作为输出表。</p>
+<p><img loading="lazy" alt="Create Flink SQL task - 2" src="/zh/assets/images/create_flink_task_2-370b8faf84e0498e705f416312bfb239.png" width="2878" height="1800" class="img_ev3q"></p>
+<p><img loading="lazy" alt="Create Flink SQL task - 3" src="/zh/assets/images/create_flink_task_3-aeac2743b65fba345282b00722fa81e0.png" width="2878" height="1800" class="img_ev3q"></p>
+</li>
+<li>
+<p>预编译成功后，可以对代码进行调试、提交。</p>
+</li>
+<li>
+<p>在开发环境进行测试，可以通过打印日志和写测试表两种方式进行，其中测试表可以在<strong>元表</strong> &gt; <strong>属性</strong> &gt; <strong>调试测试配置</strong>中进行设置。</p>
+<p><img loading="lazy" alt="Create Flink SQL task - 4" src="/zh/assets/images/create_flink_task_4-a099dffeebcb45d10d7c1e0c074a8c71.png" width="2878" height="1800" class="img_ev3q"></p>
+<p><img loading="lazy" alt="Create Flink SQL task - 5" src="/zh/assets/images/create_flink_task_5-8e4ced80cfe87adf7d2579888c103d78.png" width="2878" height="1800" class="img_ev3q"></p>
+</li>
+<li>
+<p>开发环境任务正常运行后，可以将任务及用到的元表一起发布到生产环境。</p>
+<p><img loading="lazy" alt="Create Flink SQL task - 6" src="/zh/assets/images/create_flink_task_6-8bff439ab436e17d1dd58f0baa5c1dce.png" width="2878" height="1796" class="img_ev3q"></p>
+</li>
+<li>
+<p>在生产环境启动任务，实现将 Kafka 中的数据实时写入到 StarRocks 中。可以通过查看运行分析中各指标的情况和日志了解任务运行情况，也可以为任务配置监控告警。</p>
+</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="数据仓库或数据集市">数据仓库或数据集市<a href="#数据仓库或数据集市" class="hash-link" aria-label="数据仓库或数据集市的直接链接" title="数据仓库或数据集市的直接链接">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="前提条件">前提条件<a href="#前提条件" class="hash-link" aria-label="前提条件的直接链接" title="前提条件的直接链接">​</a></h3>
+<ul>
+<li>
+<p>StarRocks 版本为 3.0.6 及以上。</p>
+</li>
+<li>
+<p>已安装 Dataphin，且 Dataphin 版本为 3.12 及以上。</p>
+</li>
+<li>
+<p>统计信息采集已开启，StarRocks 安装后采集即默认开启。详情见<a href="https://docs.starrocks.io/zh-cn/latest/using_starrocks/Cost_based_optimizer" target="_blank" rel="noopener noreferrer">CBO 统计信息</a>。</p>
+</li>
+<li>
+<p>仅支持 StarRocks Internal Catalog，即 <code>default_catalog</code>，不支持 External Catalog。</p>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="连接配置说明">连接配置说明<a href="#连接配置说明" class="hash-link" aria-label="连接配置说明的直接链接" title="连接配置说明的直接链接">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="元仓设置">元仓设置<a href="#元仓设置" class="hash-link" aria-label="元仓设置的直接链接" title="元仓设置的直接链接">​</a></h4>
+<p>Dataphin 可以基于元数据进行信息的呈现与展示，包括表使用信息、元数据变更等。可支持使用 StarRocks 进行元数据的加工计算。因此在开始使用前，需要对元数据计算引擎（元仓）进行初始化设置。设置的步骤如下：</p>
+<ol>
+<li>
+<p>使用管理员身份用户登录 Dataphin 元仓租户。</p>
+</li>
+<li>
+<p>进入<strong>管理中心</strong> &gt; <strong>系统设置</strong> &gt; <strong>元仓设置</strong>。</p>
+<p>a. 点击<strong>开始</strong>。</p>
+<p>b. 选择 <strong>StarRocks</strong>。</p>
+<p>c. 进行参数配置，通过测试连接后，点击<strong>下一步</strong>。</p>
+<p>d. 完成元仓初始化。</p>
+<p><img loading="lazy" alt="Metadata compute engine settings" src="/zh/assets/images/metadata_engine_settings_1-51e2a82ea02284f67cf22fff28d2c251.png" width="1280" height="651" class="img_ev3q"></p>
+<p>参数说明如下：</p>
+<ul>
+<li>
+<p><strong>JDBC URL</strong>：JDBC 连接串，分为两部分填写，可参考 MySQL JDBC URL 格式 <code>https://dev.mysql.com/doc/connector-j/8.1/en/connector-j-reference-jdbc-url-format.html</code>。</p>
+<ul>
+<li>
+<p>第一部分：格式为 <code>jdbc:mysql://&lt;Host&gt;:&lt;Port&gt;/</code>，其中 <code>Host</code> 为 StarRocks 集群的 FE 主机 IP 地址，<code>Port</code> 为 FE 的查询端口，默认为 9030。</p>
+</li>
+<li>
+<p>第二部分：格式为 <code>database?key1=value1&amp;key2=value2</code>，其中 <code>database</code> 为 StarRocks 用于元数据计算的数据库的名称，为必填项。<code>?</code> 后的参数为选填项。</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Load URL</strong>：格式为 <code>fe_ip:http_port;fe_ip:http_port</code>，其中 <code>fe_ip</code> 为 FE 的 Host，<code>http_port</code> 为 FE 的 HTTP 端口。</p>
+</li>
+<li>
+<p><strong>用户名</strong>：连接 StarRocks 的用户名。</p>
+<p>该用户 JDBC URL 中给定的数据库有读写权限，需要有以下数据库及表的访问权限：</p>
+<ul>
+<li>
+<p>Information Schema 下所有表</p>
+</li>
+<li>
+<p><em>statistics</em>.column_statistics</p>
+</li>
+<li>
+<p><em>statistics</em>.table_statistic_v1</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>密码</strong>：连接 StarRocks 的密码。</p>
+</li>
+<li>
+<p><strong>Meta Project</strong>：Dataphin 用于元数据加工的项目名称，仅用于 Dataphin 系统内部使用，建议使用 <strong>dataphin_meta</strong>。</p>
+</li>
+</ul>
+</li>
+</ol>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="创建-starrocks-项目并开始数据研发">创建 StarRocks 项目并开始数据研发<a href="#创建-starrocks-项目并开始数据研发" class="hash-link" aria-label="创建 StarRocks 项目并开始数据研发的直接链接" title="创建 StarRocks 项目并开始数据研发的直接链接">​</a></h4>
+<p>开始数据研发，包括以下步骤：</p>
+<ol>
+<li>
+<p>计算设置。</p>
+</li>
+<li>
+<p>创建 StarRocks 计算源。</p>
+</li>
+<li>
+<p>创建 Dataphin 项目。</p>
+</li>
+<li>
+<p>创建 StarRocks SQL 任务。</p>
+</li>
+</ol>
+<h5 class="anchor anchorWithStickyNavbar_LWe7" id="步骤一计算设置">步骤一：计算设置<a href="#步骤一计算设置" class="hash-link" aria-label="步骤一：  计算设置的直接链接" title="步骤一：计算设置的直接链接">​</a></h5>
+<p>计算设置设置了该租户下的计算引擎类型以及集群的地址。详细步骤如下：</p>
+<ol>
+<li>
+<p>使用系统管理员或超级管理员身份登录 Dataphin。</p>
+</li>
+<li>
+<p>进入<strong>管理中心</strong> &gt; <strong>系统设置</strong> &gt; <strong>计算设置</strong>。</p>
+</li>
+<li>
+<p>选择 <strong>StarRocks</strong>，点击<strong>下一步</strong>。</p>
+</li>
+<li>
+<p>填写 <strong>JDBC URL</strong>，并等待校验通过。JDBC URL 的格式为 <code>jdbc:mysql://&lt;Host&gt;:&lt;Port&gt;/</code>，其中 <code>Host</code> 为 StarRocks 集群的 FE 主机 IP 地址，<code>Port</code> 为 FE 的查询端口，默认为 9030。</p>
+</li>
+</ol>
+<h5 class="anchor anchorWithStickyNavbar_LWe7" id="步骤二创建-starrocks-计算源">步骤二：创建 StarRocks 计算源<a href="#步骤二创建-starrocks-计算源" class="hash-link" aria-label="步骤二：创建 StarRocks 计算源的直接链接" title="步骤二：创建 StarRocks 计算源的直接链接">​</a></h5>
+<p>计算源是 Dataphin 里的一个概念，主要的目的是将 Dataphin 的项目空间与 StarRocks 的存储计算空间（即 Database）进行绑定和注册。需要为每个项目创建一个计算源。详细的步骤如下：</p>
+<ol>
+<li>
+<p>使用系统管理员或超级管理员身份登录 Dataphin。</p>
+</li>
+<li>
+<p>进入<strong>规划</strong> &gt; <strong>计算源</strong>。</p>
+</li>
+<li>
+<p>点击右上角的<strong>新增计算源</strong>，创建计算源。</p>
+<p>详细的配置信息如下说明：</p>
+<p><strong>基本信息</strong></p>
+<p><img loading="lazy" alt="Create compute engine - 1" src="/zh/assets/images/create_compute_engine_1-14fa0c394dda3710cf9ee5bd29137cd6.png" width="1280" height="477" class="img_ev3q"></p>
+<ul>
+<li>
+<p><strong>计算源类型</strong>：选择 <strong>StarRocks</strong>。</p>
+</li>
+<li>
+<p><strong>计算源名称</strong>：建议使用与  即将创建的项目名称一致，若用于开发项目，则加上 <strong>_dev</strong> 后缀。</p>
+</li>
+<li>
+<p><strong>计算源描述</strong>：选填。填入计算源的描述信息。</p>
+</li>
+</ul>
+<p><strong>配置信息</strong></p>
+<p><img loading="lazy" alt="Create compute engine - 2" src="/zh/assets/images/create_compute_engine_2-829757f6a0cd90c0d711c49fbb11ce60.png" width="1280" height="582" class="img_ev3q"></p>
+<ul>
+<li>
+<p><strong>JDBC URL</strong>：格式为 <code>jdbc:mysql://&lt;Host&gt;:&lt;Port&gt;/</code>，其中 <code>Host</code> 为 StarRocks 集群的 FE 主机 IP 地址，<code>Port</code> 为 FE 的查询端口，默认为 9030。</p>
+</li>
+<li>
+<p><strong>Load URL</strong>：格式为 <code>fe_ip:http_port;fe_ip:http_port</code>，其中 <code>fe_ip</code> 为 FE 的 Host，<code>http_port</code> 为 FE 的 HTTP 端口。</p>
+</li>
+<li>
+<p><strong>用户名</strong>：连接 StarRocks 的用户名。</p>
+</li>
+<li>
+<p><strong>密码</strong>：连接 StarRocks 的密码。</p>
+</li>
+<li>
+<p><strong>任务资源组</strong>：可指定不同优先级的任务使用不同的 StarRocks 资源组。选择<strong>不指定资源组</strong>时，由 StarRocks 引擎决定执行的资源组；选择<strong>指定资源组</strong>时，不同优先级的任务将在执行时由 Dataphin 指定到设置的资源组。若在 SQL 任务的代码里、以及逻辑表的物化配置里指定了资源组，则以代码的设置及逻辑表的物化配置为准，计算源的任务资源组配置在该任务执行时将被忽略。</p>
+</li>
+</ul>
+<p><img loading="lazy" alt="Create compute engine - 3" src="/zh/assets/images/create_compute_engine_3-006c9630f2ff44260b0e834245e8fad0.png" width="1236" height="720" class="img_ev3q"></p>
+</li>
+</ol>
+<h5 class="anchor anchorWithStickyNavbar_LWe7" id="步骤三创建-dataphin-项目">步骤三：创建 Dataphin 项目<a href="#步骤三创建-dataphin-项目" class="hash-link" aria-label="步骤三：创建 Dataphin 项目的直接链接" title="步骤三：创建 Dataphin 项目的直接链接">​</a></h5>
+<p>创建好计算源后，就可以绑定为 Dataphin 的项目了。Dataphin 的项目承载了项目成员的管理、StarRocks 的存储与计算空间、以及计算任务的管理和运维。</p>
+<p>创建 Dataphin 项目的详细的步骤如下：</p>
+<ol>
+<li>
+<p>使用系统管理员或超级管理员身份登录 Dataphin。</p>
+</li>
+<li>
+<p>进入<strong>规划</strong> &gt; <strong>项目</strong>。</p>
+</li>
+<li>
+<p>点击右上角的<strong>新建项目</strong>，创建项目。</p>
+</li>
+<li>
+<p>填入基本信息，并在离线计算源中选择上一步中创建的 StarRocks 计算源。</p>
+</li>
+<li>
+<p>点击<strong>完成创建</strong>。</p>
+</li>
+</ol>
+<h5 class="anchor anchorWithStickyNavbar_LWe7" id="步骤四创建-starrocks-sql-任务">步骤四：创建 StarRocks SQL 任务<a href="#步骤四创建-starrocks-sql-任务" class="hash-link" aria-label="步骤四：创建 StarRocks SQL 任务的直接链接" title="步骤四：创建 StarRocks SQL 任务的直接链接">​</a></h5>
+<p>创建好项目后，即可开始创建 StarRocks SQL 任务对 StarRocks 进行 DDL 或者 DML 操作。</p>
+<p>详细的步骤如下：</p>
+<ol>
+<li>
+<p>进入<strong>研发</strong> &gt; <strong>开发</strong>。</p>
+</li>
+<li>
+<p>点击右上角的 <strong>+</strong>，创建 StarRocks SQL 任务。</p>
+<p><img loading="lazy" alt="Create Dataphin project - 1" src="/zh/assets/images/configure_dataphin_project_1-4ec672a023b38a2ffe78eb021ee5e4df.png" width="2876" height="1458" class="img_ev3q"></p>
+</li>
+<li>
+<p>填入名称及调度类型后，完成 SQL 任务的创建。</p>
+</li>
+<li>
+<p>在编辑器输入 SQL，即可开始对 StarRock 进行 DDL 及 DML 操作。</p>
+<p><img loading="lazy" alt="Create Dataphin project - 2" src="/zh/assets/images/configure_dataphin_project_2-d0c264a4a9f1954a8859726b3aa4d370.png" width="1280" height="645" class="img_ev3q"></p>
+</li>
+</ol></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="theme-doc-footer-edit-meta-row row"><div class="col"><a href="https://github.com/StarRocks/docs.zh-cn/edit/main/integrations/IDE_integrations/Dataphin.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>编辑此页</a></div><div class="col lastUpdated_vwxv"></div></div></footer></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="文件选项卡"><a class="pagination-nav__link pagination-nav__link--prev" href="/zh/docs/3.0/integrations/IDE_integrations/DataGrip"><div class="pagination-nav__sublabel">上一页</div><div class="pagination-nav__label">DataGrip</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/zh/docs/3.0/integrations/authenticate_to_aws_resources"><div class="pagination-nav__sublabel">下一页</div><div class="pagination-nav__label">配置 AWS 认证信息</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#数据集成" class="table-of-contents__link toc-highlight">数据集成</a><ul><li><a href="#创建-starrocks-数据源" class="table-of-contents__link toc-highlight">创建 StarRocks 数据源</a></li><li><a href="#从-starrocks-数据源读取数据写入其他数据源" class="table-of-contents__link toc-highlight">从 StarRocks 数据源读取数据写入其他数据源</a></li><li><a href="#从其他数据源读取数据写入到-starrocks-数据源" class="table-of-contents__link toc-highlight">从其他数据源读取数据写入到 StarRocks 数据源</a></li></ul></li><li><a href="#实时研发" class="table-of-contents__link toc-highlight">实时研发</a><ul><li><a href="#应用场景" class="table-of-contents__link toc-highlight">应用场景</a></li><li><a href="#starrocks-connector" class="table-of-contents__link toc-highlight">StarRocks Connector</a></li><li><a href="#如何使用" class="table-of-contents__link toc-highlight">如何使用</a></li></ul></li><li><a href="#数据仓库或数据集市" class="table-of-contents__link toc-highlight">数据仓库或数据集市</a><ul><li><a href="#前提条件" class="table-of-contents__link toc-highlight">前提条件</a></li><li><a href="#连接配置说明" class="table-of-contents__link toc-highlight">连接配置说明</a></li></ul></li></ul></div></div></div></div></main></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">Docs</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/zh/docs/introduction/StarRocks_intro">Documentation</a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2023 StarRocks, Inc. Built with Docusaurus.</div></div></div></footer></div>
+</body>
+</html>
