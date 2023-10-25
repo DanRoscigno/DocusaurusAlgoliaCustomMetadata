@@ -801,7 +801,6 @@
           "link": { "type": "generated-index" },
           "items": [
             "integrations/BI_integrations/Superset",
-            "integrations/BI_integrations/Dataphin",
             "integrations/BI_integrations/FineBI",
             "integrations/BI_integrations/Hex",
             "integrations/BI_integrations/Querybook",
@@ -815,6 +814,7 @@
           "link": { "type": "generated-index" },
           "items": [
             "integrations/IDE_integrations/DataGrip",
+            "integrations/IDE_integrations/Dataphin",
             "integrations/IDE_integrations/DBeaver"
           ]
         },

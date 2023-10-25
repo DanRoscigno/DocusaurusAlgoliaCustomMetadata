@@ -70,7 +70,7 @@ const config = {
           // versions, so the banner is set to none on the versions other than latest (latest
           // doesn't get a banner by default).
           lastVersion: '3.1',
-          onlyIncludeVersions: ['3.1', '3.0', '2.5'],
+          //onlyIncludeVersions: ['3.1', '3.0', '2.5'],
           versions: {
             '3.1': {
               label: 'Latest-3.1'
@@ -81,6 +81,26 @@ const config = {
             },
             '2.5': {
               label: 'Stable-2.5',
+              banner: 'none'
+            },
+            '2.3': {
+              label: '2.3',
+              banner: 'none'
+            },
+            '2.2': {
+              label: '2.2',
+              banner: 'none'
+            },
+            '2.1': {
+              label: '2.1',
+              banner: 'none'
+            },
+            '2.0': {
+              label: '2.0',
+              banner: 'none'
+            },
+            '1.19': {
+              label: '1.19',
               banner: 'none'
             },
           },
