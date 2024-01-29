@@ -135,6 +135,11 @@ const config = {
         theme: prismThemes.github,
         darkTheme: prismThemes.dracula,
       },
+      algolia: {
+        appId: 'NHCE31YG9M',
+        apiKey: 'bb6631850bfd57f1db08f306647ca527',
+        indexName: 'galacticbase',
+      },
     }),
 };
 
