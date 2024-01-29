@@ -1,41 +1,18 @@
 # Website
 
-This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
+Test site deployed with Netlify.
 
-### Installation
+Prod URL is https://docs.galacticbase.com
 
-```
-$ yarn
-```
+Algolia crawls the site under the Docsearch program
 
-### Local Development
+DNS is setup so that I can use the CNAME docs.galacticbase.com; the Netlify hostname is startling-narwhal-a89c08, which is a pretty cool name, but I registered docs.galacticbase.com with the Algolia folks and the crawler is locked to that.
 
-```
-$ yarn start
-```
+Goal 1: Get Algolia working with basic functionality
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+Goal 2: Add keywords and descriptions to the pages and get those indexed
 
-### Build
+Goal 3: Get page ranking working so that tutorial type content can be ranked above reference content
 
-```
-$ yarn build
-```
+Goal 4: Add Pinyin words to keywords (or maybe a new meta field?) and get those indexed and searchable
 
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
-
-### Deployment
-
-Using SSH:
-
-```
-$ USE_SSH=true yarn deploy
-```
-
-Not using SSH:
-
-```
-$ GIT_USER=<Your GitHub username> yarn deploy
-```
-
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
