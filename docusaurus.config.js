@@ -4,46 +4,34 @@
 // There are various equivalent ways to declare your Docusaurus config.
 // See: https://docusaurus.io/docs/api/docusaurus-config
 
-const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+import {themes as prismThemes} from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'StarRocks',
-  tagline: 'StarRocks documentation',
+  title: 'My Site',
+  tagline: 'Dinosaurs are cool',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
-  //url: 'https://docs.galacticbase.com',
-  url: 'https://danroscigno.github.io/',
+  url: 'https://your-docusaurus-site.example.com',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
-  //https://danroscigno.github.io/docusaurusv3/docs/3.0/administration/Authentication.html
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'StarRocks', // Usually your GitHub org/user name.
-  projectName: 'starrocks', // Usually your repo name.
-  trailingSlash: false,
+  organizationName: 'facebook', // Usually your GitHub org/user name.
+  projectName: 'docusaurus', // Usually your repo name.
 
-  onBrokenLinks: 'ignore',
-  onBrokenMarkdownLinks: 'ignore',
+  onBrokenLinks: 'throw',
+  onBrokenMarkdownLinks: 'warn',
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
   // may want to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: 'en',
-    locales: ['en', 'zh'],
-    localeConfigs: {
-      en: {
-        htmlLang: 'en-US',
-      },
-      zh: {
-        htmlLang: 'zh-CN',
-      },
-    },
+    locales: ['en'],
   },
 
   presets: [
@@ -52,97 +40,49 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          sidebarPath: require.resolve('./sidebars.js'),
+          sidebarPath: './sidebars.js',
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl: ({locale, docPath}) => {
-            if (locale == 'en') {
-              return 'https://github.com/StarRocks/starrocks/edit/main/docs/' + docPath
-            } else {
-              return 'https://github.com/StarRocks/docs.zh-cn/edit/main/' + docPath
-            }
-          },
-          // Versions:
-          // We don't want to show `main` or `current`, we want to show the released versions.
-          // lastVersion identifies the latest release.
-          // onlyIncludeVersions limits what we show.
-          // By default Docusaurus shows an "unsupported" banner, but we support multiple
-          // versions, so the banner is set to none on the versions other than latest (latest
-          // doesn't get a banner by default).
-          lastVersion: '3.1',
-          //onlyIncludeVersions: ['3.1', '3.0', '2.5'],
-          versions: {
-            '3.1': {
-              label: 'Latest-3.1'
-            },
-            '3.0': {
-              label: '3.0',
-              banner: 'none'
-            },
-            '2.5': {
-              label: 'Stable-2.5',
-              banner: 'none'
-            },
-            '2.3': {
-              label: '2.3',
-              banner: 'none'
-            },
-            '2.2': {
-              label: '2.2',
-              banner: 'none'
-            },
-            '2.1': {
-              label: '2.1',
-              banner: 'none'
-            },
-            '2.0': {
-              label: '2.0',
-              banner: 'none'
-            },
-            '1.19': {
-              label: '1.19',
-              banner: 'none'
-            },
-          },
+          editUrl:
+            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+        },
+        blog: {
+          showReadingTime: true,
+          // Please change this to your repo.
+          // Remove this to remove the "edit this page" links.
+          editUrl:
+            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
         },
         theme: {
-          customCss: require.resolve('./src/css/custom.css'),
+          customCss: './src/css/custom.css',
         },
       }),
     ],
   ],
+
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
       navbar: {
-        title: 'StarRocks',
+        title: 'My Site',
         logo: {
-          alt: 'StarRocks Logo',
+          alt: 'My Site Logo',
           src: 'img/logo.svg',
-          href: 'https://www.starrocks.io/',
         },
         items: [
           {
             type: 'docSidebar',
-            sidebarId: 'English',
+            sidebarId: 'tutorialSidebar',
             position: 'left',
-            label: 'Documentation',
+            label: 'Tutorial',
           },
+          {to: '/blog', label: 'Blog', position: 'left'},
           {
-            type: 'docsVersionDropdown',
-            position: 'left',
-            dropdownActiveClassDisabled: true,
-          },
-          {
-            href: 'https://github.com/StarRocks/starrocks',
+            href: 'https://github.com/facebook/docusaurus',
             label: 'GitHub',
             position: 'right',
-          },
-          {
-            type: 'localeDropdown',
-            position: 'left',
           },
         ],
       },
@@ -153,48 +93,49 @@ const config = {
             title: 'Docs',
             items: [
               {
-                label: 'Documentation',
-                to: '/docs/introduction/StarRocks_intro',
+                label: 'Tutorial',
+                to: '/docs/intro',
+              },
+            ],
+          },
+          {
+            title: 'Community',
+            items: [
+              {
+                label: 'Stack Overflow',
+                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+              },
+              {
+                label: 'Discord',
+                href: 'https://discordapp.com/invite/docusaurus',
+              },
+              {
+                label: 'Twitter',
+                href: 'https://twitter.com/docusaurus',
+              },
+            ],
+          },
+          {
+            title: 'More',
+            items: [
+              {
+                label: 'Blog',
+                to: '/blog',
+              },
+              {
+                label: 'GitHub',
+                href: 'https://github.com/facebook/docusaurus',
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} StarRocks, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
       },
       prism: {
-        theme: lightCodeTheme,
-        darkTheme: darkCodeTheme,
-      },
-      algolia: {
-        // The application ID provided by Algolia
-        appId: 'ER08SJMRY1',
-  
-        // Public API key: it is safe to commit it
-        apiKey: '08af8d37380974edb873fe8fd61e8dda',
-  
-        indexName: 'starrocks',
-  
-        // Optional: see doc section below
-        contextualSearch: true,
-  
-        // Optional: Specify domains where the navigation should occur through window.location instead on history.push. Useful when our Algolia config crawls multiple documentation sites and we want to navigate with window.location.href to them.
-        //externalUrlRegex: 'external\\.com|domain\\.com',
-
-        // Optional: Replace parts of the item URLs from Algolia. Useful when using the same search index for multiple deployments using a different baseUrl. You can use regexp or string in the `from` param. For example: localhost:3000 vs myCompany.com/docs
-        //replaceSearchResultPathname: {
-          //from: '/en-us/latest/', // or as RegExp: /\/docs\//
-          //to: '/docs/',
-        //},
-
-        // Optional: Algolia search parameters
-        searchParameters: {},
-
-        // Optional: path for search page that enabled by default (`false` to disable it)
-        searchPagePath: 'search',
-
-        //... other Algolia params
+        theme: prismThemes.github,
+        darkTheme: prismThemes.dracula,
       },
     }),
 };
 
-module.exports = config;
+export default config;

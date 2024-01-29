@@ -1,66 +1,41 @@
-# Docs
+# Website
 
-Live URL: https://danroscigno.github.io/doc/docs/introduction/StarRocks_intro
+This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
 
-## Building with GitHub actions
+### Installation
 
-There are test build and deploy to GitHub Pages jobs in `.github/workflows/`.
-These pull the English docs and the Chinese docs, check out the versions,
-and put the Markdown files into place for Docusaurus.
-
-Before generating the HTML some modifications are made to the Markdown files:
-
-- removing the TOC.md and README.md files
-- replacing the StarRocks_intro pages with ones that use Docusaurus styling
-- adding frontmatter to all of the Markdown to specify which sidebar (English or Chinese) is to be used
-- the `docs/assets/` dir is renamed to `_assets`. This is done as Docusaurus automatically
-ignores markdown files in dirs that start with an underscore. This is also why I have my `_IGNORE`
-dirname. This is where I pop markdown files that I do not want included in the docs directly.
-
-Once we go into production the three changes above can be removed as we will:
-
-- remove the TOC.md files as they are not used, and leave the README out of the nav
-- replace the current intro pages with the new ones that work with Docusaurus
-- add the frontmatter to the Markdown files in thir repos
-- rename the `assets` dirs to `_assets` so we don't have to do these changes in the build
-
-## Building local
-
-### Node version
-
-Docusaurus v3 requires Node 18
-
-I use 8GB for Node, in Netlify I set the build command in the file `netlify.toml` 
-and locally I use:
-
-```shell
-NODE_OPTIONS=--max_old_space_size=8192
+```
+$ yarn
 ```
 
-### Install Docusaurus
+### Local Development
 
-```shell
-yarn install
+```
+$ yarn start
 ```
 
-### Build script
+This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
 
-The script `_IGNORE/testbuild`
+### Build
 
-- pulls the Chinese and English docs for versions 3.1, 3.0, and 2.5 
-- Removes the intro page while we update it to use built-in nav components
-- Removes the TOC while we migrate those to JSON format
-- Runs an MDX checker
-- Builds the site
-
-```shell
-./_IGNORE/testbuild`
+```
+$ yarn build
 ```
 
-Note: The dir is named `_IGNORE` because I had some markdown files that I needed to move to a dir that Docusaurus would leave out of the nav; it does not add files to the nav from dirs that start with an underscore.
+This command generates static content into the `build` directory and can be served using any static contents hosting service.
 
-## Serve the pages locally
+### Deployment
 
-```shell
-yarn serve
+Using SSH:
+
 ```
+$ USE_SSH=true yarn deploy
+```
+
+Not using SSH:
+
+```
+$ GIT_USER=<Your GitHub username> yarn deploy
+```
+
+If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
