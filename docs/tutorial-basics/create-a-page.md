@@ -2,8 +2,8 @@
 sidebar_position: 1
 keywords: ['static', 'pages']
 description: How to create a new static page
-pinyin: Yuanshuju
 ---
+<head> <meta name="pinyin" content="Yuanshuju" /> </head>
 
 # Create a Page
 
