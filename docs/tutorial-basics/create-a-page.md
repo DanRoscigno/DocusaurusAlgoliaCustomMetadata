@@ -2,6 +2,7 @@
 sidebar_position: 1
 keywords: ['static', 'pages']
 description: How to create a new static page
+pinyin: Yuanshuju
 ---
 
 # Create a Page
