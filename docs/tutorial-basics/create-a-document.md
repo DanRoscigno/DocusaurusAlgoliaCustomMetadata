@@ -1,5 +1,7 @@
 ---
 sidebar_position: 2
+keywords: ['tutorial', 'documentation']
+description: How to create a new documentation page
 ---
 
 # Create a Document

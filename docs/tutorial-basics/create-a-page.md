@@ -1,5 +1,7 @@
 ---
 sidebar_position: 1
+keywords: ['static', 'pages']
+description: How to create a new static page
 ---
 
 # Create a Page

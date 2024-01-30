@@ -1,5 +1,7 @@
 ---
 sidebar_position: 5
+keywords: ['jamstack', 'deploy', 'build']
+description: How to create a new static page
 ---
 
 # Deploy your site

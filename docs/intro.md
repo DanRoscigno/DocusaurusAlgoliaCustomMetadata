@@ -1,5 +1,7 @@
 ---
 sidebar_position: 1
+keywords: ['intro', 'npx', 'node']
+description: Deploy Docusaurus quickly
 ---
 
 # Tutorial Intro

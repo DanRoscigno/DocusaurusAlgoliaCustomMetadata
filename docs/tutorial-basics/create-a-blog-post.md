@@ -1,5 +1,7 @@
 ---
 sidebar_position: 3
+keywords: ['tutorial', 'blog']
+description: How to create a new blog post
 ---
 
 # Create a Blog Post

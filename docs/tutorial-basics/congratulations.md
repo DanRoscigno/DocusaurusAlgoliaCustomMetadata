@@ -1,5 +1,7 @@
 ---
 sidebar_position: 6
+keywords: ['finished']
+description: All done
 ---
 
 # Congratulations!
