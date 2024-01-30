@@ -130,7 +130,7 @@ const config = {
         indexName: 'galacticbase',
         
       // Optional: see doc section below
-      contextualSearch: true,
+      contextualSearch: false,
 
       // Optional: Algolia search parameters
       searchParameters: {},
