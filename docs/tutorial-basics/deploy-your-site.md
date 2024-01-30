@@ -3,6 +3,7 @@ sidebar_position: 5
 keywords: ['jamstack', 'deploy', 'build']
 description: How to create a new static page
 ---
+<head> <meta name="pinyin" content="Wuhua" /> </head>
 
 # Deploy your site
 
