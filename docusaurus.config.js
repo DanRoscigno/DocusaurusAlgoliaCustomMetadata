@@ -23,6 +23,9 @@ const config = {
   organizationName: 'DanRoscigno', // Usually your GitHub org/user name.
   projectName: 'doc', // Usually your repo name.
 
+  // Netlify should have this disabled, but I am seeing redirects to URLs with trailing slash...
+  trailingSlash: true,
+
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'throw',
 
