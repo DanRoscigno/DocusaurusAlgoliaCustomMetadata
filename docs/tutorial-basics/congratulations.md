@@ -1,7 +1,7 @@
 ---
 sidebar_position: 6
-keywords: ['finished']
-description: All done
+keywords: ['finished','harold']
+description: All done Harold
 ---
 
 # Congratulations!
