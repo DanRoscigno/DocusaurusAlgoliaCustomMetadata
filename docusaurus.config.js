@@ -128,6 +128,17 @@ const config = {
         appId: 'NHCE31YG9M',
         apiKey: 'eca266f9e49940e2d220ea88fdafa636',
         indexName: 'galacticbase',
+        
+      // Optional: see doc section below
+      contextualSearch: true,
+
+      // Optional: Algolia search parameters
+      searchParameters: {},
+
+      // Optional: path for search page that enabled by default (`false` to disable it)
+      searchPagePath: 'search',
+
+      //... other Algolia params
       },
     }),
 };
