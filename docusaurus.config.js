@@ -126,7 +126,7 @@ const config = {
       },
       algolia: {
         appId: 'NHCE31YG9M',
-        apiKey: 'bb6631850bfd57f1db08f306647ca527',
+        apiKey: 'eca266f9e49940e2d220ea88fdafa636',
         indexName: 'galacticbase',
       },
     }),
