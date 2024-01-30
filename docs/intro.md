@@ -1,7 +1,8 @@
 ---
 sidebar_position: 1
 keywords: ['intro', 'npx', 'node']
-description: Deploy Docusaurus quickly
+docsearch:description: Deploy Docusaurus quickly
+docsearch:pinyin: wuhau
 ---
 
 # Tutorial Intro
