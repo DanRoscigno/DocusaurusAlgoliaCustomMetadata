@@ -13,6 +13,8 @@ new Crawler({
         // get the description metadata
         const description = $("meta[name='description']").attr("content") || "";
         const keywords = $("meta[name='keywords']").attr("content") || "";
+        const pinyin = $("meta[name='pinyin']").attr("content") || "";
+
         // priority order: deepest active sub list header -> navbar active item -> 'Documentation'
         const lvl0 =
           $(
@@ -36,6 +38,7 @@ new Crawler({
             content: "article p, article li, article td:last-child",
             description: { defaultValue: description },
             keywords: { defaultValue: keywords },
+            pinyin: { defaultValue: pinyin },
           },
           indexHeadings: true,
           aggregateContent: true,
@@ -68,6 +71,7 @@ new Crawler({
       searchableAttributes: [
         "unordered(keywords)",
         "unordered(description)",
+        "unordered(pinyin)",
         "unordered(hierarchy.lvl0)",
         "unordered(hierarchy.lvl1)",
         "unordered(hierarchy.lvl2)",
