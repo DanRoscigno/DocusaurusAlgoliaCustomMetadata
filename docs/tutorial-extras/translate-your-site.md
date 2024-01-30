@@ -1,5 +1,7 @@
 ---
 sidebar_position: 2
+keywords: ['i18n']
+description: One language is not enough
 ---
 
 # Translate your site
