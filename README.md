@@ -122,4 +122,5 @@ If this is not the very first crawl the index will have to be configured to incl
 
 1. When the crawl finishes open the index in the dashboard
 1. Open **Configuration**, choose **Searchable attributes**, click **Add a Searchable Attribute**, and type in the attribute name.
+1. **Save and Review**
 
