@@ -29,7 +29,7 @@ new Crawler({
               selectors: "",
               defaultValue: lvl0,
             },
-            lvl1: ["header h1", "article h1"],
+            lvl1: ["keywords", "header h1", "article h1"],
             lvl2: "article h2",
             lvl3: "article h3",
             lvl4: "article h4",
