@@ -47,6 +47,11 @@ new Crawler({
       },
     },
   ],
+  // Note: These are the INITIAL index settings,
+  // so they get applied when the index is created,
+  // or re-created. If you make a change here after
+  // the index is created, it will not be applied
+  // unless you delete the index and recreate it.
   initialIndexSettings: {
     galacticbase: {
       attributesForFaceting: [
