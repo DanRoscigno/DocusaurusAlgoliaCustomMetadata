@@ -124,3 +124,20 @@ If this is not the very first crawl the index will have to be configured to incl
 1. Open **Configuration**, choose **Searchable attributes**, click **Add a Searchable Attribute**, and type in the attribute name.
 1. **Save and Review**
 
+## Using keywords
+
+In addition to adding the `pinyin` metadata `keywords[]` and `description` are also added:
+
+```js
+      recordExtractor: ({ $, helpers }) => {
+        // get the description metadata
+        const description = $("meta[name='description']").attr("content") || "";
+        const keywords = $("meta[name='keywords']").attr("content") || "";
+        const pinyin = $("meta[name='pinyin']").attr("content") || "";
+```
+
+If the keywords field is used to prioritize pages in the documentation search results, then the index configuration in the Algolia UI needs to be edited. Open the index configuration and drag the keywords field to the top of the list to increase the priority of the keywords.
+
+<img width="1384" alt="image" src="https://github.com/DanRoscigno/DocusaurusAlgoliaCustomMetadata/assets/25182304/13d290ed-6611-4bc9-be1e-1f56228c5e23">
+
+
