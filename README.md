@@ -1,5 +1,7 @@
 # Website
 
+The `MetadataBranch` contains the setup to test metadata.
+
 Test site deployed with Netlify.
 
 Prod URL is https://docs.galacticbase.com
