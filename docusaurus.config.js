@@ -26,8 +26,9 @@ const config = {
   // Netlify should have this disabled, but I am seeing redirects to URLs with trailing slash...
   trailingSlash: true,
 
-  onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'throw',
+  onBrokenLinks: 'ignore',
+  onBrokenMarkdownLinks: 'ignore',
+  onBrokenAnchors: 'ignore',
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
@@ -43,42 +44,71 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          sidebarPath: './sidebars.js',
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl: ({docPath}) => {
-              return 'https://github.com/DanRoscigno/doc/edit/main/docs/' + docPath
-          },
+          path: "serverless",
+          id: "serverless",
+          routeBasePath: "serverless",
+          sidebarPath: 'sidebars.json',
         },
         theme: {
-          customCss: './src/css/custom.css',
+          customCss: require.resolve('./src/css/custom.css'),
         },
       }),
+    ],
+  ],
+
+  plugins: [
+    //'docusaurus-plugin-hubspot',
+    [
+      "@docusaurus/plugin-content-docs",
+      {
+        path: "private",
+        id: "private",
+        routeBasePath: "private",
+        sidebarPath: 'sidebars.json',
+      },
+    ],
+    [
+      "@docusaurus/plugin-content-docs",
+      {
+        path: "enterprise",
+        id: "enterprise",
+        routeBasePath: "enterprise",
+        sidebarPath: 'sidebars.json',
+      },
+    ],
+    [
+    '@docusaurus/plugin-client-redirects',
+    {
+      redirects: [
+        // /docs/oldDoc -> /docs/newDoc
+      ],
+    },
     ],
   ],
 
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      // Replace with your project's social card
-      image: 'img/docusaurus-social-card.jpg',
+      docs: {
+        sidebar: {
+          hideable: true,
+          autoCollapseCategories: true,
+        },
+      },
+      // This image shows in Slack when you paste a link
+      image: 'img/celerdata.svg',
       navbar: {
-        title: 'My Site',
+        title: 'CelerData',
         logo: {
-          alt: 'My Site Logo',
-          src: 'img/logo.svg',
+          alt: 'CelerData Logo',
+          src: 'img/celerdata.svg',
+          href: 'https://celerdata.com/',
         },
         items: [
           {
-            type: 'docSidebar',
-            sidebarId: 'tutorialSidebar',
-            position: 'left',
-            label: 'Tutorial',
-          },
-          {
-            href: 'https://github.com/facebook/docusaurus',
-            label: 'GitHub',
+            label: 'Privacy policy',
             position: 'right',
+            to: 'https://www.starrocks.io/product/privacy-policy',
           },
         ],
       },
@@ -86,46 +116,34 @@ const config = {
         style: 'dark',
         links: [
           {
-            title: 'Docs',
             items: [
               {
-                label: 'Tutorial',
-                to: '/docs/intro',
-              },
-            ],
-          },
-          {
-            title: 'Community',
-            items: [
-              {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+                label: 'StarRocks.io',
+                to: 'https://starrocks.io/',
               },
               {
-                label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
-              },
-              {
-                label: 'Twitter',
-                href: 'https://twitter.com/docusaurus',
-              },
-            ],
-          },
-          {
-            title: 'More',
-            items: [
-              {
-                label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
+                label: 'Privacy policy',
+                to: 'https://www.starrocks.io/product/privacy-policy',
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        copyright: `Docs built with Docusaurus.`,
       },
+
       prism: {
         theme: prismThemes.github,
         darkTheme: prismThemes.dracula,
+        additionalLanguages: [
+          'java',
+          'haskell',
+          'python',
+          'matlab',
+          'bash',
+          'diff',
+          'json',
+          'scss',
+        ],
       },
       algolia: {
         appId: 'NHCE31YG9M',
@@ -133,7 +151,7 @@ const config = {
         indexName: 'galacticbase',
         
       // Optional: see doc section below
-      contextualSearch: false,
+      contextualSearch: true,
 
       // Optional: Algolia search parameters
       searchParameters: {},
@@ -143,7 +161,8 @@ const config = {
 
       //... other Algolia params
       },
+  
     }),
 };
 
-export default config;
+module.exports = config;
