@@ -46,17 +46,23 @@ function DocSearch({contextualSearch, externalUrlRegex, ...props}) {
       mergeFacetFilters(contextualSearchFacetFilters, configFacetFilters)
     : // ... or use config facetFilters
       configFacetFilters;
-  // We let user override default searchParameters if she wants to
+      // We let user override default searchParameters if she wants to
       const isBrowser = useIsBrowser();
-      // Note that the below lvl0 query was written to match the query used by the
-      // crawler at https://crawler.algolia.com/admin/crawlers
+      // The product name is the first part of the URL path
+      // so we split on `/` and then take slice 1 and compare it
+      // to the product names.
+ 
+      // NOTE: Make sure that you edit the index configuration
+      // and enable faceting on `product`. This has to be done in
+      // the index configuration. Adding it in the crawler
+      // `attributesForFaceting: []` is not sufficient unless
+      // you delete your index and have it recreated by the
+      // crawler.
       const parts = isBrowser ? window.location.pathname.split("/").slice(1) : "";
       let product = "Docs";
       if (parts[0] === "private") product = "private";
       else if (parts[0] === "serverless") product = "serverless";
       else if (parts[0] === "enterprise") product = "enterprise";
-    console.log("Product: " + product);
-    console.log("parts: " + parts);
 
   const searchParameters = {
     ...props.searchParameters,
