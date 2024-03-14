@@ -1,4 +1,5 @@
 import React, {useCallback, useMemo, useRef, useState} from 'react';
+import useIsBrowser from '@docusaurus/useIsBrowser';
 import {createPortal} from 'react-dom';
 import {DocSearchButton, useDocSearchKeyboardEvents} from '@docsearch/react';
 import Head from '@docusaurus/Head';
@@ -46,9 +47,21 @@ function DocSearch({contextualSearch, externalUrlRegex, ...props}) {
     : // ... or use config facetFilters
       configFacetFilters;
   // We let user override default searchParameters if she wants to
+      const isBrowser = useIsBrowser();
+      // Note that the below lvl0 query was written to match the query used by the
+      // crawler at https://crawler.algolia.com/admin/crawlers
+      const parts = isBrowser ? window.location.pathname.split("/").slice(1) : "";
+      let product = "Docs";
+      if (parts[0] === "private") product = "private";
+      else if (parts[0] === "serverless") product = "serverless";
+      else if (parts[0] === "enterprise") product = "enterprise";
+    console.log("Product: " + product);
+    console.log("parts: " + parts);
+
   const searchParameters = {
     ...props.searchParameters,
     facetFilters,
+    optionalFilters: [ `product: ${product}`, ],
   };
   const history = useHistory();
   const searchContainer = useRef(null);
