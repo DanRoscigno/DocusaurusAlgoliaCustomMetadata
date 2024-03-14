@@ -1,4 +1,6 @@
 new Crawler({
+  appId: "NHCE31YG9M",
+  apiKey: "REDACTED",
   rateLimit: 8,
   maxDepth: 10,
   startUrls: ["https://docs.galacticbase.com/"],
@@ -9,7 +11,15 @@ new Crawler({
     {
       indexName: "galacticbase",
       pathsToMatch: ["https://docs.galacticbase.com/**"],
-      recordExtractor: ({ $, helpers }) => {
+      recordExtractor: ({ url, $, helpers }) => {
+        // get the product name (private, serverless, or enterprise)
+        const { pathname } = new URL(url);
+
+        const pathParts = pathname.split("/").slice(1);
+
+        // Extract the product from the path.
+        let product = pathParts.shift();
+
         // get the description metadata
         const description = $("meta[name='description']").attr("content") || "";
         const keywords = $("meta[name='keywords']").attr("content") || "";
@@ -29,7 +39,7 @@ new Crawler({
               selectors: "",
               defaultValue: lvl0,
             },
-            lvl1: ["header h1", "article h1"],
+            lvl1: ["keywords", "header h1", "article h1"],
             lvl2: "article h2",
             lvl3: "article h3",
             lvl4: "article h4",
@@ -39,6 +49,7 @@ new Crawler({
             description: { defaultValue: description },
             keywords: { defaultValue: keywords },
             pinyin: { defaultValue: pinyin },
+            product: { defaultValue: product },
           },
           indexHeadings: true,
           aggregateContent: true,
@@ -47,11 +58,6 @@ new Crawler({
       },
     },
   ],
-  // Note: These are the INITIAL index settings,
-  // so they get applied when the index is created,
-  // or re-created. If you make a change here after
-  // the index is created, it will not be applied
-  // unless you delete the index and recreate it.
   initialIndexSettings: {
     galacticbase: {
       attributesForFaceting: [
@@ -60,6 +66,7 @@ new Crawler({
         "language",
         "version",
         "docusaurus_tag",
+        "product",
       ],
       attributesToRetrieve: [
         "keywords",
@@ -69,6 +76,7 @@ new Crawler({
         "url",
         "url_without_anchor",
         "type",
+        "product",
       ],
       attributesToHighlight: ["hierarchy", "content"],
       attributesToSnippet: ["content:10"],
