@@ -154,10 +154,10 @@ const config = {
       contextualSearch: true,
 
       // Optional: Algolia search parameters
-      searchParameters: {},
+      searchParameters: { hitsPerPage: 1000},
 
       // Optional: path for search page that enabled by default (`false` to disable it)
-      searchPagePath: 'search',
+      searchPagePath: false,
 
       //... other Algolia params
       },
