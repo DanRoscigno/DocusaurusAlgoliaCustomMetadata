@@ -61,7 +61,7 @@ function DocSearch({contextualSearch, externalUrlRegex, ...props}) {
   const searchParameters = {
     ...props.searchParameters,
     facetFilters,
-    optionalFilters: [ `product: ${product}`, ],
+    filters: `product:${product}` ,
   };
   const history = useHistory();
   const searchContainer = useRef(null);
