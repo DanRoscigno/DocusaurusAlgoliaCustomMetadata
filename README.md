@@ -1,12 +1,6 @@
 # Website
 
-Test site deployed with Netlify.
-
-Prod URL is https://docs.galacticbase.com
-
-Algolia crawls the site under the Docsearch program
-
-DNS is setup so that I can use the CNAME docs.galacticbase.com; the Netlify hostname is startling-narwhal-a89c08, which is a pretty cool name, but I registered docs.galacticbase.com with the Algolia folks and the crawler is locked to that.
+Sometimes you have to get creative. While reviewing the search activity to find the most popular pages in the docs that I write I saw that there were many searches with zero hits. These were all in [Pinyin](https://en.wikipedia.org/wiki/Pinyin). Algolia has no support for Pinyin, but the crawler can be configured to use metadata added to pages.
 
 ## Adding Pinyin metadata
 
