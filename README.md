@@ -23,7 +23,7 @@ Sources of search result feedback include:
 - GitHub issues filed by readers
 - StackOverflow questions
 
-In addition to asking people about search results I query the Algolia API each week. In my environment the causes of zero results are 1) failing to add a new configuration parameter, 2) failing to add a new feature, or 3) not having a Pinyin term on a feature page. This is the query used to return the list of queries with no results:
+In addition to asking people about search results, I query the Algolia API each week. In my environment the causes of zero results are 1) failing to add a new configuration parameter, 2) failing to add a new feature, or 3) not having a Pinyin term on a feature page. This is the query used to return the list of queries with no results:
 
 ```yaml
 echo "## Algolia top failed searches" >> feedback.md
@@ -54,7 +54,7 @@ This is what the resulting GitHub issue looks like:
 
 Cheerio is a server-side implementation of JQuery. Cheerio is used by the Algolia Crawler to extract the Pinyin, keywords, and desription metadata from the documentation pages. I find that the [extracting data with Cheerio](https://www.algolia.com/doc/tools/crawler/extracting-data/data-extraction-examples/) section of the Algolia docs is the place to learn about extracting custom data from Docusaurus docs.
 
-## Adding Pinyin metadata
+## Enriching the docs with Pinyin metadata
 
 ### Add the metadata to doc pages
 
