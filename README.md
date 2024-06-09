@@ -1,6 +1,58 @@
 # Website
 
-Sometimes you have to get creative. While reviewing the search activity to find the most popular pages in the docs that I write I saw that there were many searches with zero hits. These were all in [Pinyin](https://en.wikipedia.org/wiki/Pinyin). Algolia has no support for Pinyin, but the crawler can be configured to use metadata added to pages.
+Sometimes you have to get creative. While reviewing the search activity to find the most popular pages in the docs that I write I saw that there were many searches with zero hits. These were all in [Pinyin](https://en.wikipedia.org/wiki/Pinyin). Algolia has no support for Pinyin, but the crawler can be configured to use metadata added to pages. If you are not already using the `keywords` metadata that can be added directly into the Docusaurus [docs frontmatter](https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-content-docs#markdown-front-matter). I wanted a Pinyin specific metadata array to use in addition ot the keywords array, and added this separately. Both the Pinyin array and keywords array are configured in this guide.
+
+## Goal
+
+Improve documentation search results.
+
+## Process
+
+1. Identify poor search results.
+2. Review the content to determine whether the content needs improving or metadata needs to be added.
+3. Add content or metadata to improve the documentation.
+4. Configure the Agolia crawler to extract and index the new metadata.
+5. Test
+
+### Identify poor search results
+
+Sources of search result feedback include:
+
+- the Algolia API
+- Support Engineers
+- GitHub issues filed by readers
+- StackOverflow questions
+
+In addition to asking people about search results I query the Algolia API each week. In my environment the causes of zero results are 1) failing to add a new configuration parameter, 2) failing to add a new feature, or 3) not having a Pinyin term on a feature page. This is the query used to return the list of queries with no results:
+
+```yaml
+echo "## Algolia top failed searches" >> feedback.md
+echo " " >> feedback.md
+curl --silent --fail \
+  -X GET \
+  -H "X-Algolia-API-Key: $ALGOLIA_TOKEN" \
+  -H "X-Algolia-Application-Id: ER08SJMRY1" \
+  "https://analytics.algolia.com/2/searches/noResults?index=starrocks" \
+  | jq -r '.searches | to_entries[] | "- [ ] \(.value.search)", "  failures this week: \(.value.count)"' \
+  >> feedback.md
+```
+
+This is what the resulting GitHub issue looks like:
+
+```markdown
+## Algolia top failed searches
+ 
+- [ ] shu'ju
+  failures this week: 42
+- [ ] chakan
+  failures this week: 29
+- [ ] cha'kan
+  failures this week: 26
+```
+
+## Cheerio
+
+Cheerio is a server-side implementation of JQuery. Cheerio is used by the Algolia Crawler to extract the Pinyin, keywords, and desription metadata from the documentation pages. I find that the [extracting data with Cheerio](https://www.algolia.com/doc/tools/crawler/extracting-data/data-extraction-examples/) section of the Algolia docs is the place to learn about extracting custom data from Docusaurus docs.
 
 ## Adding Pinyin metadata
 
