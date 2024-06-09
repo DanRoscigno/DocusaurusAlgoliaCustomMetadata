@@ -1,6 +1,6 @@
 # Website
 
-Sometimes you have to get creative. While reviewing the search activity to find the most popular pages in the docs that I write I saw that there were many searches with zero hits. These were all in [Pinyin](https://en.wikipedia.org/wiki/Pinyin). Algolia has no support for Pinyin, but the crawler can be configured to use metadata added to pages. If you are not already using the `keywords` metadata that can be added directly into the Docusaurus [docs frontmatter](https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-content-docs#markdown-front-matter). I wanted a Pinyin specific metadata array to use in addition ot the keywords array, and added this separately. Both the Pinyin array and keywords array are configured in this guide.
+Sometimes you have to get creative. While reviewing the search activity to find the most popular pages in the docs that I write I saw that there were many searches with zero hits. These failed searches were all in the Chinese language pages, and all written in [Pinyin](https://en.wikipedia.org/wiki/Pinyin). Algolia has no support for Pinyin, but the crawler can be configured to use metadata added to pages. If you are not already using the `keywords` metadata that can be added directly into the Docusaurus [docs frontmatter](https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-content-docs#markdown-front-matter). I wanted a Pinyin specific metadata array to use in addition ot the keywords array, and added this separately. Both the Pinyin array and keywords array are configured in this guide.
 
 ## Goal
 
