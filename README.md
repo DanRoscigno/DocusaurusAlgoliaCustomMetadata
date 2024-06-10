@@ -1,6 +1,6 @@
 # Website
 
-Sometimes you have to get creative. While reviewing the search activity to find the most popular pages in the docs that I write I saw that there were many searches with zero hits. These failed searches were all in the Chinese language pages, and all written in [Pinyin](https://en.wikipedia.org/wiki/Pinyin). Algolia has no support for Pinyin, but the crawler can be configured to use metadata added to pages. If you are using Docusaurus and not already using the `keywords` metadata for another purpose, the easiest way to enrich your docs with Pinyin is to use the `keywords` array in the Docusaurus [docs frontmatter](https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-content-docs#markdown-front-matter). I wanted a Pinyin specific metadata array to use in addition to the keywords array, and added this separately. Both the Pinyin array and keywords array are configured in this guide.
+Sometimes you have to get creative. While reviewing the search activity to find the most popular pages in the docs that I write I saw that there were many searches with zero hits. These failed searches were all in the Chinese language pages, and all written in [Pinyin](https://en.wikipedia.org/wiki/Pinyin). Algolia has no support for Pinyin, but the crawler can be configured to use metadata added to pages. If you are using Docusaurus and not already using the `keywords` metadata for another purpose, the easiest way to enrich your docs with Pinyin is to use the `keywords` array in the Docusaurus [docs frontmatter](https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-content-docs#markdown-front-matter). I wanted a Pinyin-specific metadata array to use in addition to the keywords array and added this separately. Both the Pinyin array and keywords array are configured in this guide.
 
 ## Goal
 
@@ -52,7 +52,7 @@ This is what the resulting GitHub issue looks like:
 
 ## Cheerio
 
-Cheerio is a server-side implementation of JQuery. Cheerio is used by the Algolia Crawler to extract the Pinyin, keywords, and desription metadata from the documentation pages. I find that the [extracting data with Cheerio](https://www.algolia.com/doc/tools/crawler/extracting-data/data-extraction-examples/) section of the Algolia docs is the place to learn about extracting custom data from Docusaurus docs.
+Cheerio is a server-side implementation of JQuery. Cheerio is used by the Algolia Crawler to extract the Pinyin, keywords, and description metadata from the documentation pages. I find that the [extracting data with Cheerio](https://www.algolia.com/doc/tools/crawler/extracting-data/data-extraction-examples/) section of the Algolia docs is the place to learn about extracting custom data from Docusaurus docs.
 
 ## Enriching the docs with Pinyin metadata
 
@@ -86,7 +86,7 @@ The above results in this being added to the HTML:
 
 ### Configure the Algolia Crawler
 
-The Algolia Docsearch program includes the Algolia Crawler. By default the crawler supports Docusaurus and
+The Algolia Docsearch program includes the Algolia Crawler. By default, the crawler supports Docusaurus and
 many other documentation frameworks. The following describes adding the new attribute `pinyin`.
 
 #### Overview
@@ -123,7 +123,7 @@ in the four indicated sections of the crawler configuration.
 
 #### Run a URL test and save the config
 
-While in the crawler config editor you can paste in a URL to test and select the `Records` tab. This output shows
+While in the crawler config editor, you can paste in a URL to test and select the `Records` tab. This output shows
 the retrieved records. Confirm that your attribute is present and populated:
 
 ```json
